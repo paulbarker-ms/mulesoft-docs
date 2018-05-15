@@ -3,7 +3,7 @@
 
 [IMPORTANT]
 ====
-The upgrade process described in this document changes the existing Anypoint Platform APIs, which affects CI/CD pipelines built against the API Manager API and autodiscovery. See the "Continuous Integration and Delivery (CI/CD)" section below for more information.
+The upgrade process described in this document changes the existing Anypoint Platform APIs, which affects CI/CD pipelines built against the API Manager API and autodiscovery. See link:/release-notes/upgrade#apis-in-api-manager-changes-after-the-upgrade[API Manager Changes] below for more information.
 
 *Note:* After the upgrade and before classifying your APIs into environments, thoroughly test your APIs, Notebooks, and Portals. After APIs are classified, your organization cannot be rolled back in the event you encounter upgrade related issues.
 ====
