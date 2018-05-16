@@ -2,11 +2,11 @@
 :keywords: anypoint studio, connectors, hdfs
 :imagesdir: ./_images
 
-== Introduction
+_Select_
 
 The Anypoint Connector for the Hadoop Distributed File System (HDFS) is used as a bi-directional gateway between Mule applications and HDFS.
 
-Read through this user guide to understand how to set up and configure a basic flow using the connector. Track feature additions, compatibility, limitations and API version updates with each release of the connector using the link:/release-notes/hdfs-connector-release-notes[Connector Release Notes]. Review the connector operations and functionality using the http://mulesoft.github.io/hdfs-connector/[Technical Reference] and the https://www.anypoint.mulesoft.com/exchange/org.mule.modules/mule-module-hdfs/[Anypoint Exchange HDFS connector].
+Read through this user guide to understand how to set up and configure a basic flow using the connector. Track feature additions, compatibility, limitations and API version updates with each release of the connector using the link:/release-notes/hdfs-connector-release-notes[Connector Release Notes]. Review the connector operations and functionality using the http://mulesoft.github.io/mule-hadoop-connector/[Technical Reference] and the https://www.anypoint.mulesoft.com/exchange/?search=hadoop[Anypoint Exchange Hadoop connector].
 
 Since version 5.0.0, MuleSoft maintains this connector under the link:/mule-user-guide/v/3.9/anypoint-connectors#connector-categories[_Select_] support policy.
 
@@ -36,25 +36,18 @@ HDFS Hadoop connector is compatible with the following:
 [IMPORTANT]
 Starting with v5.0.0, the HDFS connector is licensed commercially with Anypoint Platform as are other link:/mule-user-guide/v/3.9/anypoint-connectors#connector-categories[_Select_] connectors.  Prior versions will remain freely available to the community.
 
-== Install the Connector
+== To Install this Connector
 
-You can install the connector in Anypoint Studio using the instructions in
-link:/anypoint-exchange/ex2-studio[Installing a Connector from Anypoint Exchange].
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
 
-=== Upgrading from an Older Version
-
-If you’re currently using an older version of the connector, a small popup appears in the bottom right corner of Anypoint Studio with an "Updates Available" message.
-
-. Click the popup and check for available updates. 
-. Click the Connector version checkbox and click *Next* and follow the instructions provided by the user interface. 
-. *Restart* Studio when prompted. 
-. After restarting, when creating a flow and using the HDFS Connector, if you have several versions of the connector installed, you may be asked which version you would like to use. Choose the version you would like to use.
-
-Additionally, we recommend that you keep Studio up to date with its latest version.
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
 == Configure the Connector Global Element
 
-To use the HDFS connector in your Mule application, you must configure a global HDFS element that can be used by the connector. The HDFS connector offers the following global configuration options, requiring the following credentials:
+To use the HDFS connector in your Mule application, configure a global HDFS element that can be used by the connector. The HDFS connector offers the following global configuration options, requiring the following credentials:
 
 === Simple Authentication Configuration
 
@@ -146,7 +139,7 @@ Inside the `<version>` tags, put the desired version number, the word `RELEASE` 
 
 == Demo Mule Application Using Connector
 
-Existing demos demonstrate how to use the connector for link:http://mulesoft.github.io/hdfs-connector/[basic file system operations] and how to link:http://mulesoft.github.io/hdfs-connector/[poll data from a file] at a specific interval.
+Existing demos demonstrate how to use the connector for http://mulesoft.github.io/mule-hadoop-connector/[basic file system operations] and how to http://mulesoft.github.io/mule-hadoop-connector/[poll data from a file] at a specific interval.
 
 === Example Use Case
 
@@ -187,6 +180,21 @@ http://www.mulesoft.org/schema/mule/hdfs http://www.mulesoft.org/schema/mule/hdf
     </flow>
 </mule>
 ----
+
+== CloudHub Configuration
+
+Additional configuration parameters are required if using the HDFS connector on CloudHub with kerberos authentication as the CloudHub worker is not a member of the kerberos realm.
+Under Settings->Properties for the CloudHub worker define and set the following properties:
+
+[%header,width="100%",cols="50%,50%"]
+|===
+|Property Name|Value
+|java.security.krb5.kdc |<kdc server name>
+|java.security.krb5.realm |<kerberos realm>
+|===
+
+[IMPORTANT]
+The kdc server name and kerberos realm values should be provided by the HDFS administrator for your organization.
 
 == Connector Performance
 

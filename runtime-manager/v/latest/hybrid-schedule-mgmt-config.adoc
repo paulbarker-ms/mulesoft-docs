@@ -22,7 +22,7 @@ Before performing the following procedure, ensure that you have deployed an appl
 
 . Click Update.
 
-
 == See Also
 
-* About Schedule Management (Hybrid)
+* link:/runtime-manager/hybrid-schedule-mgmt[About Schedule Management (Hybrid)]
+* [Quartz Library - Used for Cron-type schedulers](http://www.quartz-scheduler.org/documentation/quartz-2.x/tutorials/crontrigger.html)

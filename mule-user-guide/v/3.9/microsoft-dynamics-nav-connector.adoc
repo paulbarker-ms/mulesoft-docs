@@ -51,14 +51,17 @@ The Microsoft Dynamics NAV connector is compatible with:
 |MS Dynamics NAV | 2013 R2, 2015 and 2016
 |===
 
-== Installing the Connector
+== To Install this Connector
 
-You can install the connector in Anypoint Studio using the instructions in link:/anypoint-exchange/ex2-studio[Installing a Connector from Anypoint Exchange].
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
+
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
 
-== Configuring the Connector Global Element
-
-=== Create a New Mule Project
+== Create a New Mule Project
 
 Open *Anypoint Studio* and create a new project:
 
@@ -172,7 +175,7 @@ If you are coding a Mavenized Mule application, this XML snippet must be include
 
 == Demo Mule Applications Using Connector
 
-You can download fully functional demo applications using the Microsoft Dynamics NAV connector from https://mulesoft.github.io/dynamics-nav-connector[this page].
+You can download fully functional demo applications using the Microsoft Dynamics NAV connector from https://mulesoft.github.io/mule-microsoft-dynamics-nav-connector/[this page].
 
 === Example Use Case
 
@@ -309,7 +312,9 @@ http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/
 ----
 
 
-== Resources
+== See Also
 
-* link:https://msdn.microsoft.com/en-us/library/dd355036(v=nav.90).aspx[Microsoft Dynamics NAV Web Services site]
+* https://msdn.microsoft.com/en-us/library/dd355036(v=nav.90).aspx[Microsoft Dynamics NAV Web Services site]
 * Access the link:/release-notes/microsoft-dynamics-nav-connector-release-notes[Microsoft Dynamics NAV Release Notes].
+* https://mulesoft.github.io/mule-microsoft-dynamics-nav-connector/[Connector Reference]
+

@@ -3,8 +3,15 @@
 
 These release notes cover the following versions of Design Center:
 
-// link:/release-notes/design-center-release-notes#1-2-november-18-2017[1.2]
-
+* link:/release-notes/design-center-release-notes#1-4-0-may-6-2018[1.4.0]
+* link:/release-notes/design-center-release-notes#1-3-5-march-24-2018[1.3.5]
+* link:/release-notes/design-center-release-notes#1-3-2-march-10-2018[1.3.2]
+* link:/release-notes/design-center-release-notes#1-3-1-february-24-2018[1.3.1]
+* link:/release-notes/design-center-release-notes#1-3-january-27-2018[1.3]
+* link:/release-notes/design-center-release-notes#1-2-1-2-january-13-2018[1.2.1.2]
+* link:/release-notes/design-center-release-notes#1-2-1-1-december-16-2017[1.2.1.1]
+* link:/release-notes/design-center-release-notes#1-2-1-november-30-2017[1.2.1]
+* link:/release-notes/design-center-release-notes#1-2-november-18-2017[1.2]
 * link:/release-notes/design-center-release-notes#1-1-1-october-21-2017[1.1.1]
 * link:/release-notes/design-center-release-notes#1-1-september-30-2017[1.1]
 * link:/release-notes/design-center-release-notes#1-0-3-august-26-2017[1.0.3]
@@ -12,18 +19,257 @@ These release notes cover the following versions of Design Center:
 * link:/release-notes/design-center-release-notes#1-0-1-august-4-2017[1.0.1]
 * link:/release-notes/design-center-release-notes#1-0-july-29-2017[1.0]
 
-////
+== 1.4.0 May 6, 2018
+
+This release includes flow design UX enhancements, known issues, and bug fixes.
+
+=== New Features and Enhancements
+
+* New mapping recommender embedded within the transform card.
+* New “Getting Started” wizard: Starting new flows from scratch is simpler and easier than ever.
+* New Visual Function Editor: Adding and editing formulas is now easier thanks to the new Visual Function Editor.
+* Support for Mule 4.1.1
+* Improved component selector: +
+Connector’s icons are now displayed within the component selector.
+
+=== Fixed Issues and Changes
+
+* Updated Anypoint Components to the latest version.
+* Applied many security upgrades.
+* Several fixes to the transform card.
+* Bug fixes.
+* Enhanced service protection around the Flow Designer Experience API.
+* Increased stability and worker monitoring implemented.
+
+== Known Issues
+
+* Some of the limitations of v1.3.5 apply to this version.
+* Rest Connect connectors shows artifactId instead of name.
+* The option to set an expression for repeated elements is temporary disabled since it is not currently supported by the DataWave API.
+* The Select dropdown goes outside of scrollable bounds.
+* There are known OOM issues using MySQL Driver 5.1.33 and later versions.
+
+== 1.3.5 March 24, 2018
+
+This release includes flow design UX enhancements, new API design UX enhancements and new features for code view and visual mode, resolved issues, and known issues.
+
+=== New Features and Enhancements
+
+* Enhancements for designing Mule apps:
++
+** Support for new connectors (Amazon DynamoDB, BMC Remedy).
+** Updated to support the latest DataWeave language server.
++
+* Enhancements for API design:
++
+** Improved UI. The default smoothing of Anypoint styles was removed. This affected the readability in gray backgrounds.
+** The addition of embedded examples.
+** A new Welcome splash screen and an in-product video.
+** An API Designer Walkthrough.
+** A Visual API Designer Walkthrough.
+
+=== Fixed Issues and Changes
+
+* Supports deprecated connectors in Exchange for designing flows.
+* Fixed Try it / Live messages.
+* Fixed several Rest Connector bugs.
+* Incorporated several fixes to the transform component.
+* Decoupled flow design capabilities from the latest runtime. This allows faster fallback to a stable runtime for all new projects if needed.
+* Replaced the expired session popup for the platform login page.
+* Fixed the issue that caused Try It to disappear when resizing the browser window.
+* Fixed the issue related to deleting a Branch without a working directory associated with the user.
+
+== Known Issues
+
+* Some of the limitations of v1.3.0 apply to this version.
+* Rest Connect connectors show `artifactId` instead of the name.
+* The option to set an expression for repeated elements is temporary
+* The Select dropdown exceeds scrollable bounds.
+* There are known OOM issues using MySQL Driver 5.1.33 and later.
+
+== 1.3.2 March 10, 2018
+
+This release of Design Center includes the following improvements and resolved issues related to API design.
+
+=== Enhancement
+
+Bumped API Console to 1.0.7
+
+=== Fixed Issues and Changes
+
+* Resolved the issue that occurred if a Business Group has existing assets published in Exchange. Renaming the asset no longer results in errors when designing API specifications or fragments.
+* When defining a Data Type in an API specification or fragment, if you name a property 'type', this property is now correctly shown.
+* Fixed an issue that prevented the display of the warning message "CONTENT_DOES_NOT_MATCH_THE_SCHEMA".
+
+
+== 1.3.1 February 24, 2018
+
+This release includes includes enhancements and fixed issues in API design in Design Center 1.3.
+
+=== Enhancements
+
+* Bumped JS RAML Parser to link:https://github.com/raml-org/raml-js-parser-2/releases/tag/1.1.40[1.1.40].
+* Bumped OAS RAML Converter to 1.1.27.
+* Bumped VISUAL API Designer to 0.1.49.
+* Improved UI for visual design mode. When the RAML panel collapses and expands,
+the UI now correctly displays DateTime and DateTime-Only data types.
+
+=== Fixed Issues
+
+* Showing examples for the status code even if they are
+defined.
+* Selecting an extension fragment files as a main file for publication that caused a problem.
+* Creating a data type as a fragment with different indentations to
+define the properties now displays an error message.
+* Creating an example for a data type having a null value and the
+required property set to false, now displays an error message.
+
+== 1.3 January 27, 2018
+
+This release includes flow design UX enhancements, known limitations, issues, and fixes in Design Center 1.3.
+
+=== New Features and Enhancements
+
+* Highlighted operation name, as well as Delete and Refresh options, on opened and unopened component improves usability.
+* Helper tooltips appear for fields in components of a flow.
+* MySQL Connector limits the picker to JAR file types when uploading a new database driver.
+* The function expression editor is improved.
+* The top navbar and app promotion modals have been completely redesigned to enhance the user experience.
+* Top level elements are partially supported to facilitate the configuration of the connectors.
+* Displays default values for required config parameters in SOAP-based connectors.
+* While loading, if the configuration is opened, displays a better message than _Unknown_.
+* Filters external libraries by tag.
+* In the search component card, displays the asset name of APIs published in Exchange instead of the RAML specification title.
+* Access control for expired accounts.
+* Binary message in Transform to guide the user.
+
+
+== Fixed Issues and Changes
+
+* Stops showing errors in live tab from nonexistent card.
+* Set data types tooltip is fixed to avoid displaying duplicates.
+* Fixes the search filter for APIs.
+* Fixes the dots visualization in Map transformation.
+* Adds missing red lines in required fields for the file picker in the Web Service Consumer.
+* Fixes output metadata load in embedded Transformer when it has metadata keys.
+* Card refresh when changing the version of an extension.
+
+
+=== Known Limitations
+
+* Some of the limitations of v1.2.1 apply to this version.
+* The option to set an expression for repeated elements is temporary disabled since it is not currently supported by the DataWave API.
+* The Select dropdown goes outside of scrollable bounds.
+* There are OOM issues using MySQL Driver 5.1.33 and later versions.
+* Live View: there are some scenarios where the live view may not work. You may need to rerun you application in order to see live view showing data.
+* The relogin popup fails to close. To workaround this issue, you will need to close it manually and refresh the current page you are viewing.
+* The user experience for writing sample data in a transformation of Web Service Consumer output needs to be improved. You need to use a workaround to write this sample data.
+
+*Workaround*
+
+Format the output of sample data in a transformation of Web Service Consumer output as follows:
+
+[source,code,linenums]
+----
+output application/java
+---
+{
+    "body": read('put web service consumer body sample here on a single line', 'application/xml')
+}
+----
+
+Place the Web Service consumer body sample on a single line.
+
+*Example*
+
+[source,code,linenums]
+----
+output application/java
+---
+{
+    "body": read('<ns2:listAllFlightsResponse  xmlns:ns2="http://soap.training.mulesoft.com/"><return><airlineName>Delta</airlineName><code>A1B2C3</code><departureDate>2015/03/20</departureDate><destination>SFO</destination><emptySeats>40</emptySeats><origin>MUA</origin><planeType>Boing 737</planeType><price>400.0</price></return><return><airlineName>Delta</airlineName><code>SIL</code><departureDate>2015/03/20</departureDate><destination>SFO</destination><emptySeats>40</emptySeats><origin>MUA</origin><planeType>Boeing 737</planeType><price>400.0</price></return></ns2:listAllFlightsResponse>', 'application/xml')
+}
+----
+
+== 1.2.1.2 January 13, 2018
+
+This release of Design Center includes the following improvements and resolved issues related to API design.
+
+=== New Features and Enhancements
+
+* Improved UI for API console.
+* API Console and mocking server integrated to visual design mode.
+* New design for Create button in visual design mode, so there is a more visible and identifiable asset to create new resources.
+* Improved UI for the property list in visual design mode:
+* When a property, body, parameter, or header is created, it expands by default.
+* Improved UI for visual design mode inherited examples field:
++
+** Changes in format and behavior for the Edit button.
+** URI parameters in visual design.
+** Color degradations for indentations.
+** Matching text is highlighted when doing a search for a data types or resource.
+
+=== Fixed Issues and Changes
+
+* Fixed an issue related to _Try It_, which was not working as expected with fields and data types in an API design that are marked as required: true.
+* Import now adds only accessible dependencies to an API design.
+* An API design is fixed to provide progress feedback after clicking on an Export action.
+* Incorrect font color of resource methods is fixed.
+* The name of a deprecated fragment is now shown in strikethrough text when you add it as a dependency.
+* IE 11.0.9 is now supported for API visual design.
+* API Console now supports IE 11.0.9
+* In visual design, properties are preserved when switching between Object and Array.
+* Fixed an issue with using data types with names starting with the same string.
+* Fixed an issue related to creating an empty response.
+* The Export action no longer generates an invalid JSON file.
+* Fixed an issue that broke data types when the Raml panel collapses and expands.
+* Fixed a UI radio button issue.
+
+== 1.2.1.1 December 16, 2017
+
+This release of Design Center includes the following updates and resolved issues related to API design.
+
+=== Updates
+
+* Bumped JS RAML Parser to link:https://github.com/raml-org/raml-js-parser-2/releases/tag/1.1.39[1.1.39].
+* Bumped OAS RAML Converter to 1.1.23.
+
+=== Resolved Issues
+
+* An error is no longer present when using an Array as the body type and item type is changed.
+* In visual editing mode, examples defined in custom type properties are inherited.
+* The mocking service now recognizes type NULL and URI-parameter in RAML.
+* File types are now displayed correctly when selecting multiple options.
+* When adding a body, the details are expanded for better visibility.
+* Publishing to Exchange now uses the updated project name.
+* UI fixes related to the properties list:
+** Indentations are differentiated using color changes.
+** Indentation at the next line coincides with indentation of the last line.
+** You cannot open more than one body or property at a time.
+
+== 1.2.1 November 30, 2017
+
+This release of Design Center includes following flow design fixes and improvements:
+
+* You can now add new custom, JSON data types to the output tree in the Transform card.
+* Improved error handling for Try it.
+* Reduced the number of failing calls not triggering the consume of the Live View when packaging failed.
+* Relogin after session expired.
+* Fixes to support last changes on smart connector migration.
+* Fixes to the migration process for projects created before Design Center 1.0.0 that have not been migrated until Design Center 1.2.
+* Stop displaying Catalyst APIs.
+
 
 == 1.2 November 18, 2017
 
-This release of Design Center includes new flow design features at the runtime level, DataWeave enhancements, and many flow design UX improvements. Bug fixes are also included in this release.
+This release of Design Center includes new flow design features at the runtime level, DataWeave enhancements, and many flow design UX improvements. This release also introduces API visual editing capabilities. Bug fixes are also included in this release.
 
 === Features and Changes
 
 * Handles FTP/SFTP as two different connectors.
 * Shows more feedback to the user about the project when loading/leaving canvas.
 * Simplifies the create project process: does not ask the user to select an environment when only one is available for the Organization.
-* Adds helper tooltips for fields in cards. 
+* Adds helper tooltips for fields in cards.
 * Adds tooltips in Undo/Redo menu options.
 * Displays warning message when invalid characters are used in flow names.
 * Includes the capability to clear the Logs panel.
@@ -31,23 +277,52 @@ This release of Design Center includes new flow design features at the runtime l
 * Shows Payload as a default value view when no error occurs in Live View.
 * Improves access to data type actions (create/edit/set/detach) in Transform.
 * Includes code hinting in Function.
-* Improves visibility of  the Search option in Transform.
+* Improves visibility of the Search option in Transform.
 * Improves the Target Mapping message.
 * Improves the http path and url field.
 * Makes Test Connectivity button unavailable for Email or Web Service Consumer.
- 
-=== Known Issues:
+* Supports pagination of the project list.
+* Improves code editing view and IE browser stability.
+* Adds a new visual editor for APIs that supports describing HTTP characteristics of an API including:
+** Resources
+** Methods
+** Parameters
+** Headers
+** Status codes
+** Payloads (Data Types)
+** BaseUri
+** Protocols
+** Response/Request body
+* Provides root level API definition and documentation.
+* Supports examples at attribute and payload levels.
+* Groups resources and data types.
+* Adds a read only RAML viewer.
+* Displays live RAML errors in both visual editing UI and in code preview.
+
+== Resolved Issues
+
+A number of issues were resolved, including:
+
+* Fixed visual editing preview in Firefox browser.
+
+=== Known Issues
 
 * Some of the limitations of v1.0.2 apply to this release.
 * To use Object Store v2, you need certain entitlements. Otherwise, Object Store V1 is used.
 * Re-login popup and some other issues exist with Safari version 10.1.2 and 11.0.0.
 * Adding a Data Type from the Live View for a WSC is not be possible.
+* OOM issues using MySQL Driver 5.1.42 and later versions. Recommend using version 5.1.33
+* Dependency Manager: Use current connector version (1.0.0) or later. Not supporting the change to old versions
+* Flow Designer is not supporting Object Store name other than the default one for this current version.
+* Live view for FTP List is not showing attributes.
+* Live view for Rest Connectors is not displaying anything.
+* Transform: Function editor not supported for fields having a name that is a reserved word, such as “type”.
+* Workday Configuration: Transport field is required however it is not highlighted when value not provided.
+
 
 **For Existing Applications in Flow Designer earlier than version 1.2.0:**
 
 Flows using FTP with SFTP configuration need to change to the new SFTP connector.
-
-////
 
 == 1.1.1 October 21, 2017
 
@@ -69,7 +344,7 @@ This release introduces the following API design improvements and bug fixes:
 
 This release incorporates new features, changes, and bug fixes.
 
-*Summary of enhancements* 
+*Summary of enhancements*
 
 * New flow design features at the runtime level
 * DataWeave and UX improvements
@@ -108,7 +383,7 @@ This release incorporates new features, changes, and bug fixes.
 * New confirmation popup for the Clear Data Type and the Keep Transformation operations.
 * Allow adding capital characters in the project list search.
 * Session expired relogin improvement popup now redirects to Design Center.
-* New custom types support in flows. 
+* New custom types support in flows.
 * Improved workspace restart experience.
 * Fixed project unlock when closing the browser.
 * Improved Datasense/Dataweave performance.
@@ -120,11 +395,11 @@ This release incorporates new features, changes, and bug fixes.
 * Scrolling left no longer causes an unexpected back function to occur in the browser.
 * After importing a large zip file, the project lock is no longer lost.
 * Fixed an issue causing inaccuracies in the Business Group drop-down in the Consume Fragment dialog.
-* Fixed the issue that caused failure to import a file to replace a file inside a folder. 
-* Fixed an issue preventing decompression of .zip files generated by exporting a project on Windows OS. 
+* Fixed the issue that caused failure to import a file to replace a file inside a folder.
+* Fixed an issue preventing decompression of .zip files generated by exporting a project on Windows OS.
 * Fixed an issue causing file autocomplete to fail when used with files inside folders.
 
-=== Known Issues 
+=== Known Issues
 
 * Some of the limitations of v1.0.2 apply to this version.
 * Literal arrays cannot be edited from the function editor in the transform.
@@ -141,7 +416,7 @@ This release incorporates new features, changes, and bug fixes.
 * Flows using cards that enable Reconnection Strategy need to be re-setup to start using the runtime functionality changes.
 * The output for Web Service Consumer and Email is now changed from a `MultipartPayload` to an object; therefore, some applications may stop working until the output mapping is fixed.
 
-== API 
+== API
 
 == 1.0.3 - August 26, 2017
 
@@ -159,7 +434,7 @@ API designer bug improvements and bug fixes are included in this release:
 
 == 1.0.2 - August 12, 2017
 
-This release includes in-app links to documentation, it also includes bug fixes in several components such as the Choice, Try, and Transform components. 
+This release includes in-app links to documentation, it also includes bug fixes in several components such as the Choice, Try, and Transform components.
 
 === Resolved Issues
 
@@ -175,8 +450,8 @@ This release includes in-app links to documentation, it also includes bug fixes 
 * File leak issue in the Execution Service.
 * Improve Transform component`s performance.
 * Null File-Name error issue in Runtime Manager.
- 
- 
+
+
 === Known Issues
 
 * The Same limitations from version 1.0.0 apply to this version.
@@ -259,9 +534,9 @@ This release of Design Center enables you to:
 * Live View - sometimes Consume is not retrieving anything, therefore live view does not show anything
 * Publishing assets to exchange or uploading Drivers. User will need to have exchange permissions. Also a more accurate error is required to be retrieved when not having enough permissions
 * Currently Datasense is not supported for Flow Ref
-* Transform presents some mapping simple types issues 
+* Transform presents some mapping simple types issues
 * Cloning Projects is only available for Mule Applications type projects
-* The validation all operation is not available 
+* The validation all operation is not available
 * Project management view does not show correct dates in the project list and in the detail panel
 * Unlock takes 5 min to unlock a project
 * Test connectivity failure causes deployment failure
@@ -277,6 +552,3 @@ This release of Design Center enables you to:
 * Users cannot move files to a folder via drag and drop in Firefox
 
 * API Designer does not delete baseUri parameter if header of file is changed to a fragment and mocking server is running
-
-
-

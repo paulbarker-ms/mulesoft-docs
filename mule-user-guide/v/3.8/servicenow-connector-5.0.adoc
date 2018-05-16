@@ -10,7 +10,7 @@ The XML element for the ServiceNow configuration starts with the `servicenow:` s
 
 *Release Notes*: link:/release-notes/servicenow-connector-release-notes[ServiceNow Connector Release Notes].
 
-*API Docs*: link:http://mulesoft.github.io/servicenow-wsdl-connector/[ServiceNow WSDL Connector API Docs].
+*API Docs*: http://mulesoft.github.io/mule-servicenow-connector/[ServiceNow WSDL Connector API Docs].
 
 *Migration Guide*: link:/mule-user-guide/v/3.8/servicenow-connector-5.0-migration-guide[ServiceNow Connector 5.x Migration Guide].
 
@@ -40,11 +40,16 @@ It may work with other versions of ServiceNow as well, but the compatibility of 
 
 The ServiceNow connector is not compatible with Mule Runtime versions prior to 3.7.
 
-== To Install the ServiceNow Connector
+== To Install this Connector
 
-You can install a connector in Anypoint Studio using the instructions in link:/anypoint-exchange/ex2-studio[Installing a Connector from Anypoint Exchange].
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
 
-However, to use the ServiceNow connector v5 in a production environment, you must have an Enterprise license to use Mule. Contact the mailto:info@mulesoft.com[MuleSoft Sales Team] to obtain this license. See: link:/mule-user-guide/v/3.8/installing-an-enterprise-license[Installing an Enterprise License].
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
+
+To use the ServiceNow connector v5 in a production environment, you must have an Enterprise license to use Mule. Contact the mailto:info@mulesoft.com[MuleSoft Sales Team] to obtain this license. See: link:/mule-user-guide/v/3.8/installing-an-enterprise-license[Installing an Enterprise License].
 
 == To Create a New Project
 
@@ -189,7 +194,7 @@ The following are use cases for the ServiceNow connector described in subsequent
 
 Create a Mule flow to get keys from the Incident table in your ServiceNow instance.
 
-See additional examples at the link:http://mulesoft.github.io/servicenow-wsdl-connector/[ServiceNow connector resource page].
+See additional examples at the http://mulesoft.github.io/mule-servicenow-connector/[ServiceNow connector resource page].
 
 image:servicenow-73170.png[servicenow-getkeys-flow]
 
@@ -319,4 +324,4 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 == See Also
 
 * Learn more about working with link:/mule-user-guide/v/3.8/anypoint-connectors[Anypoint Connectors].
-* link:http://mulesoft.github.io/servicenow-wsdl-connector/[ServiceNow Connector information]
+* http://mulesoft.github.io/mule-servicenow-connector/[ServiceNow Connector information]

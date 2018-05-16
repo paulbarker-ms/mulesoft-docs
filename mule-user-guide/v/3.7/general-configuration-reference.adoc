@@ -1,7 +1,5 @@
 = General Configuration Reference
-:keywords: esb, configure, finetune
-
-Mule provides Javadoc-style link:http://www.mulesoft.org/docs/site/3.0.0/schemadocs/[schema documentation], making it easier to familiarize yourself with all the elements and attributes permissible in XML configuration files.
+:keywords: configure, finetune
 
 [cols="2*"]
 |===
@@ -24,4 +22,4 @@ a|
 
 For configuration reference on transports, see link:/mule-user-guide/v/3.7/transports-reference[Transports Reference]. For modules, see link:/mule-user-guide/v/3.7/modules-reference[Modules Reference].
 
-For transports and modules contributed by the community, see link:https://www.mulesoft.com/exchange#!/?types=connector&filters=Community&sortBy=name[Anypoint Exchange Community Connectors].
+For transports and modules contributed by the community, see https://www.anypoint.mulesoft.com/exchange/?type=connector&search=community[Anypoint Exchange Community Connectors].

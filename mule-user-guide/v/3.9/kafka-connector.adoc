@@ -4,13 +4,13 @@
 
 The Anypoint Connector for link:http://kafka.apache.org/090/documentation.html[Apache Kafka] allows you to interact with the Apache Kafka messaging system, enabling seamless integration between your Mule applications and an Apache Kafka cluster, using Mule runtime.
 
-link:http://snip.ly/flb5i#http://mulesoft.github.io/kafka-connector/[Technical Reference and Demo App Download] +
+http://mulesoft.github.io/mule-kafka-connector/[Technical Reference and Demo App Download] +
 link:/release-notes/kafka-connector-release-notes[Kafka Connector Release Notes]
 
 Read this user guide to understand how to set up and configure a basic Mule flow with the Apache Kafka connector.
 
 *Note:*
-Track feature additions, compatibility, limitations and API version updates with each release of the connector using the link:/release-notes/kafka-connector-release-notes[Connector Release Notes]. Review the connector operations and functionality using the link:http://mulesoft.github.io/kafka-connector/[Technical Reference] alongside the link:https://www.mulesoft.com/exchange#!/?filters=Apache+Kafka&sortBy=rank[Demo Mule Applications Using the Connector].
+Track feature additions, compatibility, limitations and API version updates with each release of the connector using the link:/release-notes/kafka-connector-release-notes[Connector Release Notes]. Review the connector operations and functionality using the link:http://mulesoft.github.io/mule-kafka-connector/[Technical Reference] and in https://www.anypoint.mulesoft.com/exchange/?search=kafka[Anypoint Exchange].
 
 MuleSoft maintains this connector under the link:/mule-user-guide/v/3.9/anypoint-connectors#connector-categories[_Select_] support policy.
 
@@ -180,8 +180,10 @@ image:consumer_flow_config.png[Consumer flow configuration]
 |*Consumer Configuration* |"Apache_Kafka__Configuration" (default name of a configuration, or any other configuration that you configured as explained in link:#configure[Configuration] section
 |*Operation* |Consumer
 |*Topic* |`${consumer.topic}`
-|*Partitions* |`${consumer.topic.partitions}`
+|*Number of Partitions* |`${consumer.topic.partitions}`
+|*Partition Offsets MEL* |`#[["0":"1","1":"2"]]`
 |===
+* You can use the MEL expression to pass an offset or offsets to Kafka to re-retrieve messages from the specified offset or offsets. For example, #[["0":"1","1":"2"]] means resetting the offset of partition 0 to 1 and the offset of partition 1 to 2
 +
 image:consumer_config.png[Kafka consumer configuration]
 +
@@ -217,7 +219,7 @@ http://www.mulesoft.org/schema/mule/apachekafka
 http://www.mulesoft.org/schema/mule/apachekafka/current/mule-apachekafka.xsd">
     <apachekafka:config name="Apache_Kafka__Configuration" bootstrapServers="${config.bootstrapServers}" consumerPropertiesFile="${config.consumerPropertiesFile}" producerPropertiesFile="${config.producerPropertiesFile}" doc:name="Apache Kafka: Configuration"/>
     <flow name="new-projectFlow">
-        <apachekafka:consumer config-ref="Apache_Kafka__Configuration" topic="${consumer.topic}" partitions="${consumer.topic.partitions}" doc:name="Kafka consumer"/>
+        <apachekafka:consumer config-ref="Apache_Kafka__Configuration" topic="${consumer.topic}" numberOfPartitions="${consumer.topic.partitions}" partitionOffsetsMEL="#[[&quot;0&quot;:&quot;1&quot;,&quot;1&quot;:&quot;2&quot;]]" doc:name="Kafka consumer"/>
         <logger message="New message arrived: #[payload]" level="INFO" doc:name="Consumed message logger"/>
     </flow>
 </mule>

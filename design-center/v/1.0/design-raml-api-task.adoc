@@ -1,8 +1,10 @@
-= To Design a RAML API Specification
+= To Design a RAML API Specification (Code View)
 
-link:/getting-started/api-lifecycle-overview#which-version[_Requires Crowd Release_]
+_Requires November 2017 Release_
 
-This procedure covers how to design an API that consumes the free online REST service JSONPlaceholder. The API has two resources: `/users` and `/usersbyid`. You can call the API to request information about all users, or using an HTTP query parameter, to request information about a particular user. You can download the example code for this procedure from the "Download" section at the end of this topic.
+This procedure covers how to design a simple API that consumes the free online REST service JSONPlaceholder. The API has two resources: `/users` and `/usersbyid`. The API design supports requesting information about all users, or using an HTTP query parameter, requesting information about a particular user. In a real-world situation, you design the API to handle responses for all common HTTP status codes: 200, 400, 401, 404, 405, 406, and 415. For simplicity, you include code only for the HTTP status code 200 for receiving a valid request. 
+
+The complete code for this procedure to copy and paste appears at the end of this topic.
 
 . In Anypoint Platform, click Design Center. Set up a project to create a new API specification:
 +
@@ -10,7 +12,7 @@ This procedure covers how to design an API that consumes the free online REST se
 +
 * In New API Specification, type a name for your new project. For example, type placeholder. Click Create.
 +
-The project opens for design in the master branch. Two lines of code based on the title and version of the API appear in the RAML editor.
+The project opens for design in the master branch. In Design Center, a branch is a fork of a project that cannot be merged. Two lines of code based on the title and version of the API appear in the RAML editor.
 +
 . In the RAML editor, go to the next blank line (3).
 +
@@ -65,7 +67,7 @@ title: placeholder
 baseUri: http://jsonplaceholder.typicode.com
 /users:
   get:
-    description: Retrieve a list of all the users
+    description: Retrieve a list of all the users.
     responses:
       200:
         body:
@@ -73,12 +75,40 @@ baseUri: http://jsonplaceholder.typicode.com
 +
 . Import a JSON example:
 +
-* Download the `user-example.json` from the "Downloads" section of this document and click Files > Import.
+* On your file system, create a `user-example.json` having the following content:
++
+----
+[{
+              "id": 1,
+              "name": "Leanne Graham",
+              "username": "Bret",
+              "email": "Sincere@april.biz",
+              "address": {
+                "street": "Kulas Light",
+                "suite": "Apt. 556",
+                "city": "Gwenborough",
+                "zipcode": "92998-3874",
+                "geo": {
+                  "lat": "-37.3159",
+                  "lng": "81.1496"
+                }
+                },
+              "phone": "1-770-736-8031 x56442",
+              "website": "hildegard.org",
+              "company": {
+                "name": "Romaguera-Crona",
+                "catchPhrase": "Multi-layered client-server neural-net",
+                "bs": "harness real-time e-markets"
+              } 
+}]
+----
++
+* Click Files > Import.
 +
 image:files-import.png[files import,height=97,width=295]
 +
-* Choose RAML, and browse to and select the downloaded file. 
-* In the RAML editor, type add the following lines to the code:
+* Choose File or ZIP, and browse to and import the user-example.json file. 
+* In Files, select the name of the API specification placeholder.raml to go back to the RAML code. In the RAML editor, type add the following lines to the code:
 +
 ----
 ...
@@ -88,6 +118,67 @@ image:files-import.png[files import,height=97,width=295]
 . At one indentation from the root, define the following resource:
 +
 ----
+ /userbyid:
+    get:
+      description: Get information about a particular user
+      queryParameters:
+        id:
+          description: Specify the id of the user you want to retrieve
+          type:        integer
+          required:    false
+          example: 3
+      responses:
+        200:
+          body:
+            application/json:
+              
+----
++
+Define the response and example response for the GET method.
++
+----
+              example: |
+                [{
+                "id": 3,
+                "name": "Clementine Bauch",
+                "username": "Samantha",
+                "email": "Nathan@yesenia.net",
+                "address": {
+                  "street": "Douglas Extension",
+                  "suite": "Suite 847",
+                  "city": "McKenziehaven",
+                  "zipcode": "59590-4157",
+                  "geo": {
+                    "lat": "-68.6102",
+                    "lng": "-47.0653"
+                  }
+                },
+                "phone": "1-463-123-4447",
+                "website": "ramiro.info",
+                "company": {
+                  "name": "Romaguera-Jacobson",
+                  "catchPhrase": "Face to face bifurcated interface",
+                  "bs": "e-enable strategic applications"
+                } }]
+----
+
+== RAML Code
+
+The complete RAML code for this task is:
+
+----
+#%RAML 1.0
+title: placeholder
+version: 1.0
+baseUri: http://jsonplaceholder.typicode.com
+/users:
+  get:
+    description: Retrieve a list of all the users
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include user-example.json
   /userbyid:
     get:
       description: Get information about a particular user
@@ -99,18 +190,36 @@ image:files-import.png[files import,height=97,width=295]
           example: 3
       responses:
         200:
-          body:     
+          body:
             application/json:
+              example: |
+                [{
+                "id": 3,
+                "name": "Clementine Bauch",
+                "username": "Samantha",
+                "email": "Nathan@yesenia.net",
+                "address": {
+                  "street": "Douglas Extension",
+                  "suite": "Suite 847",
+                  "city": "McKenziehaven",
+                  "zipcode": "59590-4157",
+                  "geo": {
+                    "lat": "-68.6102",
+                    "lng": "-47.0653"
+                  }
+                },
+                "phone": "1-463-123-4447",
+                "website": "ramiro.info",
+                "company": {
+                  "name": "Romaguera-Jacobson",
+                  "catchPhrase": "Face to face bifurcated interface",
+                  "bs": "e-enable strategic applications"
+                } }]
 ----
-+
-. Download the RAML code for this task, and add the example for the `/userbyid` resource.
-
-== Downloads
-
-* link:_attachments/placeholder.raml[RAML code for this task]
-* link:_attachments/user-example.json[Include file user-example.json]
 
 == See Also
 
 * link:/design-center/v/1.0/simulate-api-task[To Simulate Calling a RAML API]
+* link:/design-center/v/1.0/design-branch-filelock-concept[About Sharing Branches and Locking]
+* link:/design-center/v/1.0/design-api-v-concept[Visual Design]
 

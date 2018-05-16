@@ -14,6 +14,10 @@ You add one or more Logger utilities to a flow to log information from the Mule 
 |upper(payload.user.name)| The value of "name", a child element of "user" in the payload, converted to upper case characters.
 |===
 
+To view logs, you expand the area at the bottom of Design Center:
+
+image::log-view.png[]
+
 . In Design Center add a Logger to your flow.
 
 . In Message, click Function image:logger-task-design-center-0a147.png[] to use an expression.
@@ -25,15 +29,15 @@ If you just want to log static text, do not click Function. Just type the text.
 *payload*
 +
 . Accept the default log level DEBUG or choose another setting to log less information. For example, choose INFO.
-. Click the Deploy button to deploy your application to a Design environment.
+. Click Run.
 
-. Trigger the flow by sending a mock request.
+. Execute the flow by sending a mock request.
 
 . Expand the *Logs* tab at the bottom of the screen.
 +
 image:to-debug-a-flow-designer-project-30b5a.png[]
 +
-The contents of the Mule message payload appear after Info along with .logs produced by the Logger components in your project and messages related to the deploying and running of the app.
+The contents of the Mule message payload appear after Info along with .logs produced by the Logger components in your project and messages related to the running, executing, and deploying the app.
 
 
 == See also

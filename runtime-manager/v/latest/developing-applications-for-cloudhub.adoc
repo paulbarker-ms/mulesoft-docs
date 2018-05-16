@@ -19,9 +19,9 @@ If you employ any link:/mule-user-guide/v/3.8/http-connector[HTTP Connectors], d
 
 == Providing an External HTTP/HTTPS Port
 
-If your application requires an externally accessible HTTP or HTTPS port to receive messages, trigger events, or expose a web service or user interface, declare the Port using the reserved property `${http.port}` or `${https.port}`. On CloudHub, port `${http.port}` or `${https.port}` is assigned automatically by the platform services. Traffic on port 80 to your application domain's URL routes to this port.
+If your application requires an externally accessible HTTP or HTTPS port to receive messages, trigger events, or expose a web service or user interface, declare the HTTP Listener port using the reserved property `${http.port}` or `${https.port}`. On CloudHub, port `${http.port}` or `${https.port}` is assigned automatically by the platform services. Traffic on port 80 to your application domain's URL is routed to `${http.port}` and traffic on port 443 is route to `${https.port}`.
 
-CloudHub only supports incoming traffic on port 80 of your application domain URL. To support routing to multiple CloudHub services over this port, you need to configure each with unique paths on the URL that is exposed. For example:
+To support routing to multiple CloudHub services over this port, you need to configure each with unique paths on the URL that is exposed. For example:
 
 [source,bash, linenums]
 ----
@@ -71,12 +71,12 @@ Applications deployed to CloudHub can have a web UI using HTML and JavaScript. T
 
 == See Also
 
-* Read about more special CludHub specific considerations in link:/runtime-manager/deployment-strategies[Deployment Strategies]
+* link:/runtime-manager/deployment-strategies[Deployment Strategies]
 * link:/runtime-manager/deploying-to-cloudhub[Deploy to CloudHub]
-* After you develop and deploy your application, see link:/runtime-manager/managing-applications-on-cloudhub[Managing Applications on CloudHub] at runtime.
-* Learn the link:/anypoint-studio/v/6/[Anypoint Studio Essentials].
+* link:/runtime-manager/managing-applications-on-cloudhub[Managing Applications on CloudHub]
+* link:/anypoint-studio/v/6/[Anypoint Studio Essentials]
 * link:/runtime-manager/managing-deployed-applications[Managing Deployed Applications]
-* Read more about what link:/runtime-manager/cloudhub[CloudHub] is and what features it has
+* link:/runtime-manager/cloudhub[CloudHub]
 * link:/runtime-manager/cloudhub-architecture[CloudHub architecture]
 * link:/runtime-manager/monitoring[Monitoring Applications]
 * link:/runtime-manager/cloudhub-fabric[CloudHub Fabric]

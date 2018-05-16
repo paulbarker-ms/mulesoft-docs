@@ -6,7 +6,7 @@
 https://www.mulesoft.com/legal/versioning-back-support-policy#anypoint-connectors[_Select_]
 
 *Release Notes:* link:/release-notes/salesforce-connector-release-notes[Salesforce Connector Release Notes] +
-*Technical Reference:* http://mulesoft.github.io/salesforce-connector/[Salesforce Connector Technical Reference] +
+*Technical Reference:* http://mulesoft.github.io/mule-salesforce-connector/[Salesforce Connector Technical Reference] +
 *Anypoint Exchange:* https://www.anypoint.mulesoft.com/exchange/?search=salesforce[Salesforce Search]
 
 The Anypoint Connector for Salesforce lets you connect to the Salesforce platform. The connector exposes convenient methods for exploiting the capabilities of Salesforce, including working with Apex classes.
@@ -76,11 +76,16 @@ http://www.mulesoft.org/schema/mule/sfdc/current/mule-sfdc.xsd"
 [IMPORTANT]
 Starting with v.7.0.0, the Salesforce connector is licensed commercially with Anypoint Platform as are other link:/mule-user-guide/v/3.7/anypoint-connectors#connector-categories[_Select_] connectors.  Prior versions will remain freely available to the community.
 
-== Installing and Configuring
+== To Install this Connector
 
-You can install the connector in Anypoint Studio using the instructions in link:/anypoint-exchange/ex2-studio[Installing a Connector from Anypoint Exchange].
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
 
-=== Configuring Maven Dependencies
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
+
+== Configuring Maven Dependencies
 
 After you download and install the connector, use the following steps to make the Salesforce connector available to inside a Mule application for use and to package the application with the connector.
 If you use Anypoint Studio, it will do this automatically for you.
@@ -145,14 +150,11 @@ Or for the latest version:
 </plugin>
 ----
 
-=== Creating a New Project
+== Creating a New Project
 
 To use the Salesforce connector in a Mule application project:
 
-. In Anypoint Studio, click *File* > *New* > *Mule Project*.
-+
-image:new_project.png[Create new project]
-
+. In Anypoint Studio, click File > New > Mule Project.
 . Enter a name for your new project and leave the remaining options with their default values.
 +
 image:new-proj.png[Create new project dialog box]
@@ -401,11 +403,11 @@ Learn more about Salesforce's APIs and appropriate use cases for each of them. 
 * link:https://help.salesforce.com/HTViewHelpDoc?id=integrate_what_is_api.htm&language=en_US[Which API should I use?]
 ====
 
-The sections below offer information about how to use the Salesforce connector in your application. Beyond these basics, you can access documentation that describes how to link:/mule-user-guide/v/3.7/salesforce-connector-authentication[secure your connection to Salesforce] (via basic authentication or OAuth authentication), or access link:http://mulesoft.github.io/salesforce-connector[full reference documentation] for the connector.
+The sections below offer information about how to use the Salesforce connector in your application. Beyond these basics, you can access documentation that describes how to link:/mule-user-guide/v/3.7/salesforce-connector-authentication[secure your connection to Salesforce] (via basic authentication or OAuth authentication), or access link:http://mulesoft.github.io/mule-salesforce-connector[full reference documentation] for the connector.
 
 == Using the Salesforce Connector
 
-To see all possible operations, expected attributes and returned data for the connector, see the list of link:http://mulesoft.github.io/salesforce-connector/[Technical Reference APIdocs].
+To see all possible operations, expected attributes and returned data for the connector, see the list of link:http://mulesoft.github.io/mule-salesforce-connector/[Technical Reference APIdocs].
 
 Generally speaking, there are *three* ways to use a Salesforce connector in your application: as an *outbound connector*, an *inbound connector*, or a *streaming inbound connector*. A description of these three scenarios follows.
 
@@ -687,7 +689,7 @@ image:sfdc_workflow.png[sfdc_workflow]
 .. The Salesforce (Streaming) Connector can only perform one operation against your organization's data in Salesforce: `Subscribe to topic`.
 .. Learn more about using the link:/mule-user-guide/v/3.7/poll-reference[Poll Scope] to regularly poll Salesforce for new data for your application to process.
 
-Depending upon its function in your application (streaming data, polling for data, pushing data, etc.), the operation you select, and the sObject you are acting upon, Studio makes different Salesforce connector fields available for configuration.  The objectives of this document do not include the exhaustive exploration of all combinations of operations and objects in an application. However, you can access link:http://mulesoft.github.io/salesforce-connector[full reference documentation] to learn about how to configure the connector for all operations. 
+Depending upon its function in your application (streaming data, polling for data, pushing data, etc.), the operation you select, and the sObject you are acting upon, Studio makes different Salesforce connector fields available for configuration.  The objectives of this document do not include the exhaustive exploration of all combinations of operations and objects in an application. However, you can access link:http://mulesoft.github.io/mule-salesforce-connector[full reference documentation] to learn about how to configure the connector for all operations. 
 
 
 == Example Use Case

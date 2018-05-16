@@ -11,23 +11,11 @@ You can deploy a Mule application to CloudHub via:
 * *Anypoint Studio* - Right-click your project and click *Deploy to Anypoint Platform* -> *Cloud*.
 * *Runtime Manager* - in the cloud-based version of the link:https://anypoint.mulesoft.com[Anypoint Platform]. Go to the *Runtime Manager* section, and then from the *Applications* tab, click the *Deploy application* button.
 
-This page describes the options on the *Deploy Application* panel that is identical in both cases.
+This page describes the options on the *Deploy Application* panel that is identical in both cases. Additionally, you can also deploy to CloudHub through:
 
-[TIP]
-====
-Additionally, you can also deploy to CloudHub through:
-
-* The *link:/runtime-manager/cloudhub-api[CloudHub API]*
-* The *link:/runtime-manager/anypoint-platform-cli[CloudHub Command Line Interface]*
-* Using the *link:/mule-user-guide/v/3.8/mule-maven-plugin[Mule-Maven Plugin]*
-====
-
-[NOTE]
-====
-Deploying to CloudHub is not possible via the Anypoint Platform Private Cloud Edition.
-
-If you’re still interested in requesting the Anypoint Platform Private Cloud Edition, please contact your sales representative.
-====
+* The CloudHub API
+* CloudHub CLI
+* Mule-Maven Plugin
 
 == Deploying an Application
 
@@ -174,7 +162,7 @@ There are worker sizes with different compute and memory capacities:
 |1 vCores |1.5 GB
 |2 vCores |3.5 GB
 |4 vCores |7.5 GB
-|8 vCores |16 GB
+|8 vCores |15 GB
 |16 vCores |32 GB
 |===
 
@@ -185,6 +173,8 @@ Applications with greater storage needs (verbose logging etc.) should use one of
 * 1 vCores workers have an additional 4 GB of SSD storage mounted on /tmp
 * 2 vCores workers have an additional 32 GB of SSD storage mounted on /tmp
 * 4 vCores workers have an additional 80 GB of storage, mounted as two volumes on /tmp (40 GB), and /opt/storage (40 GB)
+* 8 vCores workers have an additional 160 GB of storage, mounted as two volumes on /tmp (80 GB), and /opt/storage (80 GB)
+* 16 vCores workers have an additional 320 GB of storage, mounted as two volumes on /tmp (160 GB), and /opt/storage (160 GB)
 
 [IMPORTANT]
 The workers with additional storage as listed above are only available for Mule runtimes 3.6.2 or later, or API Gateway 2.0.2 or later.
@@ -303,8 +293,6 @@ To pre-allocate static IPs for your application, select a region from the *Regio
 
 image:static-ip-regions.png[Static IPs by region]
 
-Applications with static IPs can only have one instance.
-
 By default, the number of static IPs allocated to your organization is equal to twice the number of Production vCores in your subscription. This number is displayed under the *Use Static IP* checkbox. If you need to increase this quota, you can contact link:https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support].
 
 If an application has static IPs reserved in multiple regions, it picks up the IP from whichever region it is deployed to. This allows you to pre-configure IP rules for multiple regions, for disaster recovery (DR) scenario.
@@ -351,12 +339,12 @@ If an error occurs and the application cannot be deployed, the application statu
 
 == See Also
 
-* See a tutorial about deploying to CloudHub directly from Anypoint Studio link:/getting-started/deploy-to-cloudhub[Deploy to CloudHub]
-* Read more about what link:/runtime-manager/cloudhub[CloudHub] is and what features it has
-* link:/runtime-manager/managing-deployed-applications[Managing Deployed Applications] contains general information about hoy to manage your application once deployed
-* link:/runtime-manager/managing-applications-on-cloudhub[Managing Applications on CloudHub] contains more information on how to manage your applications with setting that are specific to CloudHub
-* link:/runtime-manager/monitoring[Monitoring Applications] shows you how you can set up email alerts for whenever certain events occur with your application or workers
+* link:/getting-started/deploy-to-cloudhub[Deploy to CloudHub]
+* link:/runtime-manager/cloudhub[CloudHub]
+* link:/runtime-manager/managing-deployed-applications[Managing Deployed Applications]
+* link:/runtime-manager/managing-applications-on-cloudhub[Managing Applications on CloudHub]
+* link:/runtime-manager/monitoring[Monitoring Applications]
 * link:/runtime-manager/developing-applications-for-cloudhub[Developing Applications for CloudHub]
-* Deploy using the link:/runtime-manager/anypoint-platform-cli[CloudHub Command Line Interface].
-* A link:/runtime-manager/cloudhub-api[REST API] is also available for automating deployments to CloudHub.
-* For information on deploying to servers, server groups and clusters, see link:/runtime-manager/deploying-to-your-own-servers[Deploying to Your Own Servers].
+* link:/runtime-manager/anypoint-platform-cli[CloudHub Command Line Interface]
+* link:/runtime-manager/cloudhub-api[REST API]
+* link:/runtime-manager/deploying-to-your-own-servers[Deploying to Your Own Servers]
