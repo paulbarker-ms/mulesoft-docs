@@ -49,7 +49,7 @@ Operation that allows the user to invoke methods with the provided args on the g
 |======================
 | Name | Type | Description | Default Value | Required
 | Instance a| Any |  +++the instance on which the method will be invoked+++ |  | *x*{nbsp}
-| Args a| Object |  +++the arguments used to invoke the given Method+++ |  | {nbsp}
+| Args a| Object |  +++the arguments used to invoke the given Method (it would be helpful to say more than just paraphrasing the parameter name. Maybe a statement of the options - eg "literals, or DW-expression, with link to examples.+++ |  | {nbsp}
 | Class a| String |  +++Represents the fully qualified name of the Class containing the referenced Method.+++ |  | *x*{nbsp}
 | Method a| String |  +++Represents the Method signature containing the method name and it's argument types. <p> For example, for the method with signature public String log(String msg, boolean verbose) then the identifier of the method will be "log(String, boolean)"+++ |  | *x*{nbsp}
 | Target Variable a| String |  +++The name of a variable on which the operation's output will be placed+++ |  | {nbsp}
@@ -83,7 +83,7 @@ Operation that allows the user to invoke static methods with the provided argume
 [cols=".^20%,.^20%,.^35%,.^20%,^.^5%", options="header"]
 |======================
 | Name | Type | Description | Default Value | Required
-| Args a| Object |  +++the arguments used to invoke the given Method+++ |  | {nbsp}
+| Args a| Object |  +++the arguments used to invoke the given Method - see above remarks+++ |  | {nbsp}
 | Class a| String |  +++Represents the fully qualified name of the Class containing the referenced Method.+++ |  | *x*{nbsp}
 | Method a| String |  +++Represents the Method signature containing the method name and it's argument types. <p> For example, for the method with signature public static String log(String msg, boolean verbose) then the identifier of the method will be "log(String, boolean)"+++ |  | *x*{nbsp}
 | Target Variable a| String |  +++The name of a variable on which the operation's output will be placed+++ |  | {nbsp}
