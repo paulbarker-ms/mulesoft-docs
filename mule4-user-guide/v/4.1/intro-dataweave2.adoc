@@ -29,6 +29,29 @@ DataWeave 2 uses a type name syntax, which removes the `:` from the name.
 | DataWeave 2 | `payload.foo as String`  |
 |===
 
+== XML Format
+The default for the reader property nullValueOn is "empty". For DataWeave 1 (Mule 3.x) it used to be "none".
+script:
+%dw 1.0
+%output application/xml  skipNullOn="everywhere"
+---
+payload
+
+input:
+<book>
+  <name></name>
+</book>
+  
+DataWeave 1 output:
+<book>
+  <name></name>
+</book>
+
+DataWeave 2 output:
+<book/>
+
+You can get the previous behavior by setting the reader property nullValueOn="none".
+
 == New Capabilities
 There are also many new capabilities, including:
  * Typing for reusable functions
