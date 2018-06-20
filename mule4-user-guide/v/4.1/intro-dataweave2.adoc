@@ -30,27 +30,40 @@ DataWeave 2 uses a type name syntax, which removes the `:` from the name.
 |===
 
 == XML Format
-The default for the reader property nullValueOn is "empty". For DataWeave 1 (Mule 3.x) it used to be "none".
-script:
+The default for the reader property `nullValueOn` is `empty`. For DataWeave 1.x (for Mule 3.x), it is `none`.
+
+.DataWeave Script
+[source,DataWeave,linenums]
+----
 %dw 1.0
-%output application/xml  skipNullOn="everywhere"
+%output application/xml skipNullOn="everywhere"
 ---
 payload
+----
 
-input:
+.Input
+[source,XML,linenums]
+----
 <book>
   <name></name>
 </book>
-  
-DataWeave 1 output:
+----
+
+.Output 1
+[source,XML,linenums]
+----
 <book>
   <name></name>
 </book>
+----
 
-DataWeave 2 output:
+The next output is returned when the reader property is `nullValueOn="none"`:
+
+.Output 2
+[source,XML,linenums]
+----
 <book/>
-
-You can get the previous behavior by setting the reader property nullValueOn="none".
+----
 
 == New Capabilities
 There are also many new capabilities, including:
