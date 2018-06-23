@@ -1,6 +1,6 @@
-= To Install Project Worker Cloud (BETA)
+= To Install Anypoint Runtime Fabric (BETA)
 
-This topic describes how to install Project Worker Cloud appliance using a command-line based installer.
+This topic describes how to install Runtime Fabric using a command-line based installer.
 
 [WARNING]
 ====
@@ -14,11 +14,11 @@ To run the installer, ensure that you have root access on all of the servers in 
 Before running the installer, you will need the following:
 
 * The private and public IP addresses of each server in your installation.
-* Acceptance to the Project Worker Cloud beta program.
+* Acceptance to the Runtime Fabric beta program.
 
 == Minimum hardware requirements
 
-For an Project Worker Cloud appliance with high availability, 3 servers or virtual machine instances are required with the following:
+To set up Runtime Fabric with support for high availability, 3 servers or virtual machine instances are required with the following:
 
 * 2 CPU cores
 * 15 GiB memory
@@ -29,9 +29,9 @@ For an Project Worker Cloud appliance with high availability, 3 servers or virtu
 
 The installation consists of the following scripts and binaries:
 
-* `setup.sh`: installs dependencies, formats, and mounts block devices used by the appliance.
-* `installer.tar.gz`: contains the appliance binaries.
-* `auto-installer.py`: installs the appliance on each server.
+* `setup.sh`: installs dependencies, formats, and mounts block devices used by Runtime Fabric.
+* `installer.tar.gz`: contains the installation binaries.
+* `auto-installer.py`: installs Runtime Fabric on each server.
 
 == Running the Command Line Installation
 
@@ -96,25 +96,19 @@ Using the following values:
 |===
 +
 [NOTE]
-This step will install the Project Worker Cloud appliance across all servers to form a cluster. It may take 10-15 minutes or longer to complete.
+This step will install Runtime Fabric across all servers to form a cluster. It may take 10-15 minutes or longer to complete.
 
-== Registering the Project Worker Cloud appliance
+== Registering Runtime Fabric
 
-After the installation script has completed, you'll need to register the Project Worker Cloud appliance to Anypoint Runtime Manager.
+After the installation script has completed, you'll need to register Runtime Fabric to Anypoint Runtime Manager.
 
 . Navigate to Runtime Manager, select the Worker Clouds tab, and select the Create Worker Cloud button.
-. On Step 3, choose a name for your Project Worker Cloud appliance. Copy the script to your clipboard.
-. On a server running the appliance, paste and run the registration script with a privledged user.
-. After the script completes the registration process, your appliance should be registered and visible on the Worker Clouds tab in Runtime Manager.
-+
-[NOTE]
-A new sandbox environment must be created with the name `Worker-Cloud-beta` in order to deploy applications to the Project Worker Cloud appliance. This is a limitation placed during the beta program.
+. On Step 3, choose a name for your Runtime Fabric. Copy the script to your clipboard.
+. On a server running Runtime Fabric, paste and run the registration script with a privledged user.
+. After the script completes the registration process, Runtime Fabric should be registered and visible on the Runtime Fabrics tab in Runtime Manager.
 
 == Known Issues
 
-The following are issues which may be present during the beta program for Project Worker Cloud. 
+The following are issues which may be present during the beta program for Runtime Fabric. 
 
-* The `region` parameter of the registration script may need to be manually set to `us-east-1`. 
-* In Runtime Manager, stopping an application deployed to a Project Worker Cloud appliance will not alter its state.
-* Applications must be uploaded to Anypoint Exchange before they can be deployed to Project Worker Cloud.
-* When deleting a Project Worker Cloud appliance which has been disconnected from the Anypoint Control Plane, you may encounter an error asking to remove all applications. Reach out to the Product/Engineering team to help resolve this issue.
+* Applications must be uploaded to Anypoint Exchange before they can be deployed to Runtime Fabric.
