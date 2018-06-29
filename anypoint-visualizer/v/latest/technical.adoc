@@ -2,22 +2,18 @@
 
 Anypoint Visualizer collects runtime information from running applications, APIs, and proxies to detect all of its dependencies. The following is a sample of the type of information that Anypoint Visualizer collects and sends to the control plane. This information stored encrypted in a database.
 
-----
-[{
-    "node_info": { <information about the node>
-        "org_id": < customer org id>,
-        "env_id": <customer env id>,
-    "ip": <host ips>,
-    "type": "MULE",
-    “deployment_id”:<a unique id for every new deployment ex: hash of the mule application that this node is running>, 
-“X_APP_ID”:<a unique identifier for the application>,
-“app_name”:
-"url": <optional public fullDomain  Ex: foo.cloudhub.io>
-},
-...
-}]
-
-----
+[%header%autowidth.spread]
+|===
+| Metadata | Description
+| node_info | General information about the node.
+| org_id | The organization where the node is deployed.
+| ip | The IP address of the node.
+| type | Specifies whether the node is an API or Mule application.
+| deployment_id | An internal ID that is specifies the hash of the application or API.
+| app_id | A unique identifier for the application.
+| app_name | The name of the application.
+| url | The fully qualified domain of the application.
+|===
 
 == Disable Data Collection for an Application
 
