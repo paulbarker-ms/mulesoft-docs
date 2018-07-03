@@ -9,27 +9,18 @@ Before running the installer, ensure that your infrastructure meets the minimum 
 
 == Prerequisites
 
-To run the installer, ensure that you have root access on all of the servers in your environment. 
+To run the installer, ensure that you have root access on all of the servers used to install Runtime Fabric. 
 
-Before running the installer, you will need the following:
+Before installing Runtime Fabric, you will need the following:
 
 * The private and public IP addresses of each server in your installation.
-
-== Minimum hardware requirements
-
-For a runtime fabric appliance with high availability, 3 servers or virtual machine instances are required with the following:
-
-* 2 CPU cores
-* 15 GiB memory
-* _Disk 1_: 60GB disk space with 3000 provisioned IOPS
-* _Disk 2_: 100GB disk space with at least 500 provisioned IOPS
 
 == About the Installation Scripts and Binaries
 
 The installation consists of the following scripts and binaries:
 
-* `setup.sh`: installs dependencies, formats, and mounts block devices used by the appliance.
 * `installer.tar.gz`: contains the appliance binaries.
+* `setup.sh`: installs dependencies, formats, and mounts block devices used by the appliance.
 * `auto-installer.py`: installs the appliance on each server.
 
 == Running the Command Line Installation

@@ -57,7 +57,7 @@ You should be able to see the list of infrastructure and its cooresponding statu
 === Common Errors
 Depending on the policies set and the quotas defined with your Azure account, you may encounter errors during the provisioning process. Consult your operations team as needed.
 
-* Exceed max core quota: File a ticket with Azure Support to increase quota for your deployment region.
+* Exceed max core quota: File a ticket with Azure Support to increase quota for your deployment region. If you believe you have enough quota, ensure the right region is selected with the increased quota. Also, try modifying the Resource Group name to ensure it is unique to your account.
 * Network policy violation: By defualt, the Netowrk Security Groups defined in the Azure Resource Template are associated at the subnet level and the NIC for each VM. Depending on your company's policy, you may need to adjust the template to remove an association.
 
 == Install Runtime Fabric
