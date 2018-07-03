@@ -1,26 +1,19 @@
 = NetSuite Connector
-:keywords: anypoint studio, esb, connector, endpoint, netsuite
+:keywords: anypoint studio, connector, endpoint, netsuite
 :imagesdir: ./_images
-:toc: macro
-:toclevels: 2
 
-image:netsuite_connector_icon.png[NetSuite Connector Icon]
-
-toc::[]
-
-== Introduction
 
 NetSuite is the world’s leading provider of cloud-based business management software. NetSuite helps companies manage core business processes with a single, fully integrated system covering ERP/financials, CRM, e-commerce, inventory, and more.
 
-The NetSuite connector makes use of the *SuiteTalk WSDL* to provide *SOAP-based integration* and generate NetSuite business objects, make use of different authentication levels, and support error handling.
+The NetSuite connector makes use of the *SuiteTalk WSDL* to provide *SOAP-based integration* and generate NetSuite business objects, make use of different authentication levels, and support error handling. It is also able to perform *REST* calls to *RESTlets* that expose APIs created with *SuiteScript*.
 
-Read through this user guide to understand how to set up and configure a basic flow using the connector. Track feature additions, compatibility, limitations and API version updates with each release of the connector using the link:/release-notes/netsuite-connector-release-notes[Connector Release Notes]. Review the connector operations and functionality using the link:http://mulesoft.github.io/netsuite-connector/[Technical Reference] alongside the link:https://www.mulesoft.com/exchange#!/?filters=Netsuite&sortBy=rank[demo applications].
+Read through this user guide to understand how to set up and configure a basic flow using the connector. Track feature additions, compatibility, limitations and API version updates with each release of the connector using the link:/release-notes/netsuite-connector-release-notes[Connector Release Notes]. Review the connector operations and functionality using the link:http://mulesoft.github.io/mule-netsuite-connector/[Technical Reference] alongside the https://www.anypoint.mulesoft.com/exchange/?search=netsuite[demo applications].
 
 MuleSoft maintains this connector under the link:/mule-user-guide/v/3.8/anypoint-connectors#connector-categories[_Select_] support policy.
 
 == Prerequisites
 
-This document assumes that you are familiar with Mule, link:/mule-user-guide/v/3.8/anypoint-connectors[Anypoint Connectors], and the link:/anypoint-studio/v/6/[Anypoint Studio interface]. To increase your familiarity with Studio, consider completing one or more  link:/mule-fundamentals/v/3.8/basic-studio-tutorial[Anypoint Studio Tutorials]. Further, this page assumes that you have a basic understanding of link:/mule-fundamentals/v/3.8/mule-concepts[Mule flows] and link:/mule-fundamentals/v/3.8/global-elements[Mule Global Elements]. 
+This document assumes that you are familiar with Mule, link:/mule-user-guide/v/3.8/anypoint-connectors[Anypoint Connectors], and the link:/mule-fundamentals/v/3.8/anypoint-studio-essentials[Anypoint Studio interface]. To increase your familiarity with Studio, consider completing one or more  link:/mule-fundamentals/v/3.8/basic-studio-tutorial[Anypoint Studio Tutorials]. Further, this page assumes that you have a basic understanding of link:/mule-fundamentals/v/3.8/mule-concepts[Mule flows] and link:/mule-fundamentals/v/3.8/global-elements[Mule Global Elements]. 
 
 To use this connector, you need:
 
@@ -33,38 +26,35 @@ For hardware and software requirements, please visit the link:/mule-user-guide/v
 
 === Compatibility
 
-For compatibility details for your version see the link:link:/release-notes/netsuite-connector-release-notes[release notes]
+For compatibility details for your version see the link:/release-notes/netsuite-connector-release-notes[release notes]
 
-== Install the Connector
+== To Install this Connector
 
-You can install the connector in Anypoint Studio using the instructions in
-link:/mule-fundamentals/v/3.8/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange].
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
 
-=== Upgrade from an Older Version
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
-If you’re currently using an older version of the connector, a small popup appears in the bottom right corner of Anypoint Studio with an "Updates Available" message.
-
-. Click the popup and check for available updates. 
-. Click the Connector version checkbox and click *Next* and follow the instructions provided by the user interface. 
-. *Restart* Studio when prompted. 
-. After restarting, when creating a flow and using the Netsuite Connector, if you have several versions of the connector installed, you may be asked which version you would like to use. Choose the version you would like to use.
-
-Additionally, we recommend that you keep Studio up to date with its latest version.
 
 == Configure the Connector Global Element
 
-To use the NetSuite connector in your Mule application, you must configure a global NetSuite element that can be used by all the NetSuite connectors in the application (read more about link:/mule-fundamentals/v/3.8/global-elements[global elements]).
+To use the NetSuite connector in your Mule application, configure a global NetSuite element that can be used by all the NetSuite connectors in the application (read more about link:/mule-fundamentals/v/3.8/global-elements[global elements]).
 
 This release of the connector lets you pick from a list of four Global Elements, each representing a different way of authenticating to NetSuite:
 
-[%header%autowidth.spread]
+[%header,cols="40a,60a"]
 |===
 |Configuration |Description
 |*Login Authentication* |Makes use of the SuiteTalk's login API call on the first request sent by the connector to establish a session with NetSuite.
 |*Request Level Authentication* |Using this strategy, you can send user credentials in the SOAP header of each request instead of authenticating to NetSuite by invoking login.
-|*Single Sign-On Login Authentication* |This is a token based authentication system that avoids the use of environment username and password. Here you supply a privateKey together with other information. The connector is then responsible for generating an authentication token and establishing a session with NetSuite via the `ssoLogin` API call on the first request.
-|*Request Level Token Based Authentication* |Similar to Single Sign-On Login Authentication, this is a token based authentication system. However, instead of using a privateKey generated via openssl, this uses a consumer and token key/secret pairs which are established within the NetSuite environment.
+|*Single Sign-On Login Authentication* |This is a token based authentication system that avoids the use of environment username and password. Here you supply a privateKey together with other information. The connector is then responsible for generating an authentication token and establishing a session with NetSuite via the `ssoLogin` API call on the first request. *Not available for RESTlet calls.*
+|*Request Level Token Based Authentication* |Similar to Single Sign-On Login Authentication, this is a token based authentication system. However, instead of using a privateKey generated via openssl, this uses a consumer and token key/secret pairs which are established within the NetSuite environment. *Not available for RESTlet calls.*
 |===
+
+[IMPORTANT]
+Use *Login Authentication* or *Request Level Authentication* if you wish to make RESTlet calls.
 
 Follow these steps to configure NetSuite connector global element in a Mule application:
 
@@ -77,9 +67,12 @@ image:netsuite_configurations.png[NetSuite Configuration Options]
 . Click *Ok*.
 . Enter global element properties.
 
+[WARNING]
+The *Endpoint URL* must be defined for all configurations. The hostname is specific to the *Account* ID of the user. The rest of the URL contains the API version. Also note that every connector version *only supports* one version of the SuiteTalk API.
+
 === Login Authentication and Request Level Authentication
 
-[%header%autowidth.spread]
+[%header,cols="30a,70a"]
 |===
 |Parameter |Description
 |*Name* |Enter a name for the configuration with which to reference it later.
@@ -90,7 +83,7 @@ image:netsuite_configurations.png[NetSuite Configuration Options]
 |*Application Id* |Enter the application ID corresponding to the Integration record to be used.
 |*Connection Timeout* |Enter the amount of time, in milliseconds, that the client must attempt to establish a connection before timing out.
 |*Receive Timeout* |Enter the amount of time, in milliseconds, that the client must wait for a response before timing out.
-|*Enable DataSense* |If you select this option, DataSense extracts metadata for NetSuite standard objects to automatically determine the data type and format that your application must deliver to, or can expect from, NetSuite. By enabling this functionality, Mule does the heavy lifting of discovering the type of data you must send to, or be prepared to receive from NetSuite. For more information, see link:/mule-user-guide/v/3.8/datasense[DataSense].
+|*Enable DataSense* |If you select this option, DataSense extracts metadata for NetSuite standard objects to automatically determine the data type and format that your application must deliver to, or can expect from, NetSuite. By enabling this functionality, Mule does the heavy lifting of discovering the type of data you must send to, or be prepared to receive from NetSuite. For more information, see link:/anypoint-studio/v/6/datasense[DataSense].
 |*Endpoint* a|
 Enter the URL of the service endpoint.
 
@@ -127,7 +120,7 @@ For this mapping, start by generating a token using the SSO Kit provided by NetS
 </soapenv:Envelope>
 ----
 
-[%header%autowidth.spread]
+[%header,cols="30a,70a"]
 |===
 |Parameter |Description
 |*Name* |Enter a name for the configuration so it can be referenced later.
@@ -139,7 +132,7 @@ For this mapping, start by generating a token using the SSO Kit provided by NetS
 |*Application Id* |Enter the application ID corresponding to the Integration record to be used.
 |*Connection Timeout* |Enter the amount of time, in milliseconds, that the client must attempt to establish a connection before timing out.
 |*Receive Timeout* |Enter the amount of time, in milliseconds, that the client must wait for a response before timing out.
-|*Enable DataSense* |If you select this option, DataSense extracts metadata for NetSuite standard objects to automatically determine the data type and format that your application must deliver to, or can expect from, NetSuite. By enabling this functionality, Mule does the heavy lifting of discovering the type of data you must send to, or be prepared to receive from NetSuite. For more information, see link:/mule-user-guide/v/3.8/datasense[DataSense].
+|*Enable DataSense* |If you select this option, DataSense extracts metadata for NetSuite standard objects to automatically determine the data type and format that your application must deliver to, or can expect from, NetSuite. By enabling this functionality, Mule does the heavy lifting of discovering the type of data you must send to, or be prepared to receive from NetSuite. For more information, see link:/anypoint-studio/v/6/datasense[DataSense].
 |*Endpoint* |Enter the URL of the service endpoint.
 |*Separator* |Enter the separator used to support the keys that are required to provide a better support for custom fields.
 |*Required Libraries* |Click Add File to add the SSO jar that you acquire via NetSuite support.
@@ -153,7 +146,7 @@ Furthermore you must set up an access token from within your NetSuite environmen
 
 Please refer to NetSuite's Help Center or SuiteAnswers for detailed information on how to navigate NetSuite and set this up.
 
-[%header%autowidth.spread]
+[%header,cols="30a,70a"]
 |===
 |Parameter |Description
 |*Consumer Key* |Enter the consumer key value for the token based authentication enabled integration record being used.
@@ -163,7 +156,7 @@ Please refer to NetSuite's Help Center or SuiteAnswers for detailed information 
 |*Account* |Enter the account ID of the SuiteTalk NetSuite web services. This is usually found within NetSuite sandbox UI under *Setup* > *Integration* > *Web Service Preferences.*
 |*Connection Timeout* |Enter the amount of time, in milliseconds, that the client must attempt to establish a connection before timing out.
 |*Receive Timeout* |Enter the amount of time, in milliseconds, that the client must wait for a response before timing out.
-|*Enable DataSense* |If you select this option, DataSense extracts metadata for NetSuite standard objects to automatically determine the data type and format that your application must deliver to, or can expect from, NetSuite. By enabling this functionality, Mule does the heavy lifting of discovering the type of data you must send to, or be prepared to receive from NetSuite. For more information, see link:/mule-user-guide/v/3.8/datasense[DataSense].
+|*Enable DataSense* |If you select this option, DataSense extracts metadata for NetSuite standard objects to automatically determine the data type and format that your application must deliver to, or can expect from, NetSuite. By enabling this functionality, Mule does the heavy lifting of discovering the type of data you must send to, or be prepared to receive from NetSuite. For more information, see link:/anypoint-studio/v/6/datasense[DataSense].
 |*Endpoint* a|
 Enter the URL of the service endpoint.
 
@@ -235,7 +228,7 @@ If you are coding a Mavenized Mule application, this XML snippet must be include
 
 == Demo Mule Applications Using the Connector
 
-You can download fully functional demo applications using the NetSuite connector from link:http://mulesoft.github.io/netsuite-connector/[this link].
+You can download fully functional demo applications using the NetSuite connector from link:http://mulesoft.github.io/mule-netsuite-connector/[this link].
 
 === Example Use Case
 
@@ -273,7 +266,7 @@ netsuite.applicationId=
 
 . Drag a **HTTP endpoint** onto the canvas and configure the following parameters:
 +
-[%header%autowidth.spread]
+[options="header", width="100%"]
 |===
 |Parameter|Value
 |Connector Configuration| HTTP_Listener_Configuration
@@ -283,7 +276,7 @@ netsuite.applicationId=
 . Drag the *NetSuite* connector next to the HTTP and in the *Connector Configuration* field select the configuration created in the previous section.
 . Configure the processor with the following values:
 +
-[%header%autowidth.spread]
+[options="header", width="100%"]
 |===
 |Parameter|Value
 |*Display Name* |NetSuite (or any other name you prefer)
@@ -515,7 +508,7 @@ image:netsuite_flow_basic_search.png[Basic Search Flow]
 	xmlns:json="http://www.mulesoft.org/schema/mule/json"
 	xmlns:http="http://www.mulesoft.org/schema/mule/http"
 	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.8.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 http://www.mulesoft.org/schema/mule/netsuite http://www.mulesoft.org/schema/mule/netsuite/current/mule-netsuite.xsd
@@ -823,7 +816,7 @@ Here is the DataWeave script to paste into the Transform Message DataWeave edito
 
 In NetSuite, the `search` operation can be used to execute a *Basic Search*, *Joined Search* or an *Advanced Search*. To this end, you need to instantiate one of these three search types for the record type you want to query:
 
-[%header%autowidth.spread]
+[%header,cols="30a,70a"]
 |===
 |`<Record>SearchBasic`|Used to execute a search on a record type based on search filter fields that are specific to that type.
 |`<Record>Search` +
@@ -854,18 +847,18 @@ Regarding the new *search* configuration, the connector is the same apart from a
 
 ==== ItemSearchAdvanced and ReturnSearchColumns
 
-When using `search` the connector will output a list of maps representing the Record objects returned by your `search` operation. If using an advanced search and the `returnSearchColumns` flag is set to true, NetSuite will return a `SearchRowList` containing the search results. The connector would then be responsible for mapping `SearchRows` into the corresponding `Record` type object in order to facilitate usability.
+When using `search` the connector outputs a list of maps representing the Record objects returned by your `search` operation. If using an advanced search and the `returnSearchColumns` flag is set to true, NetSuite returns a `SearchRowList` containing the search results. 
 
-However, in the case of `ItemSearchAdvanced` the connector will not do this mapping and will simply provide the user with the SearchRows. This is the case due to the fact that ITEMs in NetSuite can be of various types and we cannot assume the item type from an `ItemSearchRow`. This issue would also occur with any other record type that behaves similar to `ITEM`, but we are currently not aware of others.
+However, in the case of `ItemSearchAdvanced` the connector does not do this mapping and simply provides the user with the SearchRows. This is the case due to the fact that ITEMs in NetSuite can be of various types and we cannot assume the item type from an `ItemSearchRow`. This issue would also occur with any other record type that behaves similar to `ITEM`, but we are not aware of others.
 
 === Custom Field DataSense
 
 In NetSuite one can add different types of custom fields and have these customizations apply to different record types. With DataSense enabled, the NetSuite connector retrieves and shows these fields. Note however that we do not fully support all the customization types that NetSuite users are able to define.
-The following lists outline what fields we do and do not handle, and where they currently appear in relation to the record type's attributes. For the most part you can see that customizations are usually present within a list field called _customFieldList_, but in some cases these might reside elsewhere.
+The following lists outline what fields we do and do not handle, and where they appear in relation to the record type's attributes. For the most part you can see that customizations are usually present within a list field called _customFieldList_, but in some cases these might reside elsewhere.
 
 ==== Entity Fields
 
-[%header%autowidth.spread]
+[%header,cols="50a,50a"]
 |===
 |Record Type |Custom Field Placement
 |*CONTACT* |Contact > customFieldList > customField
@@ -879,7 +872,7 @@ The following lists outline what fields we do and do not handle, and where they 
 
 ==== Item Fields
 
-[%header%autowidth.spread]
+[%header,cols="50a,50a"]
 |===
 |Record Type |Custom Field Placement
 |*ASSEMBLY_ITEM* |AssemblyItem > customFieldList > customField
@@ -899,7 +892,7 @@ The following lists outline what fields we do and do not handle, and where they 
 
 ==== CRM Fields
 
-[%header%autowidth.spread]
+[%header,cols="50a,50a"]
 |===
 |Record Type |Custom Field Placement
 |*CALENDAR_EVENT* |CalendarEvent > customFieldList > customField
@@ -915,7 +908,7 @@ The following lists outline what fields we do and do not handle, and where they 
 
 ==== Transaction Body Fields
 
-[%header%autowidth.spread]
+[%header,cols="50a,50a"]
 |===
 |Record Type |Custom Field Placement
 |*ASSEMBLY_BUILD* |AssemblyBuild > customFieldList > customField
@@ -943,7 +936,7 @@ The following lists outline what fields we do and do not handle, and where they 
 
 ==== Transaction Column Fields
 
-[%header%autowidth.spread]
+[%header,cols="50a,50a"]
 |===
 |Record Type |Custom Field Placement
 |*CASH_SALE* |CashSale > itemList > item > customFieldList > customField
@@ -968,15 +961,15 @@ The following lists outline what fields we do and do not handle, and where they 
 
 ==== Transaction Item Options
 
-Currently DataSense cannot detect NetSuite's Transaction Item Options.
+DataSense cannot detect NetSuite's Transaction Item Options.
 
 ==== Item Number Fields
 
-Currently DataSense cannot detect NetSuite's Item Number Fields.
+DataSense cannot detect NetSuite's Item Number Fields.
 
 ==== Other Custom Fields
 
-[%header%autowidth.spread]
+[%header,cols="50a,50a"]
 |===
 |Record Type |Custom Field Placement
 |*ACCOUNT* |Account > customFieldList > customField

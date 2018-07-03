@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 = About Uploading Certificates to a Load Balancer
+=======
+= About Uploading Certificates to a Dedicated Load Balancer
+>>>>>>> 3741126c631eeebabe710cdf5de8e454e94b67ec
 
 The certificate that you upload to your Load Balancer must be contained in one _pem_ encoded and unencrypted file.
 This file must contain the entire certificate chain ordered sequentially, as shown in this example:

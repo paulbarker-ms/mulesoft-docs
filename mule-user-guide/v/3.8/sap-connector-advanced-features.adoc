@@ -1,36 +1,8 @@
 = SAP Connector Advanced Features
 :keywords: sap, connector, advanced features
 :imagesdir: ./_images
-:toc: macro
-:toc-title: Contents
-:toclevels: 2
 
 The SAP Connector provides a wide range of functionalities, beyond the basic ones already described in the link:/mule-user-guide/v/3.8/sap-connector[SAP Connector Documentation]. The present document will help you harness the full potential of your SAP Mule application.
-
-toc::[]
-
-////
-== Contents
-
-. link:#jco-extended-properties[JCo Extended Properties]
-    .. link:#jco-client-properties[JCo Client Properties]
-    .. link:#jco-server-properties[JCo Server Properties]
-    .. link:#prioritizing-connection-properties[Prioritizing Connection Properties]
-. link:#server-services-configuration[Server Services Configuration]
-. link:#endpoint-address[Endpoint Address]
-. link:#clustered-env[Clustered Environments Configuration]
-. link:#tid-handler[TID Handler Configuration]
-	.. link:#default-in-memory-tid[Default In-memory TID Store]
-	.. link:#jdbc-object-store-tid[JDBC-based Mule Object Store TID Store]
-	.. link:#tid-with-mel[Retrieve TID with a MEL expression]
-. link:#transactions[Transactions]
-	.. link:#srfc-stateful[sRFC Stateful]
-	.. link:#srfc-stateful-bapi[sRFC Stateful BAPI Transaction]
-	.. link:#trfc-stateful[tRFC Stateful]
-	.. link:#qrfc-stateful[qRFC Stateful]
-    .. link:#example[Example]
-. link:#see-also[See Also]
-////
 
 [[jco-extended-properties]]
 == JCo Extended Properties
@@ -42,15 +14,15 @@ IMPORTANT: The key names for these properties must *match* those expected by the
 [source, xml, linenums]
 ----
 <spring:bean name="sapProperties" class="java.util.HashMap">
-        <spring:constructor-arg>
-            <spring:map>
-                <spring:entry key="jco.client.client" value="100"/>
-                <spring:entry key="jco.client.user" value="SAP_USER"/>
-                <spring:entry key="jco.client.sysnr" value="00"/>
-                ...
-            </spring:map>
-        </spring:constructor-arg>
-    </spring:bean>
+	<spring:constructor-arg>
+	    <spring:map>
+		<spring:entry key="jco.client.client" value="100"/>
+		<spring:entry key="jco.client.user" value="SAP_USER"/>
+		<spring:entry key="jco.client.sysnr" value="00"/>
+		...
+	    </spring:map>
+	</spring:constructor-arg>
+</spring:bean>
 ----
 
 These properties can be used inside the connector or endpoint elements by *referencing a Spring Bean* that contains a map with the extended attributes. This can be done by configuring the `*jcoClientExtendedProperties-ref*` (inbound and outbound) or `*jcoServerExtendedProperties-ref*` (inbound only):
@@ -110,7 +82,7 @@ For an updated and complete list, check the Javadocs for `com.sap.conn.jco.ext.D
 You can also check the link:http://www.finereporthelp.com/download/SAP/sapjco3_windows_64bit/javadoc/[online documentation].
 ====
 
-[%header%autowidth]
+[%header%autowidth.spread]
 |===
 |SAP Property |Description |Mule Config Attribute |Default Value
 |`jco.client.client` |SAP client |`jcoClient` |
@@ -837,7 +809,7 @@ Transaction support in the SAP Connector version *1.x* is very limited and only 
 Starting with the SAP Connector version **2.1.0**, the attribute `bapiTransaction` is no longer present at the transaction level. This attribute was moved to the outbound endpoint.
 ====
 
-[%header%autowidth]
+[%header%autowidth.spread]
 |===
 |Attribute |Description |Default Value |Since Version
 |*action* |The action attribute is part of the Mule transaction standard and can have the following values: `NONE`, `ALWAYS_BEGIN`, `BEGIN_OR_JOIN`, `ALWAYS_JOIN` and `JOIN_IF_POSSIBLE` |  |`1.0`

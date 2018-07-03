@@ -134,11 +134,11 @@ Port 3300 is predefined by SAP, so if you need to validate other port numbers ba
 
 == Namespace and Syntax
 
-===== XML namespace:
+=== XML namespace:
 
 `xmlns:sap=http://www.mulesoft.org/schema/mule/sap`
 
-===== XML Schema location:
+=== XML Schema location
 
 * `http://www.mulesoft.org/schema/mule/sap`
 * `http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd`
@@ -146,7 +146,7 @@ Port 3300 is predefined by SAP, so if you need to validate other port numbers ba
 [NOTE]
 Within the Schema location URL, you can replace the alias *current* with a specific Mule ESB version number — such as **3.2**, for example.
 
-===== Connector Syntax:
+=== Connector Syntax
 
 [source, xml, linenums]
 ----
@@ -155,9 +155,9 @@ Within the Schema location URL, you can replace the alias *current* with a speci
      jcoTrace="true" jcoPoolCapacity="3" jcoPeakLimit="10"/>
 ----
 
-===== Endpoint Syntax
+=== Endpoint Syntax
 
-====== Inbound Endpoint
+=== Inbound Endpoint
 
 [source, xml, linenums]
 ----
@@ -166,7 +166,7 @@ Within the Schema location URL, you can replace the alias *current* with a speci
      jcoGwService="sapgw00" exchange-pattern="one-way"/>
 ----
 
-====== Outbound endpoint
+=== Outbound endpoint
 
 [source, xml, linenums]
 ----
@@ -226,7 +226,7 @@ To configure it, you create a child element `sap:sld-config` inside `sap:conn
 |*url* a|
 The URL (including host and port) where your SLD is listening. Usually the URL will conform to a pattern like this:
 
-http://sld-host.company.com/sdl/ds[http://sld-host.company.com:80/sdl/ds]
+`+http://sld-host.company.com/sdl/ds+`
 
  |  |1.0
 |*user* |A user who has privileges to update information in the SLD |  |1.0
@@ -849,7 +849,7 @@ There are different ways to send an IDoc:
 The SAP connector is Mule HA ready, meaning that it can work in a Mule Cluster without any issues. However, depending on the application architecture, you may need to perform specific configuratio in your SAP endpoints.
 
 [WARNING]
-*IMPORTANT*: The key to a fully working application in cluster is the implementation of link:/mule-management-console/v/3.7/reliability-patterns[reliability patterns].
+*IMPORTANT*: The key to a fully working application in cluster is the implementation of link:/mule-user-guide/v/3.7/reliability-patterns[reliability patterns].
 
 === Outbound Endpoint
 
@@ -872,7 +872,7 @@ When configuring multiple SAP inbound endpoints in an HA configuration, remember
 
 Also recall that in HA configurations that the payload should be serializable. To ensure this, configure the inbound endpoint to output XML. In 3.6.0, this is easily achieved with the *outputXml* attribute set to true. In previous versions, you need to configure a global transformer.
 
-*Mule 3.6.0+*
+*Mule 3.7.0+*
 
 [source, xml, linenums]
 ----

@@ -41,6 +41,16 @@ DataWeave now supports processing files up to 2 GB for XML, JSON and CSV by usin
 
 The artifactId has been changed from `mule-plugin-weave_2.11` to `mule-plugin-weave`.
 
+* *Change to DataWeave auto conversion algorithm:*
+
+The algorithm used to auto convert data types has been modified to make it more predictable. Some conversions might work differently. Specifically sizeOf of a numeric attribute will return 1 now. Note that sizeOf() doesn't support numeric arguments, so it will be autoconverted. In these cases it is recommended to use explicit type coersion. Example: `sizeOf(payload.age as :string)`.
+
+* *Changes to Flat File Format Reader Configuration for DataWeave*
+
+When using an input of type flat file in DataWeave, the `encoding` parameter is no longer available as a reader property. Character encoding is now defined from standard DataWeave conventions (normally: getting it from the Mule message properties).
+
+Added a reader property `missingValues` to control how to represent fields without values.
+
 == Known issues
 
 COBOL Copybook support for DataWeave does not support the following:
@@ -58,6 +68,12 @@ COBOL Copybook support for DataWeave does not support the following:
 == Migration Guide
 
 If you're migrating from 3.8.0 and using link:/mule-user-guide/v/3.8/using-maven-in-mule-esb[Mule with Maven] and you are using DataWeave in your projects, you must modify the POM reference to DataWeave, as it has now changed name slightly. See link:/mule-user-guide/v/3.8/dataweave-xml-reference#maven-dependency-snippet[DataWeave XML Reference] for more details.
+
+== Bundled Runtime Manager Agent
+
+This version of Mule runtime comes bundled with the Runtime Manager Agent plugin version 1.5.1.
+
+See link:/release-notes/runtime-manager-agent-release-notes[Runtime Manager Agent Release Notes].
 
 
 == Community Edition Fixed issues
@@ -144,11 +160,3 @@ If you're migrating from 3.8.0 and using link:/mule-user-guide/v/3.8/using-maven
 
 == Enterprise Edition Library Changes
 None
-
-
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

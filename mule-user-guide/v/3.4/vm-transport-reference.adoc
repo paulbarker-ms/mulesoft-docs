@@ -21,7 +21,7 @@ Note that VM queue persistence behaves differently on CloudHub. See the link:/ru
 *Docs* - Links to the JavaDoc and SchemaDoc for the transport
 *Inbound* - Whether the transport can receive inbound events and can be used for an inbound endpoint
 *Outbound* - Whether the transport can produce outbound events and be used with an outbound endpoint
-*Request* - Whether this endpoint can be queried directly with a request call (via MuleClinet or the EventContext)
+*Request* - Whether this endpoint can be queried directly with a request call (via MuleClient or the EventContext)
 *Transactions* - Whether transactions are supported by the transport. Transports that support transactions can be configured in either local or distributed two-phase commit (XA) transaction.
 *Streaming* - Whether this transport can process messages that come in on an input stream. This allows for very efficient processing of large data. For more information, see Streaming.
 *Retry* - Whether this transport supports retry policies. Note that all transports can be configured with Retry policies, but only the ones marked here are officially supported by MuleSoft
@@ -117,8 +117,8 @@ When using _one-way_ endpoints, messages are delivered to the corresponding in
 To use VM endpoints, follow these three steps. Each of these steps is explained in further detail, below.
 
 . Add the MULE VM namespace to your configuration:
-* Define the vm prefix using `xmlns:vm="http://www.mulesoft.org/schema/mule/vm`"
-* Define the schema location with http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.4/mule-vm.xsd
+* Define the vm prefix using `xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+* Define the schema location with +http://www.mulesoft.org/schema/mule/vm+ +http://www.mulesoft.org/schema/mule/vm/3.4/mule-vm.xsd+
 . Optionally, define one or more connectors for VM endpoints.
 * Create a VM connector:
 +
@@ -352,4 +352,4 @@ The In Memory Transport can be included with the following dependency:
 
 Be certain that inbound request-response endpoints are paired with outbound request-response endpoints and inbound one-way endpoints are paired with outbound one-way endpoints.
 
-Consider setting up your application following a link:/mule-management-console/v/3.4/reliability-patterns[reliability pattern].
+Consider setting up your application following a link:/mule-user-guide/v/3.4/reliability-patterns[reliability pattern].

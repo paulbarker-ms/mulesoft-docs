@@ -76,8 +76,7 @@ You must provide four required credentials: *username*, *password*, *securityTok
 
 === Best Practices
 
-You can either hardcode your credentials into the Salesforce global configuration properties, or reference a configuration file that contains these values. For simpler maintenance and better re-usability of your project, Mule recommends that you use a configuration file. Keeping these values in a separate file is especially useful if you need to deploy to different environments (for example, production, development, QA) where your access credentials differ; see http://www.mulesoft.org/documentation/display/current/Deploying+to+Multiple+Environments[Deploying to Multiple Environments] for instructions on how to manage this.
-
+You can either hardcode your credentials into the Salesforce global configuration properties, or reference a configuration file that contains these values. For simpler maintenance and better re-usability of your project, Mule recommends that you use a configuration file. Keeping these values in a separate file is especially useful if you need to deploy to different environments (for example, production, development, QA) where your access credentials differ.
 === Full Code Example
 
 The example below represents an example minimum configuration for a Salesforce connection using basic authentication.
@@ -125,7 +124,7 @@ Once you have obtained these tokens, you must:
 
 *  Configure a global element that contains the OAuth connection credentials you obtained from Salesforce. Be sure to configure a callback URL. +
 *  Create an authentication flow that includes an *Authorize* Salesforce message processor. +
-*  Create a flow that recieves the already authenticated users. Set the address of this flow to be the *Callback URL* that you set up in Salesforce when registering the service.
+*  Create a flow that receives the already authenticated users. Set the address of this flow to be the *Callback URL* that you set up in Salesforce when registering the service.
 
 For a detailed explanation of how perform these steps with Salesforce, read link:/mule-user-guide/v/3.7/using-a-connector-to-access-an-oauth-api[Using a Connector to Access an OAuth API.]
 

@@ -6,7 +6,7 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-After you have link:/runtime-manager/managing-servers#add-a-server[added a server] and link:link:/runtime-manager/deploying-to-your-own-servers[deployed an application] to it, you can use the Runtime Manager to monitor and manage your application.
+After you have link:/runtime-manager/managing-servers#add-a-server[added a server] and link:/runtime-manager/deploying-to-your-own-servers[deployed an application] to it, you can use the Runtime Manager to monitor and manage your application.
 
 Depending on if your application is deployed to link:/runtime-manager/deploying-to-cloudhub[CloudHub] or to link:/runtime-manager/deploying-to-your-own-servers[your own servers], there is a different set of possible actions you can perform on it, once deployed. This page focuses on the actions that are specific to applications deployed to your own servers. To view the basic management tools that are common to both types of deployment targets, see link:/runtime-manager/managing-deployed-applications[Managing Deployed Applications].
 
@@ -18,6 +18,8 @@ With applications deployed to link:/runtime-manager/managing-applications-on-you
 [NOTE]
 This doc covers deployments on-premises that are deployed both through the link:https://anypoint.mulesoft.com[cloud based] or the Private Cloud Edition of the Anypoint Platform. Some of the features described in this page are not yet available on the Anypoint Platform Private Cloud Edition. See link:/runtime-manager/deployment-strategies[Deployment Strategies] for a clear distinction. If you’re interested in requesting the Anypoint Platform Private Cloud Edition, please contact your sales representative.
 
+[NOTE]
+Only the applications deployed through Runtime Manager will be visible and manageable for that tool. If you have applications manually deployed in your on-premise servers, these are not visible in Runtime Manager as the applications are not auto discovered.
 
 == Applications Dashboard
 
@@ -25,9 +27,9 @@ If you select any of the applications on the Applications tab, a panel opens on 
 
 image:managing-applications-on-your-own-servers-26ef4.png[]
 
-What this dashboard displays depends on if your application is deployed on link:/runtime-manager/managing-cloudhub-applications[CloudHub] or on link:/runtime-manager/managing-applications-on-your-own-servers[a Mule server].
+What this dashboard displays depends on if your application is deployed on link:/runtime-manager/managing-applications-on-cloudhub[CloudHub] or on link:/runtime-manager/managing-applications-on-your-own-servers[a Mule server].
 
-Aplications deployed to Mule servers show you the status, the time of the last modification and the deployed application .zip file – which you can change from this menu through the *Choose File* button. Applications deployed on clusters and server groups additionally display the list of servers and the status of each.
+Applications deployed to Mule servers show you the status, the time of the last modification and the deployed application .zip file – which you can change from this menu through the *Choose File* button. Applications deployed on clusters and server groups additionally display the list of servers and the status of each.
 
 [TIP]
 You can verify info about the servers the application runs on by clicking on the server name in the panel, or by searching for it in the *Servers* tab. See more on link:/runtime-manager/managing-servers#servers-dashboard[Servers Dashboard].
@@ -35,7 +37,7 @@ You can verify info about the servers the application runs on by clicking on the
 
 On all panels, two buttons are displayed:
 
-* The *Manage Server* button, which takes you to the application settings page. This page displays more detailed information about your app and the server it runs on. From here you can also access the apps dashboard, see link:/runtime-manager/monitoring-dashboards#the-dashboard-for-apps on-servers[Monitoring Dashboards] for more on this.
+* The *Manage Server* button, which takes you to the application settings page. This page displays more detailed information about your app and the server it runs on. From here you can also access the apps dashboard, see link:/runtime-manager/monitoring-dashboards#the-dashboard-for-apps-on-servers[Monitoring Dashboards] for more on this.
 +
 image:managing-applications-on-your-own-servers-b0e6f.png[]
 

@@ -1,13 +1,12 @@
 = DataWeave Operators
 :keywords: studio, anypoint, esb, transform, transformer, format, aggregate, rename, split, filter convert, xml, json, csv, pojo, java object, metadata, dataweave, data weave, datamapper, dwl, dfl, dw, output structure, input structure, map, mapping
 
-image:dw-logo.png[dw]
 
 In link:/mule-user-guide/v/3.8/dataweave[DataWeave] you can carry out many different operations on the elements of a DataWeave transform. This document serves as a reference for all of the available operators in the DataWeave language. See link:/mule-user-guide/v/3.8/dataweave-types#dataweave-operators-sorted-by-type[all operators sorted by type]
 
 * For an introduction to the essentials of the language, see link:/mule-user-guide/v/3.8/dataweave-language-introduction[DataWeave Language Intro]
 * For information on DataWeave's accepted types, see link:/mule-user-guide/v/3.8/dataweave-types[DataWeave Types]
-* For an index of all available operators, categorized by the types you need to supply as parameters, see
+* For an index of all available operators, categorized by the types you need to supply as parameters, see link:/mule-user-guide/v/3.8/dataweave-types#operators-sorted-by-type[DataWeave Operators Sorted by Type].
 * See link:/mule-user-guide/v/3.8/dataweave-types#functions-and-lambdas[Functions and Lambdas] to learn how to create your own DataWeave functions.
 
 [TIP]
@@ -78,7 +77,7 @@ The lambda is invoked with two parameters: *index* and the *value*.
 If these parameters are not named, the index is defined by default as *$$* and the value as *$*. The index refers to the position of a key:value pair when the object is treated as an array.
 
 [TIP]
-See link:/#map-object[Map Object] if what you want is to process both keys and values instead of just values.
+See link:#map-object[Map Object] if what you want is to process both keys and values instead of just values.
 
 
 .Transform
@@ -97,10 +96,7 @@ priceList: payload.prices map (
 ----
 
 
-[tabs]
-------
-[tab,title="Input: XML"]
-....
+
 
 .Input
 [source,xml,linenums]
@@ -112,9 +108,7 @@ priceList: payload.prices map (
 </prices>
 ----
 
-....
-[tab,title="Output: JSON"]
-....
+
 
 .Output
 [source,json,linenums]
@@ -143,8 +137,6 @@ priceList: payload.prices map (
 }
 ----
 
-....
-------
 
 
 
@@ -159,7 +151,7 @@ In the example above, as key and value are not defined, they're identified by th
 For each key:value pair in the input, an object is created and placed in an array of objects. Each of these objects contains two properties:
 one of these directly uses the value, the other multiplies this value by a constant that is defined as a directive in the header.
 
-The mapping below performs exactly the same transform, but it defines custom names for the properties of the operation, instead of using $ and $$. Here, `position` is defined as referring to the array index, and `money` to the value in that index.  The reference to the array index (named `position`, in this case) is optional. 
+The mapping below performs exactly the same transform, but it defines custom names for the properties of the operation, instead of using $ and $$. Here, `position` is defined as referring to the array index, and `money` to the value in that index.  The reference to the array index (named `position`, in this case) is optional.
 
 .Transform
 [source,DataWeave,linenums]
@@ -176,9 +168,9 @@ priceList: payload.prices map ((money, position) ->
 )
 ----
 
-The reference to the array index is optional. This is also a valid example: 
- 
- .Transform
+The reference to the array index is optional. This is also a valid example:
+
+.Transform
 [source,DataWeave,linenums]
 ----
 %dw 1.0
@@ -222,10 +214,7 @@ priceList: payload.prices mapObject (
 ----
 
 
-[tabs]
-------
-[tab,title="Input: XML"]
-....
+
 
 .Input
 [source,xml,linenums]
@@ -236,9 +225,7 @@ priceList: payload.prices mapObject (
     <vip>398.99</vip>
 </prices>
 ----
-....
-[tab,title="Output: JSON"]
-....
+
 
 .Output
 [source,json,linenums]
@@ -261,8 +248,6 @@ priceList: payload.prices mapObject (
 }
 ----
 
-....
-------
 
 
 
@@ -317,10 +302,7 @@ result: {
 ----
 
 
-[tabs]
-------
-[tab,title="Input: XML"]
-....
+
 .Input
 [source,xml,linenums]
 ----
@@ -330,9 +312,7 @@ result: {
     <vip>398.99</vip>
 </prices>
 ----
-....
-[tab,title="Output: JSON"]
-....
+
 .Output
 [source,json,linenums]
 ----
@@ -351,8 +331,6 @@ result: {
   }
 }
 ----
-....
-------
 
 
 
@@ -418,9 +396,48 @@ filtered: {
 </filtered>
 ----
 
+The usage above is performing the filter operation after the transformation block has occurred, if this is not a requirement then filter can be done prior to the transformation.
+
+.Transform
+[source,DataWeave,linenums]
+----
+%dw 1.0
+%output application/json
+---
+filtered: (payload filter ($.*data contains "b") map {
+  data: $.data
+}) <2>
+----
+<2> Filters the all key:value pairs with "data" value "b" => {data:b} before the transformation block has occurred.
+For large, complex transformations this is more efficient than filtering after the transformation block has occurred.
+
+
+.Input
+[source,json,linenums]
+----
+[
+  {"data": "a"},
+  {"data": "b"},
+  {"data": "c"},
+  {"data": "d"}
+]
+----
+
+.Output
+[source,json,linenums]
+----
+{
+  "filtered": [
+    {
+      "data": "b"
+    }
+  ]
+}
+----
+
 [TIP]
 ====
-If you require to filter by key, you need to use link:/mule-user-guide/v/3.8/dataweave-operators#map-object[mapObject] and *when*. For example, to filter the last example by key:
+If you require to filter by key, you need to use link:#map-object[mapObject] and *when*. For example, to filter the last example by key:
 [source,xml,linenums]
 ----
 %dw 1.0
@@ -437,7 +454,7 @@ filtered: {
 === Using Remove on an Array
 .(':array', ':name')  => ':array'
 
-When running it on an array, it returns another array where the specified indexes are removed.
+When running it on an array, it returns another array where the specified value is removed.
 
 .Transform
 [source,DataWeave, linenums]
@@ -446,7 +463,7 @@ When running it on an array, it returns another array where the specified indexe
 %output application/json
 ---
 {
-  aa: ["a", "b", "c"] - 1
+  aa: ["a", "b", "c"] - "b"
 }
 ----
 
@@ -454,7 +471,7 @@ When running it on an array, it returns another array where the specified indexe
 [source,json,linenums]
 ----
 {
-  "aa": [a, c]
+  "aa": ["a", "c"]
 }
 ----
 
@@ -563,6 +580,7 @@ In the example above, currency is "EUR", only when one of the conditions evaluat
 Check the link:/mule-user-guide/v/3.8/dataweave-language-introduction#precedence-table[Precedence Table] to see what expressions are compiled before or after this one.
 
 == IS
+
 .(':any', condition)  => ':boolean'
 
 Evaluates if a condition validates to true and returns a boolean value. Conditions may include `and` and `or` operators.
@@ -582,10 +600,6 @@ ROOT: payload.root.*order mapObject (
 ----
 
 
-[tabs]
-------
-[tab,title="Input: XML"]
-....
 .Input
 [source,xml,linenums]
 ----
@@ -601,9 +615,7 @@ ROOT: payload.root.*order mapObject (
     </order>
 </root>
 ----
-....
-[tab,title="Output: XML"]
-....
+
 .Output
 [source,xml,linenums]
 ----
@@ -620,20 +632,15 @@ ROOT: payload.root.*order mapObject (
   </ORDER>
 </ROOT>
 ----
-....
-------
-
-
-
-
-
-
-
 
 
 == Concat
-The concat operator is defined using `++`. You must have spaces on both sides of the `++` operator. 
+
+The concat operator is defined using double plus signs. You must have spaces on both sides of them.
+
+
 === Using Concat on an Array
+
 .(':array', ':array') => ':array'
 
 
@@ -729,10 +736,6 @@ ContainsRequestedItem: payload.root.*order.*items contains "3"
 ----
 
 
-[tabs]
-------
-[tab,title="Input: XML"]
-....
 .Input
 [source,xml,linenums]
 ----
@@ -763,9 +766,7 @@ ContainsRequestedItem: payload.root.*order.*items contains "3"
     </order>
 </root>
 ----
-....
-[tab,title="Output: JSON"]
-....
+
 .Output
 [source,json,linenums]
 ----
@@ -773,17 +774,9 @@ ContainsRequestedItem: payload.root.*order.*items contains "3"
   "ContainsRequestedItem": true
 }
 ----
-....
-------
 
 
-
-
-
-
-
-
-=== using Contains on a String
+=== Using Contains on a String
 
 .(':string', ':string') => ':boolean'
 .(':string', ':regex') => ':boolean'
@@ -800,10 +793,7 @@ ContainsString: payload.root.mystring contains "me"
 ----
 
 
-[tabs]
-------
-[tab,title="Input: XML"]
-....
+
 
 .Input
 [source,xml,linenums]
@@ -813,9 +803,7 @@ ContainsString: payload.root.mystring contains "me"
   <mystring>some string</mystring>
 </root>
 ----
-....
-[tab,title="Output: JSON"]
-....
+
 .Output
 [source,json,linenums]
 ----
@@ -823,8 +811,6 @@ ContainsString: payload.root.mystring contains "me"
   "ContainsString": true
 }
 ----
-....
-------
 
 
 
@@ -842,10 +828,6 @@ ContainsString: payload.root.mystring contains /s[t|p]ring/`
 ----
 
 
-[tabs]
-------
-[tab,title="Input: XML"]
-....
 .Input
 [source,xml,linenums]
 ----
@@ -854,9 +836,7 @@ ContainsString: payload.root.mystring contains /s[t|p]ring/`
   <mystring>A very long string</mystring>
 </root>
 ----
-....
-[tab,title="Output: JSON"]
-....
+
 .Output
 [source,json,linenums]
 ----
@@ -864,8 +844,6 @@ ContainsString: payload.root.mystring contains /s[t|p]ring/`
   "ContainsString": true
 }
 ----
-....
-------
 
 
 == Type Coercion using `as`
@@ -1042,10 +1020,7 @@ isString: typeOf payload.mystring
 ----
 
 
-[tabs]
-------
-[tab,title="Input: JSON"]
-....
+
 .Input
 [source,json,linenums]
 ----
@@ -1053,9 +1028,7 @@ isString: typeOf payload.mystring
   "mystring":"a string"
 }
 ----
-....
-[tab,title="Output: JSON"]
-....
+
 .Output
 [source,json,linenums]
 ----
@@ -1063,8 +1036,6 @@ isString: typeOf payload.mystring
   "isString": ":string"
 }
 ----
-....
-------
 
 
 == Flatten
@@ -1082,10 +1053,7 @@ flatten payload
 ----
 
 
-[tabs]
-------
-[tab,title="Input: JSON"]
-....
+
 .Input
 [source,json,linenums]
 ----
@@ -1095,9 +1063,7 @@ flatten payload
    [154,0.3]
 ]
 ----
-....
-[tab,title="Output: JSON"]
-....
+
 .Output
 [source,json,linenums]
 ----
@@ -1110,8 +1076,6 @@ flatten payload
   0.3
 ]
 ----
-....
-------
 
 
 
@@ -1257,7 +1221,7 @@ By default, the accumulator starts at the first value of the array.
 %dw 1.0
 %output application/json
 ---
-sum: [0, 1, 2, 3, 4, 5] reduce $$ + $
+sum: [0, 1, 2, 3, 4, 5] reduce($$ + $)
 ----
 
 .Output
@@ -1274,7 +1238,7 @@ sum: [0, 1, 2, 3, 4, 5] reduce $$ + $
 %dw 1.0
 %output application/json
 ---
-concat: ["a", "b", "c", "d"] reduce $$ ++ $
+concat: ["a", "b", "c", "d"] reduce($$ ++ $)
 ----
 
 .Output
@@ -1432,10 +1396,7 @@ If these parameters are not named, the index is defined by default as *$$* and t
 ----
 
 
-[tabs]
-------
-[tab,title="Input: JSON"]
-....
+
 .Input
 [source,json,linenums]
 ----
@@ -1456,9 +1417,7 @@ If these parameters are not named, the index is defined by default as *$$* and t
   ]
 }
 ----
-....
-[tab,title="Output: JSON"]
-....
+
 .Output
 [source,json,linenums]
 ----
@@ -1474,8 +1433,6 @@ If these parameters are not named, the index is defined by default as *$$* and t
   }
 }
 ----
-....
-------
 
 
 
@@ -1504,10 +1461,7 @@ If these parameters are not defined, the index is defined by default as $$ and t
 ----
 
 
-[tabs]
-------
-[tab,title="Input: JSON"]
-....
+
 .Input
 [source,json,linenums]
 ----
@@ -1526,9 +1480,7 @@ If these parameters are not defined, the index is defined by default as $$ and t
   "year":"2000"
 }
 ----
-....
-[tab,title="Output: JSON"]
-....
+
 .Output
 [source,json,linenums]
 ----
@@ -1546,8 +1498,6 @@ If these parameters are not defined, the index is defined by default as $$ and t
   }
 }
 ----
-....
-------
 
 
 
@@ -1608,10 +1558,7 @@ payload.list1 zip payload.list2 zip payload.list3
 ----------------------------------------------------------------------
 
 
-[tabs]
-------
-[tab,title="Input: JSON"]
-....
+
 .Input
 [source,json,linenums]
 ----------------------------------------------------------------------
@@ -1622,9 +1569,7 @@ payload.list1 zip payload.list2 zip payload.list3
   "list4": [["a", "b", "c"], [1, 2, 3, 4], ["aa", "bb", "cc", "dd"]]
 }
 ----------------------------------------------------------------------
-....
-[tab,title="Output: JSON"]
-....
+
 .Output
 [source,json,linenums]
 ----------------------------------------------------------------------
@@ -1646,8 +1591,6 @@ payload.list1 zip payload.list2 zip payload.list3
   ]
 ]
 ----------------------------------------------------------------------
-....
-------
 
 
 
@@ -1839,6 +1782,9 @@ Given a string, it returns the index position within the string at which a match
 
 Match a string against a regular expression. Match returns an array that contains the entire matching expression, followed by all of the capture groups that match the provided regex.
 
+It can be applied to the result of any evaluated expression, and can return any evaluated expression. See the Match operator in link:/mule-user-guide/v/3.8/dataweave-language-introduction[the DataWeave Language Introduction].
+
+
 .Transform
 [source,DataWeave, linenums]
 ----
@@ -2011,7 +1957,7 @@ Returns the provided string in camel case.
 == Capitalize
 .(':string') => ':string'
 
-Returns the provided string with every word starting with a capital letter and no underscores.
+Returns the provided string with every word starting with a capital letter and no underscores. It also replaces underscores with spaces and puts a space before each capitalized word.
 
 .Transform
 [source,DataWeave, linenums]
@@ -2022,7 +1968,8 @@ Returns the provided string with every word starting with a capital letter and n
 {
   a: capitalize "customer",
   b: capitalize "customer_first_name",
-  c: capitalize "customer NAME"
+  c: capitalize "customer NAME",
+  d: capitalize "customerName",
 }
 ----
 
@@ -2032,7 +1979,8 @@ Returns the provided string with every word starting with a capital letter and n
 {
   "a": "Customer",
   "b": "Customer First Name",
-  "c": "Customer Name"
+  "c": "Customer Name",
+  "d": "Customer Name"
 }
 ----
 
@@ -2175,7 +2123,7 @@ Removes any excess spaces at the start and end of a string.
 ----
 
 
-== Substring
+== Substring using *..* or *to*
 .(':string') => ':string'
 
 Extracts a set of characters out of a string, based on the position that the first and last character of the desired substring occupy in the character array. If you use negative numbers, you can also inverse the order in which characters are set.
@@ -2188,7 +2136,10 @@ Extracts a set of characters out of a string, based on the position that the fir
 ---
 {
   "a": "abcdefg"[0..4],
-  "b": "abcdefg"[-1..-4]
+  "b": "abcdefg"[-1..-4],
+  "d": "abcdefg"[0 to 4],
+  "e": "abcdefg"[-1 to -4]
+
 }
 ----
 
@@ -2196,8 +2147,11 @@ Extracts a set of characters out of a string, based on the position that the fir
 [source,json,linenums]
 ----
 {
-  "a": "abcde"
-  "b": "gfed"
+  "a": "abcde",
+  "b": "gfed",
+  "d": "abcde",
+  "e": "gfed"
+
 }
 ----
 
@@ -2799,12 +2753,12 @@ You can change the format of a date to fit another standard, see <<Coerce to dat
 * For a high level overview about the language, see link:/mule-user-guide/v/3.8/dataweave-language-introduction[DataWeave Language Introduction]
 * For a listing and details about all of the types you can use, see link:/mule-user-guide/v/3.8/dataweave-types[DataWeave Types]
 * For details on how to create and use your own functions, see link:/mule-user-guide/v/3.8/dataweave-types#functions-and-lambdas[Functions and Lambdas]
-* View complete example projects that use DataWeave in the link:https://www.mulesoft.com/exchange#!/?filters=DataWeave&sortBy=rank[Anypoint Exchange]
+* View complete example projects that use DataWeave in the https://www.anypoint.mulesoft.com/exchange/?search=dataweave[Anypoint Exchange]
 
 == See Also
 
 * link:/mule-user-guide/v/3.8/dataweave-quickstart[DataWeave quickstart guide]
-* link:/anypoint-studio/v/6/using-dataweave-in-studio[Using DataWeave in Studio]
+* link:/anypoint-studio/v/6/transform-message-component-concept-studio[About Transform Message Component]
 * link:/mule-user-guide/v/3.8/dataweave-language-introduction[DataWeave Language Introduction]
 * link:/mule-user-guide/v/3.8/dataweave-types[DataWeave Types]
 * link:/mule-user-guide/v/3.8/dataweave-formats[DataWeave Formats]
@@ -2812,4 +2766,3 @@ You can change the format of a date to fit another standard, see <<Coerce to dat
 * link:/mule-user-guide/v/3.8/dataweave-memory-management[DataWeave Memory Management]
 * link:/mule-user-guide/v/3.8/dataweave-examples[DataWeave Examples]
 * link:/mule-user-guide/v/3.8/mel-dataweave-functions[MEL DataWeave Functions]
-* link:http://forums.mulesoft.com[MuleSoft's Forums]

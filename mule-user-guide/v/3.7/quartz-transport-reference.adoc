@@ -2,11 +2,25 @@
 :keywords: quartz
 
 [TIP]
-When scheduling tasks, it's recommended that you instead resort to the link:https://developer.mulesoft.com/docs/display/current/Poll+Reference[Poll Scope]
+When scheduling tasks, use the link:/mule-user-guide/v/3.7/poll-reference[Poll Scope] instead of Quartz
 
 The Quartz transport provides support for scheduling events and for triggering new events. An inbound quartz endpoint can be used to trigger inbound events that can be repeated, such as every second. Outbound quartz endpoints can be used to schedule an existing event to fire at a later date. Users can create schedules using cron expressions, and events can be persisted in a database.
 
-This transport makes use of the link:http://www.quartz-scheduler.org/documentation/[Quartz Project]. The Quartz site has more generic information about how to work with Quartz.
+This transport makes use of the http://www.quartz-scheduler.org/documentation/[Quartz Project]. The Quartz site has more generic information about how to work with Quartz.
+
+*Notes:* 
+
+* When running in an environment with multiple workers or nodes, a Quartz scheduler, by default, runs on each node, whereas a Poll Scope only runs on a single node. A Quartz scheduler can be configured to work this way but requires configuration of a JDBC JobStore.
+* When using a Quartz inbound endpoint, you cannot manage it through the Schedulers tab.
+
+== Namespace and Schema
+
+[%header,cols="25a,75a"]
+|===
+|Item |URL
+|XML Namespace |`+http://www.mulesoft.org/schema/mule/quartz+`
+|XML Schema Location |`+http://www.mulesoft.org/schema/mule/quartz/3.7/mule-quartz.xsd+`
+|===
 
 == About Cron Expressions
 
@@ -526,9 +540,5 @@ Allows a job to be stored on the current message. This can only be used on outbo
 == See Also
 
 * See the link:/mule-user-guide/v/3.7/quartz-connector[Quartz Connector] for details on setting the properties for a Quartz endpoint in Studio's visual editor.
-* Read a link:http://blogs.mulesoft.org/mule-and-quartz-scheduled-jobs-and-long-running-tasks/[post in MuleSoft's blog] about using Quartz in Mule
+* Read a link:https://blogs.mulesoft.com/dev/mule-dev/mule-and-quartz-scheduled-jobs-and-long-running-tasks/[post in MuleSoft's blog] about using Quartz in Mule
 * Read link:http://quartz-scheduler.org/documentation[Quartz's documentation]
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

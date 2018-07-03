@@ -21,30 +21,21 @@ This page helps you learn how to do each of these steps.
 
 == Installation
 
-The following sections provide installation information.
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
 
-=== Installing the EDIFACT Module in Anypoint Studio
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
-Follow the steps below to install an EDIFACT Module connector in Anypoint Studio. To use the EDIFACT Module connector in a production environment, you must have purchased a license for Anypoint B2B.
-
-. Under the *Help* menu in *Anypoint Studio*, select *Install New Software*. 
-. Select the *Anypoint Connectors Update Site*.
-. Click to expand the *Premium* folder, then select `EDIFACT Module`. Click *Next*. 
-+
-image:edifact-edi-connector.png[edifact-edi-connector]
-+
-. Review the details of the item you selected, then click *Next*.
-. Click to accept terms and conditions of the product, then click *Finish*.
-. Click *Restart Now* to complete the installation. After you install the connector and restart Studio you can see several new message processors available in the palette, under the Connectors category.
-
-=== Using the EDIFACT Module via Maven
+== Using the EDIFACT Module via Maven
 
 To use the EDIFACT Module in conjunction with Maven, see link:http://mulesoft.github.io/edi-module/edifact/guide/install.html[
 Mule EDI Anypoint EDIFACT Connector].
 
 == EDI Schema Language
 
-The EDIFACT Module uses a YAML format called ESL (for EDI Schema Language) to represent EDI schemas.  Basic ESLs define the structure of EDI messages in terms of _structures_ (messages, in EDIFACT terminology), _groups_ (segment groups, in EDIFACT), _segments_, _composites_, and _elements_. Currently, ESLs for the EDIFACT D.96A, D.98B, and D.01B versions are included out of the box. 
+The EDIFACT Module uses a YAML format called ESL (for EDI Schema Language) to represent EDI schemas.  Basic ESLs define the structure of EDI messages in terms of _structures_ (messages, in EDIFACT terminology), _groups_ (segment groups, in EDIFACT), _segments_, _composites_, and _elements_. ESLs for the EDIFACT D.93A, D.95B, D.96A, D.97A, D.98B, D.99A, D.99B, D.00A, D.01B, D.02A, and D.03B versions are included out of the box. 
 
 To configure the EDIFACT Module according to your implementation convention, define an _overlay schema_. An overlay schema is a special form of ESL that allows you to modify a base schema, such as an EDIFACT D.98B ORDERS schema, with your specific conventions. (You don't need an overlay schema if you're using the structure defined by the standard, but most EDI exchanges modify the base definitions in an implementation convention)
 
@@ -101,7 +92,7 @@ The modifications in this example specify that the PAI and IMD segments of the s
 
 The key-value pairs at the structure level are:
 
-[%header,cols="3s,7a"]
+[%header,cols="3a,7a"]
 |===
 |Key |Description
 |idRef |The ID for the message being modified
@@ -111,7 +102,7 @@ The key-value pairs at the structure level are:
 
 The lists of segment modifications for the different sections of the structure (heading, detail, summary) all use the same structure. Each item in the list is either a segment reference or a group definition. Segment references are shown using a compact YAML syntax where the values for each reference are given as comma-separated key-value pairs enclosed in curly braces. The values are:
 
-[%header,cols="3s,7a"]
+[%header,cols="3a,7a"]
 |===
 |Key |Description
 |idRef |The referenced segment ID (optional, verified if provided but otherwise ignored – the position value is used to uniquely identify segments within the section)
@@ -122,7 +113,7 @@ The lists of segment modifications for the different sections of the structure (
 
 Group overlays are shown in expanded form, with key-value pairs on separate lines. The values in a group definition are:
 
-[%header,cols="3s,7a"]
+[%header,cols="3a,7a"]
 |===
 |Key |Description
 |groupIdRef |The referenced segment group id (optional, verified if provided but otherwise ignored – the position value is used to uniquely identify a group within a section)
@@ -154,7 +145,7 @@ The above example uses the compact form for segment modifications that only invo
 
 The key-value pairs in a segment overlay are:
 
-[%header,cols="3s,7a"]
+[%header,cols="3a,7a"]
 |===
 |Key |Description
 |idRef |Segment identifier
@@ -164,7 +155,7 @@ The key-value pairs in a segment overlay are:
 
 The items list references values in the segment by position. The values for these references are:
 
-[%header,cols="3s,7a"]
+[%header,cols="3a,7a"]
 |===
 |Key |Description
 |position |The value position within the segment
@@ -175,9 +166,12 @@ The items list references values in the segment by position. The values for thes
 
 === Determining the EDIFACT Schema Location
 
-To use DataSense views of input and output EDI data you need to know the locations of the schemas in your project. If you're using the out of the box EDIFACT schemas and not customizing anything, the schema location follows the pattern "/edifact/{version}/{message}.esl", so for the D.98B version of the ORDERS message your schema location is "/edifact/d98b/ORDERS.esl".
+To use DataSense views of input and output EDI data you need to know the locations of the schemas in your project. If you're using the out of the box EDIFACT schemas and not customizing anything, the schema location follows the pattern "/edifact/{version}/{message}.esl", so for the D.98B version of the ORDERS message your schema location is "/edifact/d98b/ORDERS.esl". You can find these schemas bundled with the connector in the file edi-schemas-edifact-<VERSION>.jar.
 
-If you're creating a custom implementation convention, you should put your schemas under a directory in src/main/app and refer to the location using ${app.home}. For example, if you've put your ORDERS schema under src/main/app/mypartner/ORDERS.esl, your schema location is "${app.home}/mypartner/ORDERS.esl".
+If you're using one or more custom schemas, you should put these under 
+`src/main/resources` and refer to the location relative to this directory. 
+For example, if you've put your ORDERS schema (either overlay or full) at `src/main/resources/mypartner/ORDERS.esl, 
+your schema location is `/mypartner/ORDERS.esl`.
 
 == Configuring the EDIFACT Module
 
@@ -234,7 +228,7 @@ After you set up a global element for your EDIFACT module, configure the schemas
 [NOTE]
 Currently, you can only configure schema locations in the Anypoint Studio XML view.
 
-Using the schema locations determined above, switch to the XML view in Studio by clicking *Configuration XML*. Modify your EDIFACT module configuration to include a list of all the schemas you wish to include by adding an <http://edischema[edi:schema]> element for each document type:
+Using the schema locations determined above, switch to the XML view in Studio by clicking *Configuration XML*. Modify your EDIFACT module configuration to include a list of all the schemas you wish to include by adding an `edi:schema` element for each document type:
 
 [source, xml, linenums]
 ----
@@ -260,7 +254,7 @@ The connector enables reading or writing of EDIFACT documents into or from the c
 
 The message itself contains the following keys:
 
-[%header,cols="3s,7a"]
+[%header,cols="3a,7a"]
 |===
 |Key name |Description
 |Delimiters (optional) |The delimiters used for the message (set based on the last interchange processed by a read operation). If set for a write operation, this override the values in the module configuration. The characters in the string are interpreted based on position, in the following order: (data separator), (component separator), (repetition separator, or ' ' if none), (segment terminator), (release indicator).
@@ -273,7 +267,7 @@ The message itself contains the following keys:
 
 Individual transaction sets have their own maps, with the following keys:
 
-[%header,cols="3s,7a"]
+[%header,cols="3a,7a"]
 |====
 |Key name |Description
 |Detail |Map of segments or segment groups from the detail section of the transaction set. Values are maps for segments or groups which occur at most once, lists of maps for values which may be repeated.
@@ -297,7 +291,7 @@ image:edi-messages.png[edi-messages]
 
 Error data entered in the receive data map uses the EdifactError class, a read-only JavaBean with the following properties:
 
-[%header,cols="3s,7a"]
+[%header,cols="3a,7a"]
 |===
 |Property |Description
 |segment |The zero-based index within the input of the segment causing the error

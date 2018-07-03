@@ -2,29 +2,20 @@
 :keywords: salesforce connector, inbound, outbound, streaming, poll, dataweave, datasense
 :imagesdir: _images
 :icons: font
-:toc: macro
-:toclevels: 2
 
+https://www.mulesoft.com/legal/versioning-back-support-policy#anypoint-connectors[_Select_]
 
-image::salesforce-connector-3199e.png[]
+*Release Notes:* link:/release-notes/salesforce-connector-release-notes[Salesforce Connector Release Notes] +
+*Technical Reference:* http://mulesoft.github.io/mule-salesforce-connector/[Salesforce Connector Technical Reference] +
+*Anypoint Exchange:* https://www.anypoint.mulesoft.com/exchange/?search=salesforce[Salesforce Search]
 
-toc::[]
-
-
-== Introduction
-
-The Anypoint(TM) Connector for Salesforce lets you connect to the Salesforce platform. The connector exposes convenient methods for exploiting the capabilities of Salesforce, including working with Apex classes.
+The Anypoint Connector for Salesforce lets you connect to the Salesforce platform. The connector exposes convenient methods for exploiting the capabilities of Salesforce, including working with Apex classes.
 
 The connector executes API calls targeting Salesforce’s SOAP API, REST API, Bulk API, or Streaming API, depending on the operation you configure. The API calls use an XML request/response over an HTTPS connection. All required request headers, error handling, and HTTPS connection configurations are abstracted from the user and built into the connector.
 
-Read through this user guide to understand how to set up and configure a basic flow using the connector. Track feature additions, compatibility, limitations, and API version updates using the link:/release-notes/salesforce-connector-release-notes[Salesforce Connector Release Notes]. Review the connector operations and see how they work by reviewing the link:http://mulesoft.github.io/salesforce-connector/[Technical Reference] alongside the link:https://www.mulesoft.com/exchange#!/?filters=Salesforce&sortBy=rank[Demo Applications].
-
-MuleSoft maintains this connector under the link:/mule-user-guide/v/3.8/anypoint-connectors#connector-categories[_Select_] support policy.
-
-
 == Prerequisites
 
-This document assumes that you are familiar with Mule, the link:/anypoint-studio/v/6/[Anypoint Studio Interface], link:/mule-user-guide/v/3.8/global-elements[Global Elements], link:/anypoint-studio/v/6/datasense[DataSense], and link:/mule-user-guide/v/3.8/batch-processing[Batch Processing] in Mule. Further, it assumes you are familiar with Salesforce.
+This document assumes that you are familiar with Salesforce, batch processing, Mule, Anypoint Connectors, and Anypoint Studio essentials. Further, this page assumes that you have a basic understanding of elements in a Mule flow, and global elements.
 
 === Requirements
 
@@ -37,8 +28,6 @@ To use the Salesforce connector, you need:
 
 To use a Salesforce connector in your Mule application, be sure to include the correct namespace and schema location if you are creating the XML by hand.
 When Anypoint Studio is used, the namespace and schema location are provided for you when you drag and drop the connector into a project.
-
-*Note:* You can use the `payload.success` flag to determine if the external Salesforce system is working correctly. If `payload.success` is `true`, the external Salesforce system is working correctly. If `false`, there is an issue in the external Salesforce system (not a failure in the connector) and it is a customer's responsibility to treat this issue.
 
 === Namespace
 
@@ -76,20 +65,21 @@ http://www.mulesoft.org/schema/mule/sfdc/current/mule-sfdc.xsd"
 
 == Compatibility
 
-[%header,cols="2*a"]
-|===
-|Application/Service|Version
-|Mule Runtime|Mule Enterprise Edition 3.5.2 and newer
-|Anypoint Studio|Only works with Studio 5.4.0 and newer
-|Salesforce|v37.0, v38.0
-|===
+See the link:/release-notes/salesforce-connector-release-notes[Salesforce Connector Release Notes] for the latest compatibility information.
 
-[IMPORTANT]
-Starting with v.7.0.0, the Salesforce connector is licensed commercially with Anypoint Platform as are other link:/mule-user-guide/v/3.8/anypoint-connectors#connector-categories[_Select_] connectors.  Prior versions will remain freely available to the community.
+*Note:*
 
-== Installing and Configuring
+* Starting with v.7.0.0, the Salesforce connector is licensed commercially with Anypoint Platform as are other link:/mule-user-guide/v/3.8/anypoint-connectors#connector-categories[_Select_] connectors.  Prior versions will remain freely available to the community.
 
-You can install the connector in Anypoint Studio using the instructions in link:/getting-started/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange].
+== Installing and Configuring in Anypoint Studio
+
+. In Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the Salesforce connector and click Install.
+. Follow the prompts to install the connector.
+
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
+
 
 === Configuring Maven Dependencies
 
@@ -159,21 +149,15 @@ Or for the latest version:
 
 To use the Salesforce connector in a Mule application project:
 
-. In Anypoint Studio, click *File* > *New* > *Mule Project*.
-+
-image:new_project.png[Create new project]
-+
+. In Anypoint Studio, click File > New > Mule Project.
 . Enter a name for your new project and leave the remaining options with their default values.
-+
-image:new-proj.png[Create new project dialog box]
-+
-. If you plan to use Git, select *Create a default .gitignore file* for the project with default ignores for Studio Projects, and then click *Next*.
+. If you plan to use Git, select *Create a default .gitignore file* for the project with default ignores for Studio Projects, and then click Next.
 . Click *Finish* to create the project.
 
 
 === Configuring the Salesforce Global Element
 
-To use the Salesforce connector in your Mule application, you must configure a global Salesforce connector element that can be used by all the Salesforce connectors in the application (read more about link:/mule-user-guide/v/3.8/global-elements[Global Elements]).
+To use the Salesforce connector in your Mule application, you must configure a global Salesforce connector element that can be used by all the Salesforce connectors in the application.
 
 Here are the options to choose from when you create a global element for this product:
 
@@ -182,15 +166,13 @@ image:sfdc-choose-global-type.png[sfdc-choose-global-type]
 If you have multiple versions of the connector, Studio prompts you for the version. 
 Ensure that you choose version 6.2.0 or newer.
 
-[TIP]
-====
 As of version 6.2.0 of this connector, you can:
 
 * Invoke methods from Apex REST classes.
-* Use the *OAuth 2.0 JWT Bearer* and *OAuth 2.0 SAML Bearer* flows for Salesforce authentication.
+* Use the *OAuth 2.0 JWT Bearer* and *OAuth 2.0 SAML Bearer* flows for Salesforce authentication. SalesForce provide several types of SAML authentications. See http://help.salesforce.com/apex/HTViewHelpDoc?id=remoteaccess_oauth_SAML_bearer_flow.htm[OAuth 2.0 SAML Bearer Assertion Flow] for more information.
 
 For more information, see the link:https://developer.salesforce.com/docs[Salesforce documentation].
-====
+
 
 === Salesforce Connector Authentication
 
@@ -201,10 +183,10 @@ To access the data in a Salesforce instance, you have the following possibilitie
 [NOTE]
 *Basic authentication* is the easiest to implement. All you need to do is provide your credentials in a global configuration (see link:/mule-user-guide/v/3.8/configuring-properties#global-properties[Global Properties]), then reference the global configuration file in any Salesforce connector in your application. Basic authentication is generally recommended for internal applications.
 
-* link:https://help.salesforce.com/apex/HTViewHelpDoc?id=remoteaccess_oauth_web_server_flow.htm&language=en_US[OAuth 2.0]
-* link:https://help.salesforce.com/HTViewHelpDoc?id=remoteaccess_oauth_jwt_flow.htm[OAuth 2.0 JWT Bearer]
-* link:https://help.salesforce.com/apex/HTViewHelpDoc?id=remoteaccess_oauth_SAML_bearer_flow.htm&language=en_US[OAuth 2.0 SAML Bearer]
-* link:https://help.salesforce.com/articleView?id=remoteaccess_oauth_username_password_flow.htm&type=0&language=en_US[OAuth 2.0 Username-Password]
+* https://help.salesforce.com/apex/HTViewHelpDoc?id=remoteaccess_oauth_web_server_flow.htm&language=en_US[OAuth 2.0]
+* https://help.salesforce.com/HTViewHelpDoc?id=remoteaccess_oauth_jwt_flow.htm[OAuth 2.0 JWT Bearer]
+* https://help.salesforce.com/apex/HTViewHelpDoc?id=remoteaccess_oauth_SAML_bearer_flow.htm&language=en_US[OAuth 2.0 SAML Bearer]
+* https://help.salesforce.com/articleView?id=remoteaccess_oauth_username_password_flow.htm&type=0&language=en_US[OAuth 2.0 Username-Password]
 
 [NOTE]
 Implementing *OAuth 2.0*-based authentication mechanisms involves a few extra steps, but may be preferred if your service is exposed to external users, as it ensures better security.
@@ -348,18 +330,6 @@ image:SalesForceMain1.png[SalesForceMain]
 *Input Reference* is set by default as `#[payload]` and represents the input of the method selected previously, as you would expect. If DataSense is used, then the Transform Message component can be used to create the input from any other format (JSON, POJO etc.)
 The output of the invokeApexSoapMethod operation is similar to Input Reference.
 
-=== Updating From an Older Version
-
-If you’re currently using an older version of the connector, a small popup appears in the bottom right corner of Anypoint Studio with an "Updates Available" message:
-
-. Click the popup and check for available updates. 
-. Check the box of the version of the *Salesforce connector* you require and click *Next* and follow the instructions provided by the user interface. 
-. Restart Studio when prompted. 
-. After restarting, when creating a flow and using the Salesforce connector, if you have several versions of the connector installed, you may be asked which version you would like to use. Choose the version you would like to use.
-
-We recommend that you keep Studio up to date with its latest version. 
-
-
 == Understanding the Salesforce Connector
 
 The *Salesforce connector* functions within a Mule application as a secure entrance through which you can access – and act upon – your organization's information in Salesforce.
@@ -375,16 +345,16 @@ The real value of the Salesforce connector is in the way you use it at design-ti
 
 === Salesforce Connector Functionality
 
-Salesforce recognizes five integration patterns for connecting with other systems. The Salesforce connector is the "window" through which you can access or act upon data in Salesforce from within your Mule application, addressing these patterns, as the table below illustrates. 
+Salesforce recognizes five integration patterns for connecting with other systems. The Salesforce connector is the "window" through which you can access or act upon data in Salesforce from within your Mule application, addressing these patterns as follows. 
 
-[%header,cols="2*,^"]
+[%header,cols="25a,75a"]
 |===
-|Integration Pattern |Description |Supported by Salesforce Connector
-|*Remote Process Invocation: Request-Reply* |Salesforce kicks off a process in a remote system, waits for the remote system to finish processing, then accepts control back again from the remote system. |✔
-|*Remote Process Invocation: Fire and Forget* |Salesforce initiates a process in a third-party system and receives an acknowledgement that the process has started. The third-party system continues processing independent of Salesforce. |✔
-|*Batch Data Synchronization* |An external system accesses, changes, deletes, or adds data in Salesforce _in batches_, and vice versa (Salesforce to external system). |✔
-|*Remote Call-In* |An external system accesses, changes, deletes or adds data in Salesforce, and vice versa (Salesforce to external system). |✔
-|*User Interface Update Based on Data Changes* |The Salesforce UI updates in response to a change in a third-party system.  |✔
+|Integration Pattern |Description
+|*Remote Process Invocation: Request-Reply* |Salesforce kicks off a process in a remote system, waits for the remote system to finish processing, then accepts control back again from the remote system.
+|*Remote Process Invocation: Fire and Forget* |Salesforce initiates a process in a third-party system and receives an acknowledgement that the process has started. The third-party system continues processing independent of Salesforce.
+|*Batch Data Synchronization* |An external system accesses, changes, deletes, or adds data in Salesforce _in batches_, and vice versa (Salesforce to external system).
+|*Remote Call-In* |An external system accesses, changes, deletes or adds data in Salesforce, and vice versa (Salesforce to external system).
+|*User Interface Update Based on Data Changes* |The Salesforce UI updates in response to a change in a third-party system.
 |===
 
 Salesforce exposes operations that address these integration patterns via several APIs. Note that the Salesforce connector does not expose _all_ possible operations of these Salesforce APIs. Though it makes little difference to how you use the connector in your application, it's useful to know that Mule's Salesforce connector performs many of the operations that Salesforce exposes via the following six APIs:
@@ -423,11 +393,11 @@ Learn more about Salesforce's APIs and appropriate use cases for each of them. 
 * link:https://help.salesforce.com/HTViewHelpDoc?id=integrate_what_is_api.htm&language=en_US[Which API should I use?]
 ====
 
-The sections below offer information about how to use the Salesforce connector in your application. Beyond these basics, you can access documentation that describes how to link:/mule-user-guide/v/3.8/salesforce-connector-authentication[secure your connection to Salesforce] (via basic authentication or OAuth authentication), or access link:http://mulesoft.github.io/salesforce-connector[full reference documentation] for the connector.
+The sections below offer information about how to use the Salesforce connector in your application. Beyond these basics, you can access documentation that describes how to link:/mule-user-guide/v/3.8/salesforce-connector-authentication[secure your connection to Salesforce] (via basic authentication or OAuth authentication), or access link:http://mulesoft.github.io/mule-salesforce-connector[full reference documentation] for the connector.
 
 == Using the Salesforce Connector
 
-To see all possible operations, expected attributes and returned data for the connector, see the list of link:http://mulesoft.github.io/salesforce-connector/[Technical Reference APIdocs].
+To see all possible operations, expected attributes and returned data for the connector, see the list of link:http://mulesoft.github.io/mule-salesforce-connector/[Technical Reference APIdocs].
 
 Generally speaking, there are *three* ways to use a Salesforce connector in your application: as an *outbound connector*, an *inbound connector*, or a *streaming inbound connector*. A description of these three scenarios follows.
 
@@ -556,6 +526,9 @@ A Mule flow is divided in two. The first portion of it is usually an inbound end
 
 Every time our subscription to `AccountUpdates` receives an event it executes the rest of the flow. In the case of this example it prints a message to the log at INFO level.
 
+* disableSessionInvalidation should be set as "false" (Default value is "false").
+* If you need to listen to multiple topics, we recommend you create a different configuration for each topic.
+
 ==== Examining the Events
 
 The event that gets pushed through the flows contains information about the Salesforce data that has changed, how it changes, and when. Usually the raw JSON that the subscription receives looks something like this:
@@ -624,10 +597,10 @@ The replay options values are encapsulated in the connector in a more easy to us
 . ONLY_NEW: -1
 . FROM_REPLAY_ID: replayId
 
-The connector also supports automatic replay of stored events, based on the replay ID of the last event that has been processed by the connector. This has proved useful in cases when the connector stopped listening for some reason (server shutdown, connection dropped).
+The connector also supports automatic replay of stored events, based on the replay id of the last event that has been processed by the connector. This has proved useful in cases when the connector stopped listening for some reason (server shutdown, connection dropped).
 
-By having the flag "Resume from the Last Replay Id" set to true, upon starting, the connector will replay all the events starting with the last processed event's replay ID.
-Considering that Salesforce stores events for only 24 hours, if the stored replay ID is out of this time frame, then the replay option selected by the user will determine what events will be replayed.
+By having the flag "Resume from the Last Replay Id" set to true, upon starting, the connector will replay all the events starting with the last processed event's replay id.
+Considering that Salesforce stores events for only 24 hours, if the stored replay id is out of this time frame, then the replay option selected by the user will determine what events will be replayed.
 
 The `replay-topic` acts like an inbound endpoint and it can be used as such:
 
@@ -697,6 +670,10 @@ A Mule flow is divided in two. The first portion of it is usually an inbound end
 
 Every time our subscription to `/u/TestStreaming` receives an event it executes the rest of the flow. In the case of this example it prints a message to the log at INFO level.
 
+* disableSessionInvalidation should be set as "false" (Default value is "false").
+* If you need to listen to multiple channels, we recommend you create a different configuration for each channel.
+
+
 ==== Examining the Events
 
 The event that gets pushed through the flows contains information about the Salesforce data that has changed, how it changes, and when. Usually the raw JSON that the subscription receives looks something like this:
@@ -714,6 +691,8 @@ The event that gets pushed through the flows contains information about the Sale
 
 The connector parses this information and sends you information that a flow can actually work with.
 
+Salesforce 8.4.0 and later provides support for publishing platform event messages using the Publish Platform Event Message operation.
+
 ==== Inbound Properties
 
 Information that gets passed along as inbound properties:
@@ -726,7 +705,7 @@ Information that gets passed along as inbound properties:
 |replayId |INBOUND |replayId JSON property in event
 |===
 
-==== Replay events from a streaming channel
+==== Replay Events from a Streaming Channel
 
 The streaming channel replay works identical with the topic replay.
 
@@ -744,9 +723,9 @@ The `replay-streaming-channel` acts like an inbound endpoint and it can be used
 
 If ALL or ONLY_NEW replay option is selected, then the replayId value is ignored.
 
-==== Push events to a streaming channel
+==== Push Events to a Streaming Channel
 
-Salesforce offers to possiblity to push custom events to a specific streaming channel through the Rest API.
+Salesforce offers to possibility to push custom events to a specific streaming channel through the Rest API.
 The user can achieve this using link:https://workbench.developerforce.com/about.php[Workbench] or using this connector.
 
 You can use `push-generic-event` operation as follows:
@@ -765,12 +744,12 @@ You can use `push-generic-event` operation as follows:
 ----
 
 The channel ID can be retrieved from the response map of the *publish-streaming-channel* operation.
-Another way of retrieving the ID of the channel is from the Salesfroce page, as follows:
+Another way of retrieving the id of the channel is from the Salesfroce page, as follows:
 
 . Log into your Developer Edition organization.
 . Under All Tabs (+) select Streaming Channels.
 
-If the channel ID field on the is not visible on the channel list, then:
+If the channel id field on the is not visible on the channel list, then:
 
 . Click on Create New View
 . Type a name for the view in the Name input field
@@ -778,7 +757,7 @@ If the channel ID field on the is not visible on the channel list, then:
 . Add any other fields you want
 . Click Save.
 
-Now you should see the channel ID for each streaming channel in the list.
+Now you should see the channel id for each streaming channel in the list.
 
 The JSON received as response from the push event operation looks something like:
 
@@ -841,7 +820,7 @@ The Bulk version of the create operation is named _create-bulk_ and shares the
 </sfdc:create-bulk>
 ----
 
-There is little practical difference between `create` and `create-bulk`. Of course, dealing with a Bulk operation means that the actual creation process will be handled by Salesforce in the background, so the connector doesn't reply with a collection of SaveResults, because it does not have them yet. Instead the connector replies with a BatchInfo object which contains the ID of the batch and the ID of the job it just created to upload those objects.
+There is little practical difference between `create` and `create-bulk`. Of course, dealing with a Bulk operation means that the actual creation process will be handled by Salesforce in the background, so the connector doesn't reply with a collection of SaveResults, because it does not have them yet. Instead the connector replies with a BatchInfo object which contains the id of the batch and the id of the job it just created to upload those objects.
 
 This change in behavior remains true for all operations that support "bulk".
 
@@ -864,7 +843,7 @@ To take full advantage of the functionality DataSense and the Salesforce connect
 . *BUILD the rest of your flow*
 . *ADD and configure DataWeave*
 
-The objective of this design-time strategy is to set the pieces of the integration puzzle in place, then "glue them together" with DataWeave. Rather than designing a flow sequentially, from the inbound endpoint, this type of "align, then glue together" strategy ensures that you are utilizing DataSense, wherever possible, to pre-populate the information about the structure and format of the input or output data in a Transform Message component. The diagram in the section below prescribes a process that follows this best practice in the context of a flow that uses a Salesforce connector. For further information, read link:/mule-user-guide/v/3.8/datasense[DataSense Best Practices].
+The objective of this design-time strategy is to set the pieces of the integration puzzle in place, then "glue them together" with DataWeave. Rather than designing a flow sequentially, from the inbound endpoint, this type of "align, then glue together" strategy ensures that you are utilizing DataSense, wherever possible, to pre-populate the information about the structure and format of the input or output data in a Transform Message component. The diagram in the section below prescribes a process that follows this best practice in the context of a flow that uses a Salesforce connector. For further information, read link:/anypoint-studio/v/6/datasense[DataSense Best Practices].
 
 *Note*: When subscribing to a topic that was not previously published in Salesforce, the subscription is successful.  When the topic is later published, the user that is already subscribed to it does NOT receive notifications regarding that topic. The user has to resubscribe after the topic creates.
 
@@ -907,7 +886,7 @@ image:sfdc_workflow.png[sfdc_workflow]
 .. The Salesforce (Streaming) Connector can only perform one operation against your organization's data in Salesforce: `Subscribe to topic`.
 .. Learn more about using the link:/mule-user-guide/v/3.8/poll-reference[Poll Scope] to regularly poll Salesforce for new data for your application to process.
 
-Depending upon its function in your application (streaming data, polling for data, pushing data, etc.), the operation you select, and the sObject you are acting upon, Studio makes different Salesforce connector fields available for configuration.  The objectives of this document do not include the exhaustive exploration of all combinations of operations and objects in an application. However, you can access link:http://mulesoft.github.io/salesforce-connector/[Technical Reference APIdocs] to learn about how to configure the connector for all operations.
+Depending upon its function in your application (streaming data, polling for data, pushing data, etc.), the operation you select, and the sObject you are acting upon, Studio makes different Salesforce connector fields available for configuration.  The objectives of this document do not include the exhaustive exploration of all combinations of operations and objects in an application. However, you can access link:http://mulesoft.github.io/mule-salesforce-connector/[Technical Reference APIdocs] to learn about how to configure the connector for all operations. 
 
 
 == Example Use Case
@@ -1033,5 +1012,4 @@ payload]]></dw:set-payload>
 * Read more about link:/mule-user-guide/v/3.8/anypoint-connectors[Anypoint Connectors].
 * Read more about link:/mule-user-guide/v/3.8/batch-processing[Batch Processing] in Mule.
 * Read more about the link:/mule-user-guide/v/3.8/poll-reference[Poll Scope].
-* Access the link:https://developer.salesforce.com/docs[Salesforce developer documentation] for detailed documentation on Salesforce objects and queries.
-
+* Access the https://developer.salesforce.com/docs[Salesforce developer documentation] for detailed documentation on Salesforce objects and queries.

@@ -123,7 +123,7 @@ After the application has created the two variables containing the contact infor
 
 === aggregationFlow
 
-This subflow contains only one element: a https://developer.mulesoft.com/docs/display/current/Java+Component+Reference[Java component], which invokes custom-built activity. This component takes both lists of contacts – the one contained in flow variable contactsFromOrgA and the one from contactsFromOrgB – and merges them into a single list. The application passes the merged list back to the mainFlow, then onwards to the *formatOutputFlow*.
+This subflow contains only one element: a Java component, which invokes custom-built activity. This component takes both lists of contacts – the one contained in flow variable contactsFromOrgA and the one from contactsFromOrgB – and merges them into a single list. The application passes the merged list back to the mainFlow, then onwards to the *formatOutputFlow*.
 
 === formatOutputFlow
 
@@ -179,7 +179,7 @@ The tables below list the configuration for the Salesforce global element which 
 |*Username* |Redacted. Use the appropriate user ID for your Salesforce instance.
 |*Password* |Redacted. Use the appropriate password for your Salesforce instance.
 |*Security Token* |Redacted. Use the appropriate security token for your Salesforce instance.
-|*URL* |Redacted. Use the appropriate security token for your Salesforce instance, such as https://salesforce.com/services/Soap/u/30.0
+|*URL* |Redacted. Use the appropriate security token for your Salesforce instance, such as `+https://salesforce.com/services/Soap/u/30.0+`
 |*Proxy Host* |
 |*Proxy Port* |
 |*Proxy Username* |

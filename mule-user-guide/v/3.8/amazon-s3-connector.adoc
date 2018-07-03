@@ -1,12 +1,6 @@
 = Amazon S3 Connector
 :keywords: amazon, s3, connector, mule, integration, user guide
 :imagesdir: ./_images
-:toc: macro
-:toclevels: 2
-
-
-
-toc::[]
 
 
 *Release Notes:* link:/release-notes/amazon-s3-connector-release-notes[Amazon S3 Connector Release Notes]
@@ -17,7 +11,7 @@ The Anypoint Amazon S3 Connector provides connectivity to the the Amazon S3 API,
 
 Amazon Simple Storage Service (Amazon S3) is storage for the Internet. You can use Amazon S3 to store and retrieve any amount of data at any time, from anywhere on the web. You can accomplish these tasks using the simple and intuitive web interface of the AWS Management Console.
 
-The AWS SDK for Java provides a Java API for AWS infrastructure services. The Amazon S3 connector is built using the SDK for Java. For the complete list of operations supported by the connector, see  link:http://mulesoft.github.io/s3-connector/[Versioned Reference Documentation and Samples].
+The AWS SDK for Java provides a Java API for AWS infrastructure services. The Amazon S3 connector is built using the SDK for Java. For the complete list of operations supported by the connector, see  http://mulesoft.github.io/mule-amazon-s3-connector/[Versioned Reference Documentation and Samples].
 
 == Prerequisites
 
@@ -43,27 +37,15 @@ Amazon S3 connector is compatible with:
 |===
 
 
-== Installing the Connector
+== To Install this Connector
 
-The following sections describe how to install and configure this connector.
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
 
-=== Installing
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
-You can install a connector in Anypoint Studio using the instructions in link:/getting-started/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange].
-
-=== Updating from an Older Version
-
-Every time an updated version of a connector is released, Anypoint studio displays a popup in the bottom right corner of your system with the following message: *Updates Available*.
-
-To upgrade to the newer version of the Amazon S3 connector:
-
-. Click the popup and check for the available updates.
-. Select the *Amazon S3 connector version 3.0.0* check box and click *Next*.
-. Follow the instructions provided by the user interface.
-. Restart Studio when prompted. After restarting, if you have several versions of the connector installed, Mule asks you for the version of the connector to use.
-
-[NOTE]
-====
 We have made the following updates in version 3.0 of the Amazon S3 connector:
 
 * Renamed the following operations:
@@ -73,16 +55,11 @@ We have made the following updates in version 3.0 of the Amazon S3 connector:
 ** Create object uri
 
 For most of the operations the input and output attributes have been modified.
-====
 
-== Configuring the Connector Global Element
 
-To use the Amazon S3 connector in your Mule application, you must configure a global Amazon S3 element that can be used by all the Amazon S3 connectors in the application (read more about  link:/mule-user-guide/v/3.8/global-elements[Global Elements].)
+== Configuring the Connector Global Element Using Studio Visual Editor
 
-[tabs]
-------
-[tab,title="Studio Visual Editor"]
-....
+To use the Amazon S3 connector in your Mule application, configure a global Amazon S3 element that can be used by all the Amazon S3 connectors in the application.
 
 . Click the *Global Elements* tab at the base of the canvas, then click *Create*.
 . In the *Choose Global Type* window, expand *Connector Configuration*, and click *Amazon S3: Configuration*.
@@ -115,12 +92,10 @@ link:/mule-user-guide/v/3.8/deploying-to-multiple-environments[Deploying to Mult
 . Click *Test Connection* to confirm that the parameters of your global configuration are accurate, and that Mule is able to successfully connect to your instance of Amazon S3. Read more about this in  link:/anypoint-studio/v/6/testing-connections[Testing Connections].
 . Click *OK* to save the global connector configurations.
 
-....
-[tab,title="XML Editor"]
-....
+== Configuring the Connector Global Element Using the XML Editor
 
-First, ensure that you have included the Amazon S3 namespaces in your configuration file.
-
+. Include the Amazon S3 namespaces in your configuration file.
++
 [source,xml, linenums]
 ----
 <mule xmlns:s3="http://www.mulesoft.org/schema/mule/s3"  xmlns:http="http://www.mulesoft.org/schema/mule/http"  xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core"  xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
@@ -132,16 +107,15 @@ First, ensure that you have included the Amazon S3 namespaces in your configurat
 
 </mule>
 ----
-
-Follow these steps to configure an Amazon S3 connector in your application:
-Create a global Amazon S3 configuration outside and above your flows, using the following global configuration code.
-
++
+. Create a global Amazon S3 configuration outside and above your flows, using the following global configuration code.
++
 [source,xml, linenums]
 ----
 <!-- simple configuration -->
 <s3:config name="Amazon_S3_Configuration" accessKey="${s3.accessKey}" secretKey="${s3.secretKey}" doc:name="Amazon S3: Configuration"/>
 ----
-
++
 [%header,cols="30a,70a",width=80%]
 |===
 |Parameter|Description
@@ -150,8 +124,6 @@ Create a global Amazon S3 configuration outside and above your flows, using the 
 |*secretKey*|The secrete key provided by Amazon. It is required for non-anonynous operations.
 |===
 
-....
-------
 
 === Connecting to S3 Compatible Storage
 
@@ -164,8 +136,7 @@ An example of S3 compatible storage is the link:https://github.com/minio[minio p
 
 Amazon S3 connector is an operation-based connector, which means that when you add the connector to your flow, you need to configure a specific operation for the connector to perform. The Amazon S3 connector currently supports the following list of operations:
 
-[NOTE]
-See the full list of operations for the latest version of the connector link:https://mulesoft.github.io/s3-connector[here].
+See the https://mulesoft.github.io/mule-amazon-s3-connector[full list of operations for the latest version of the connector].
 
 For the operations to work, you need to enable or update the subset of the overall list of Amazon S3 actions on the bucket to specify that the AWS account has access to the subset actions on the bucket.
 
@@ -177,7 +148,7 @@ For the operations to work, you need to enable or update the subset of the overa
 * Create Object Presigned URI
 * Delete Bucket
 * Delete Bucket Cross Origin Configuration
-* Delete Buckt Lifecycle Configuration
+* Delete Bucket Lifecycle Configuration
 * Delete Bucket Policy
 * Delete Bucket Tagging Configuration
 * Delete Bucket Website Configuration
@@ -219,6 +190,26 @@ For the operations to work, you need to enable or update the subset of the overa
 * Upload Part
 * Upload Part Copy
 
+=== Using AWS KMS Master Key
+
+If you need to encrypt the objects that you are going to store to S3 buckets using customer managed master keys, then you must specify Customer Master Key Id in the 'KMS Master Key' field in the Create Object configuration.
+
+=== Using AWS Credentials Provider Chain in CloudHub
+
+With Default AWS Credentials Provider Chain the user can specify the access key and secret in the CloudHub environment. Following are the steps with which this can be done
+. Use the following configuration to prepare a mule app.
++
+[source, xml]
+----
+ <s3:config name="Amazon_S3__Configuration" accessKey="dummy" secretKey="dummy" doc:name="Amazon S3: Configuration" tryDefaultAWSCredentialsProviderChain="true"/>
+----
++
+. Export this to get a deployable zip archive.
+. Deploy to cloudhub and set the properties `aws.accessKeyId` and `aws.secretKey` through `Runtime Manager > Settings > Properties`.
+. Finish deployment and test.
+Observe that access key and secret key are not mentioned in the connector config and the correct values are used from the values specified in the settings. More information about Default AWS Credentials Provider Chain can be found here at  http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#using-the-default-credential-provider-chain[using the default provider credential chain]
+
+
 === Connector Namespace and Schema
 
 When designing your application in Studio, the act of dragging the connector from the palette onto the Anypoint Studio canvas should automatically populate the XML code with the connector *namespace* and *schema location*.
@@ -254,17 +245,12 @@ If you are coding a Mavenized Mule application, this XML snippet must be include
 </dependency>
 ----
 
-[TIP]
-====
 Inside the `<version>` tags, put the desired version number, the word `RELEASE` for the latest release, or `SNAPSHOT` for the latest available version. The available versions to date are:
 
 * *3.0.0*
 * *2.8.3*
 * *2.8.0*
 * *2.7.0*
-====
-
-
 
 == Use Cases
 
@@ -292,14 +278,10 @@ image:ams3_03.png[ams3_03]
 +
 . Save your configurations.
 
-=== Demo Mule Application Using Connector
+=== Demo Mule Application Using Studio Visual Editor
 
 Create a Mule application that stores an image from a URL on Amazon S3, then retrieve and display the image.
 
-[tabs]
-------
-[tab,title="Studio Visual Editor"]
-....
 
 image:ams3_04.png[ams3_04]
 
@@ -384,20 +366,23 @@ image:ams3_09.png[ams3_09]
 
 image:ams3_10.png[ams3_10]
 
-....
-[tab,title="XML Code"]
-....
 
-[NOTE]
+=== Demo Mule Application Using XML Code
+
 For this code to work in Anypoint Studio, you must provide Amazon Web Services credentials. You can either replace the variables with their values in the code, or you can provide the values for each variable in the src/main/app/mule-app.properties file.
 
 [source,xml, linenums]
 ----
 <?xml version="1.0" encoding="UTF-8" ?>
-<mule xmlns:s3="http://www.mulesoft.org/schema/mule/s3" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule xmlns:s3="http://www.mulesoft.org/schema/mule/s3" 
+xmlns:http="http://www.mulesoft.org/schema/mule/http" 
+xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" 
+xmlns="http://www.mulesoft.org/schema/mule/core" 
+xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 xmlns:spring="http://www.springframework.org/schema/beans"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core
 http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http
@@ -407,22 +392,29 @@ http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/s3
 http://www.mulesoft.org/schema/mule/s3/current/mule-s3.xsd" >
 
-<http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration" />
-<http:request-config name="HTTP_Request_Configuration" host="mulesoft.org" port="80" doc:name="HTTP Request Configuration" />
-<s3:config name="Amazon_S3_Configuration" accessKey="${config.accessKey}" secretKey="${config.secretKey}" doc:name="Amazon S3: Configuration" />
+<http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" 
+ port="8081" doc:name="HTTP Listener Configuration" />
+<http:request-config name="HTTP_Request_Configuration" host="mulesoft.org" 
+ port="80" doc:name="HTTP Request Configuration" />
+<s3:config name="Amazon_S3_Configuration" accessKey="${config.accessKey}" 
+ secretKey="${config.secretKey}" doc:name="Amazon S3: Configuration" />
   <flow name="s3-example-flow" >
     <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP" />
-    <s3:create-bucket config-ref="Amazon_S3_Configuration" bucketName="${config.bucket}" acl="PUBLIC_READ" doc:name="Create S3 Bucket" />
-    <http:request config-ref="HTTP_Request_Configuration" path="sites/all/themes/mulesoft_community/logo.png" method="GET" doc:name="Get MuleSoft logo" />
-    <s3:create-object config-ref="Amazon_S3_Configuration" doc:name="Create logo object in S3 bucket" acl="PUBLIC_READ" bucketName="${config.bucket}" key="mulesoft.png" />
-    <s3:get-object-content config-ref="Amazon_S3_Configuration" bucketName="${config.bucket}" key="mulesoft.png" doc:name="Get Image" />
-    <s3:delete-bucket config-ref="Amazon_S3_Configuration" bucketName="${config.bucket}" force="true" doc:name="Delete S3 Bucket" />
+    <s3:create-bucket config-ref="Amazon_S3_Configuration" bucketName="${config.bucket}" 
+     acl="PUBLIC_READ" doc:name="Create S3 Bucket" />
+    <http:request config-ref="HTTP_Request_Configuration" 
+     path="sites/all/themes/mulesoft_community/logo.png" method="GET" 
+     doc:name="Get MuleSoft logo" />
+    <s3:create-object config-ref="Amazon_S3_Configuration" 
+     doc:name="Create logo object in S3 bucket" acl="PUBLIC_READ" 
+     bucketName="${config.bucket}" key="mulesoft.png" />
+    <s3:get-object-content config-ref="Amazon_S3_Configuration" bucketName="${config.bucket}" 
+     key="mulesoft.png" doc:name="Get Image" />
+    <s3:delete-bucket config-ref="Amazon_S3_Configuration" bucketName="${config.bucket}" 
+     force="true" doc:name="Delete S3 Bucket" />
   </flow>
 </mule>
 ----
-π
-....
-------
 
 
 == Connector Performance
@@ -431,11 +423,10 @@ To define the pooling profile for the connector manually, access the *Pooling Pr
 
 For background information on pooling, see link:/mule-user-guide/v/3.8/tuning-performance[Tuning Performance].
 
-
-
-== Resources
+== See Also
 
 * Learn more about working with link:/mule-user-guide/v/3.8/anypoint-connectors[Anypoint Connectors]
 * link:/release-notes/amazon-s3-connector-release-notes[Amazon S3 Connector Release Notes]
 * Learn about link:/mule-user-guide/v/3.8/using-maven-with-mule[Using Maven with Mule]
 * link:/mule-user-guide/v/3.8/mule-transformers[Mule Transformers]
+* https://mulesoft.github.io/mule-amazon-s3-connector[S3 Connector Reference]

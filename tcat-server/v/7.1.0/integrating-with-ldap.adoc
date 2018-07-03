@@ -191,7 +191,7 @@ This example illustrates a simple LDAP configuration, in which the LDAP server a
 This example was created using the following system specifications:
 
 * OS: Linux (Xubuntu 12.04 LTS, based on Debian 7 “Wheezy/Sid”). Homepage: http://xubuntu.org
-* LDAP Server: OpenLDAP. Homepage: link:http://www.openldap.org
+* LDAP Server: OpenLDAP. Homepage: http://www.openldap.org
 * LDAP Browser: Apache Directory Studio. Homepage: http://directory.apache.org/studio/
 
 This example provides a basic overview of the following tasks:
@@ -208,9 +208,9 @@ This example provides a basic overview of the following tasks:
 
 OpenLDAP is a free, open source LDAP server available for many platforms including most flavors of Unix, Linux, Mac OS X, and Windows. The easiest way to set up OpenLDAP is to install the appropriate packages within a Linux distribution such as Debian, Suse, Red Hat, etc.
 
-The OpenLDAP project distributes the software only in source form, which can be obtained link:http://www.openldap.org/software/download/[here]. Be sure to check the FAQ link:http://www.openldap.org/faq/data/cache/1.html[here].
+The OpenLDAP project distributes the software only in source form, which can be obtained http://www.openldap.org/software/download/[here]. Be sure to check the FAQ http://www.openldap.org/faq/data/cache/1.html[here].
 
-Additionally, several third-party, prepackaged versions are available for download. Of these, the link:http://lirone.symas.net/symas-com/[Symas Corporation] includes a paid version for Microsoft Windows.
+Additionally, several third-party, prepackaged versions are available for download. Of these, the Symas Corporation includes a paid version for Microsoft Windows.
 
 ==== Installing on Debian-based Linux distributions
 
@@ -241,9 +241,9 @@ Another way to install OpenLDAP is to use a package manager such as `synaptic`, 
 
 === Downloading and Installing the Apache Directory Studio LDAP Browser
 
-Apache Directory Studio is a free and open source, Eclipse-based LDAP browser and client for use with any LDAP server. It's available for Mac OS X, Linux, and Windows. It can be downloaded directly from the project's link:http://directory.apache.org/studio/[home page]. Sources are available on the link:http://directory.apache.org/studio/downloads.html[download page].
+Apache Directory Studio is a free and open source, Eclipse-based LDAP browser and client for use with any LDAP server. It's available for Mac OS X, Linux, and Windows. It can be downloaded directly from the project's http://directory.apache.org/studio/[home page]. Sources are available on the http://directory.apache.org/studio/downloads.html[download page].
 
-Installing Apache Directory Studio is very simple — just uncompress and unpack the install file and run the program binary. Installation instructions for each supported platform can be found link:http://directory.apache.org/studio/users-guide/apache_directory_studio/download_install.html[here].
+Installing Apache Directory Studio is very simple — just uncompress and unpack the install file and run the program binary. Installation instructions for each supported platform can be found http://directory.apache.org/studio/users-guide/apache_directory_studio/download_install.html[here].
 
 === Uncompressing and Unpacking gzipped tar Files
 
@@ -824,7 +824,5 @@ Jun  6 17:02:21 syrah slapd[1099]: conn=1007 op=2 SRCH attr=cn objectClass java
 
 == See Also
 
-* link:https://www.mulesoft.com/tcat/download[Tcat Download]
-* link:http://forums.mulesoft.com[MuleSoft's Forums]
-* link:https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support]
-* mailto:support@mulesoft.com[Contact MuleSoft]
+* https://www.mulesoft.com/tcat/download[Tcat Download]
+* https://support.mulesoft.com[Contact MuleSoft]

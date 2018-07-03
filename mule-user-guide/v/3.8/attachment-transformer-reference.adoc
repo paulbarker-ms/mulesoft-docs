@@ -18,7 +18,7 @@ The attachment transformer is very similar in functionality to the link:/mule-us
 * HTTP
 * VM
 
-If you use the attachment transformer to affix an attachment to to a message and the message then exits the flow via a transport that does not support attachments, the attachments are lost.
+If you use the attachment transformer to affix an attachment to a message and the message then exits the flow via a transport that does not support attachments, the attachments are lost.
 
 == Configuration
 
@@ -170,7 +170,7 @@ The following example sends a POST request to ++http://www.example.com/test++, w
 
 * Refer to link:/mule-user-guide/v/3.8/mule-concepts[Mule Concepts] to learn more about message scopes.
 * Read about related transformers, the link:/mule-user-guide/v/3.8/property-transformer-reference[property transformer], the link:/mule-user-guide/v/3.8/variable-transformer-reference[variable transformer], and the link:/mule-user-guide/v/3.8/session-variable-transformer-reference[session variable transformer], which you can use to set properties and variables for different scopes.
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft's Forums]
+
+
+
+

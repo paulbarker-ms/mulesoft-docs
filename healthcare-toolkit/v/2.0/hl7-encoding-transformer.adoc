@@ -133,7 +133,7 @@ The table below describes all configurable parameters for this building block.
 doc:name="HL7 Encoding Transformer"
 ----
 |*Name*
-|A unique name for this transformer. This is necessary when using this transformer as a link:mule-user-guide/v/3.8/global-elements[Global Element].
+|A unique name for this transformer. This is necessary when using this transformer as a link:/mule-user-guide/v/3.8/global-elements[Global Element].
 |[source]
 ----
 name="toHAPI"
@@ -233,10 +233,3 @@ http://www.mulesoft.org/schema/mule/hl7/mule-hl7.xsd
 
 ....
 ------
-
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

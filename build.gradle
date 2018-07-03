@@ -23,8 +23,8 @@ buildscript {
 
   dependencies {
     classpath 'com.eriwen:gradle-css-plugin:2.12.0'
-    builder 'com.mulesoft.documentation.builder:mule-docs-builder:1.0.6'
-    singlePageBuilder 'com.mulesoft.documentation.builder:mule-docs-single-page-builder:1.0.6'
+    builder 'com.mulesoft.documentation.builder:mule-docs-builder:1.0.8'
+    singlePageBuilder 'com.mulesoft.documentation.builder:mule-docs-single-page-builder:1.0.8'
   }
 
   configurations.all {
@@ -47,8 +47,9 @@ ext {
   assetsDir = '_assets'
   // TIP to test a remote branch, set assetsRepoBranchName = 'name' and assetsRepoCommit = "origin/$assetsRepoBranchName"
   assetsRepoBranchName = 'dev-tag'
-  assetsRepoCommit = '6b652a710040b99ecdcc6c235d3a6b59eec657f4'
-  assetsRepoUri = 'https://github.com/mulesoft/mulesoft-docs-site-assets'
+  assetsRepoCommit = '7337c1988283b0685b714e374d94410170d32f77'
+  // assetsRepoUri = 'https://github.com/mulesoft/mulesoft-docs-site-assets'
+  assetsRepoUri = 'git@github.com:mulesoft/mulesoft-docs-site-assets'
   builderMaxHeapSize = project.hasProperty('maxHeapSize') ? project.property('maxHeapSize') : '2500m'
   builderJvmArgs = ['-Xverify:none', '-XX:+OptimizeStringConcat', '-XX:+UseFastAccessorMethods', '-Djava.net.preferIPv4Stack=true', '-Djava.awt.headless=true']
   docsRepoBranchName = System.env.GIT_BRANCH ?

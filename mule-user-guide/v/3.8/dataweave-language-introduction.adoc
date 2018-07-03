@@ -1,11 +1,10 @@
 = DataWeave Language
 :keywords: studio, anypoint, esb, transform, transformer, format, aggregate, rename, split, filter convert, xml, json, csv, pojo, java object, metadata, dataweave, data weave, datamapper, dwl, dfl, dw, output structure, input structure, map, mapping
 
-image:dw-logo.png[dw]
 
 The link:/mule-user-guide/v/3.8/dataweave[DataWeave] Language is a powerful template engine that allows you to transform data to and from any kind of format (XML, CSV, JSON, Pojos, Maps, etc). In Anypoint Studio, this language can be used in:
 
-* The *Transform Message Component*, described in link:/anypoint-studio/v/6/using-dataweave-in-studio[Using DataWeave in Studio]
+* The *Transform Message Component*, described in link:/anypoint-studio/v/6/transform-message-component-concept-studio[About Transform Message Component]
 * Any Mule component that accepts Mule Expression Language, through link:/mule-user-guide/v/3.8/mel-dataweave-functions[MEL DataWeave Functions]
 
 
@@ -464,7 +463,7 @@ Operators can be classified based on their link:https://en.wikipedia.org/wiki/Ar
 [source,json,linenums]
 ----
 {
-  "name": MULESOFT
+  "name": "MULESOFT"
 }
 ----
 
@@ -614,13 +613,13 @@ DataWeave supports four different types of patterns:
 Each pattern type can be either named or unnamed. The example below is not actual DataWeave code, but rather a model for how matching works, you can see more concrete examples on each of the sections that follow:
 
 [source, dataweave, linenums]
----
+----
 value match {
   (<name>:)?<pattern> -> <when matched>,
   (<name>:)?<pattern> -> <when matched>,
   default -> <when none of them matched>
 }
----
+----
 
 [TIP]
 For simpler use cases where all you need is a boolean result based on if a value matches or not, see the link:/mule-user-guide/v/3.8/dataweave-operators#matches[Matches Operator].
@@ -652,7 +651,7 @@ a: payload.string match {
 
 [tabs]
 ------
-[tab,title="Input: JSON]
+[tab,title="Input: JSON"]
 ....
 
 .Input
@@ -1184,7 +1183,7 @@ This table lists the order in which different DataWeave expressions are compiled
 |Operator                          |Description             | Level
 |using, all unary operators         |All link:https://en.wikipedia.org/wiki/Unary_operation[unary operators]     | 1
 |As                              |Type Coercion expression     | 2
-| * /                               |Multiplicative          | 3
+| &#42; /                             |Multiplicative          | 3
 |+ - >>                            |Additive                | 4
 |>= <= < >  is                   |Relational / Type Comparison | 5
 |!= ~= ==                          |Equality evaluators    | 6
@@ -1197,6 +1196,19 @@ This table lists the order in which different DataWeave expressions are compiled
 
 
 == Closer Look at an Example Transformation
+
+
+.Input
+[source, xml,linenums]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+----
 
 .Transform
 [source, dataweave, linenums]
@@ -1212,24 +1224,7 @@ This table lists the order in which different DataWeave expressions are compiled
 ----
 
 
-[tabs]
-------
-[tab,title="Input: XML"]
-....
-.Input
-[source, xml,linenums]
-----
-<?xml version="1.0" encoding="UTF-8"?>
-<note>
-  <to>Tove</to>
-  <from>Jani</from>
-  <heading>Reminder</heading>
-  <body>Don't forget me this weekend!</body>
-</note>
-----
-....
-[tab,title="Output: JSON"]
-....
+
 .Output as JSON
 [source, json,linenums]
 ----
@@ -1250,8 +1245,7 @@ This table lists the order in which different DataWeave expressions are compiled
 <3> The value may be a Simple Value, as is the case of the *heading* field, or an object, as is the case in *note* #2.
 <4> This value arises from a variable 'date', which is defined in a directive in the DataWeave header.
 
-....
-------
+
 
 
 [WARNING]
@@ -1266,13 +1260,13 @@ Likewise, whenever you transform from XML to JSON, make sure the resulting outpu
 * For a listing and details about all of the types you can use, see link:/mule-user-guide/v/3.8/dataweave-types[DataWeave Types]
 * For details on the different formats you can process with DataWeave and the parameters you can configure for each format, see link:/mule-user-guide/v/3.8/dataweave-formats[DataWeave Formats]
 * For details on how you can select certain components of the incoming message, see link:/mule-user-guide/v/3.8/dataweave-selectors[DataWeave Selectors]
-* View complete example projects that use DataWeave in the link:https://www.mulesoft.com/exchange#!/?filters=DataWeave&sortBy=rank[Anypoint Exchange]
+* View complete example projects that use DataWeave in the https://www.anypoint.mulesoft.com/exchange/?search=dataweave[Anypoint Exchange]
 
 
 
 == See Also
 
 * link:/mule-user-guide/v/3.8/dataweave-quickstart[DataWeave quickstart guide]
-* link:/anypoint-studio/v/6/using-dataweave-in-studio[Using DataWeave in Studio]
+* link:/anypoint-studio/v/6/transform-message-component-concept-studio[About Transform Message Component]
 * link:/mule-user-guide/v/3.8/dataweave-examples[DataWeave Examples]
 * link:/mule-user-guide/v/3.8/mel-dataweave-functions[MEL DataWeave Functions]

@@ -1,0 +1,9 @@
+= Anypoint Exchange 2 Release Notes
+
+Moved topic:
+
+* link:/release-notes/anypoint-exchange-release-notes[Anypoint Exchange Release Notes]
+
+== See Also
+
+* link:/anypoint-exchange/[Anypoint Exchange Documentation]

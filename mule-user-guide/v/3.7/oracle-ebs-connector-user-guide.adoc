@@ -1,15 +1,8 @@
 = Oracle E-Business Suite Connector
 :keywords:connector, endpoint, oracle, ebusiness, ebs, pl/sql
 :imagesdir: _images
-:toc: macro
-:toclevels: 2
 
-
-toc::[]
-
-== Introduction
-
-Anypoint Connector for Oracle E-Business Suite (EBS) provides real-time connectivity to query and update Oracle EBS using web services and message queues. The connector has been developed for the Oracle EBS v12.1.x. For more information about Oracle EBS, visit the link:http://www.oracle.com/us/products/applications/ebusiness/overview/index.html[Oracle site]. Review the connector operations and functionality using the link:http://mulesoft.github.io/oracle-ebs-connector/[ApiDoc Technical Reference and demo applications].
+Anypoint Connector for Oracle E-Business Suite (EBS) provides real-time connectivity to query and update Oracle EBS using web services and message queues. The connector has been developed for the Oracle EBS v12.1.x. For more information about Oracle EBS, visit the link:http://www.oracle.com/us/products/applications/ebusiness/overview/index.html[Oracle site]. Review the connector operations and functionality using the https://mulesoft.github.io/mule-oracle-ebs-connector/[ApiDoc Technical Reference and demo applications].
 
 Track feature additions, compatibility, limitations and API version updates with each release of the connector using the link:/release-notes/oracle-e-business-suite-ebs-connector-release-notes[Oracle E-Business Suite (EBS) Connector Release Notes]. MuleSoft maintains this connector under the link:/mule-user-guide/v/3.7/anypoint-connectors#connector-categories[_Premium_] support policy.
 
@@ -99,9 +92,14 @@ Go to link:https://docs.oracle.com/cd/E18727_01/index.htm[Oracle E-Business Suit
 
 The following sections describe how to install and configure the MuleSoft Oracle EBS connector.
 
-=== Installing
+== To Install this Connector
 
-You can install a connector in Anypoint Studio using the instructions in link:/getting-started/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange]. 
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
+
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
 To use the Oracle EBS connector in a production environment, you must have either:
 
@@ -114,10 +112,7 @@ Contact the mailto:info@mulesoft.com[MuleSoft Sales Team] to obtain either of t
 
 To use the Oracle EBS connector in a Mule Application, first create a new Mule project in Anypoint Studio:
 
-. In Anypoint Studio, click *File* > *New* > *Mule Project*.
-+
-image:PS_0001B_installing_new.png[PS_0001B_installing_new]
-+
+. In Anypoint Studio, click File > New > Mule Project.
 . Enter a name for your new project and leave the remaining options with their default values.
 +
 image:new-proj.png[new project img]

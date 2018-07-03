@@ -1,13 +1,18 @@
 = SFTP Connector
-:keywords: anypoint studio, esb, connectors, files transfer, ftp, sftp, endpoints
+:keywords: anypoint studio, connectors, files transfer, ftp, sftp, endpoints
 
 The SFTP Connector implements a secure file transport channel so that your Mule application can exchange files with external resources. SFTP uses the SSH security protocol to transfer messages. You can implement the SFTP endpoint as an inbound endpoint with a one-way exchange pattern, or as an outbound endpoint configured for either a one-way or request-response exchange pattern. Mule uses the link:http://www.jcraft.com/jsch/[JCraft library] for SFTP SSH. 
 
 *Note*: Mule 3.7 and newer supports SFTP retries.
 
-== Installation
+== To Install this Connector
 
-You can install a connector in Anypoint Studio using the instructions in link:/getting-started/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange].
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
+
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
 == Configuration
 
@@ -36,7 +41,7 @@ _(Applies to outbound SFTP endpoint only.)_ Specify a pattern for naming files t
 
 Example:
 
-[source, code, linenums]
+[source]
 ----
 #[header:inbound:originalFilename]
 ----
@@ -65,7 +70,7 @@ _(Applies to outbound SFTP endpoint only.)_ Specify a pattern for naming files t
 
 Example:
 
-[source, code, linenums]
+[source]
 ----
 #[header:inbound:originalFilename]
 ----
@@ -138,7 +143,7 @@ image:studio-sftp-adv.png[studio-sftp-adv]
 [%header,cols="2*a"]
 |===
 |Field |Description
-|*Address* |Enter the address for this endpoint, such as, http://localhost:22/file.
+|*Address* |Enter the address for this endpoint, such as, `+http://localhost:22/file+`.
 |*Response Timeout* |Specify how long the endpoint must wait for a response (in ms).
 |*Encoding* |Choose from a drop-down list the character set used for message data. (i.e., UTF-8).
 |*Disable Transport Transformer* |Check this box if you do _not_ want to use the endpoint default response transport.

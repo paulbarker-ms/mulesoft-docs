@@ -19,10 +19,6 @@ DevKit has built-in client functionality that can handle many "well-behaved" RE
 
 The client is exposed through a set of annotations (the `@RestCall` annotations) that you apply to your `@Connector` class and its methods.
 
-The architecture of a connector built using the `@RestCall` annotations looks like this:
-
-image:/docs/plugins/servlet/confluence/placeholder/unknown-attachment?locale=en_GB&version=2[image,title="image2013-10-15 1:49:12.png"]
-
 Creating these connectors requires writing very little code compared to most connectors:
 
 * You still define a `@Connector` class, with properties and methods, but in this case, the `@Connector` class and its methods are all abstract. (Any entity classes passed to the operations are still concrete classes, as with other connector types.) 
@@ -77,7 +73,7 @@ Used with the `@Processor` annotation. Indicates that upon invocation, the pro
    String bucketName);
 ----
 
-The example above uses a static URI. For details on using dynamically-generated URIs, see https://developer.mulesoft.com/docs/display/34X/connector+to+restful+api+with+restcall+annotations+example#ConnectortoRESTfulAPIwithRESTCallAnnotationsExample-resturiparam[@RestURIParam].
+The example above uses a static URI. For details on using dynamically-generated URIs, see link:/anypoint-connector-devkit/v/3.4/connector-to-restful-api-with-restcall-annotations-example#code-resturiparam-code[@RestURIParam].
 
 === `@RestQueryParam`
 

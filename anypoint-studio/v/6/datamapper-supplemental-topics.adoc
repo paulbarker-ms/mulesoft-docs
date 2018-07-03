@@ -1,4 +1,4 @@
-= DataMapper: Supplemental Topics
+= DataMapper: Supplemental Topics (Deprecated - DataMapper)
 :keywords: datamapper
 
 
@@ -19,10 +19,3 @@ The following topics are likely to be of interest to advanced users of the Anypo
 * link:/anypoint-studio/v/6/choosing-mel-or-ctl2-as-scripting-engine[Choosing MEL or CTL2 as Scripting Engine]
 * link:/anypoint-studio/v/6/datamapper-fixed-width-input-format[DataMapper Fixed Width Input Format]
 * link:/anypoint-studio/v/6/datamapper-flat-to-structured-and-structured-to-flat-mapping[DataMapper Flat-to-Structured and Structured-to-Flat Mapping]
-
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

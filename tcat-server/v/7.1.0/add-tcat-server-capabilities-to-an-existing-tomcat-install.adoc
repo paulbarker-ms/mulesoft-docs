@@ -1,9 +1,9 @@
 = Add Tcat Server Capabilities to an Existing Tomcat Install
 :keywords: tcat, server, tomcat, monitor
 
-Use this procedure to add Tcat Server Monitoring and Management capabilities to an existing instance of the open source Tomcat server. Please send us comments or questions: tcat-install@mulesoft.com
+Use this procedure to add Tcat Server Monitoring and Management capabilities to an existing instance of the open source Tomcat server. You can send comments or questions to tcat-install@mulesoft.com.
 
-= Add Tcat to Existing Tomcat Install
+== Add Tcat to Existing Tomcat Install
 
 This process explains how to *install* the Tcat Server on an existing Tomcat server instance, and to use the Administration Console to *register*, *manage*, and *monitor* that server.
 
@@ -11,18 +11,18 @@ This process explains how to *install* the Tcat Server on an existing Tomcat ser
 
 This process requires one or more existing Tomcat instances, as well as an installed instance of Tcat Server with the Administration Console on the same machine or on a different machine. If you use more than one machine, these machines must have TCP network connectivity from the Console to the Tomcat machines you want to manage. The Console must be able to open initial connections over either HTTP (8080 by default) or AJP (8009 by default), and then over the Tcat Agent secure port (51443 by default). All of these port numbers are configurable.
 
-NOTE: For instructions on installing Tcat Server with the Administration Console, consult the QuickStart. Instructions on installing Tomcat server are at http://tomcat.apache.org/[http://tomcat.apache.org].
+NOTE: For instructions on installing Tcat Server with the Administration Console, consult the QuickStart. Instructions on installing Tomcat server are at https://tomcat.apache.org/download-70.cgi[Tomcat 7 site] or https://archive.apache.org/dist/tomcat/tomcat-6/[Tomcat 6 archives].
 
 === Requirements
 
 [%header,cols="1*"]
 |===
 |Supported Environments
-|Tomcat 5.5.x or newer, including all Tomcat 6, 7, and 8 releases
+|Tomcat 5.5.x, Tomcat 6, or 7 only. Tomcat 8 is not supported.
 |Any operating system that has a fully compliant Java 1.5 or newer JDK or JRE.  See link:/tcat-server/v/7.1.0/installation[Java Runtime Requirements] for more details.
 |===
 
-= Converting a Stock Tomcat Windows Service Into a Tcat Windows Service
+== Converting a Stock Tomcat Windows Service Into a Tcat Windows Service
 
 This procedure assumes that you're converting only a single installation of stock Tomcat per machine to a Tcat Server, but if you'd like to run more than one converted Tomcat installation per server you need to rename each installation's service name. The default Tcat windows service name is "TcatServer". Wherever you're seeing "TcatServer" in the below instructions, replace that string with a different service name, and also change `conf/Catalina/localhost/tcat-env.conf` to contain your modified service name. The file `tcat-env.conf`  only exists after the first successful server registration with the Tcat Server console.
 
@@ -55,6 +55,9 @@ Carefully inspect the last line of the output of this command. If it results in 
  If you are naming this server's Tcat service name something other than the default "TcatServer" name, then change all occurrences of: `-Dtcat.service=TcatServer` +
  to your customized service name. Don't modify any other settings yet.
 . Shut down your stock Tomcat windows service.
+. In case the service name is customized, edit the file `bin\tcat6.bat`: +
+`set SERVICE_NAME=` +
+to your customized service name.
 . Start your Tcat Server windows service by running this from your admin shell:
 +
 [source, code]
@@ -64,7 +67,7 @@ Tomcat 6\bin>tcat6 start
 +
 Or, if you're customizing the service name, give your modified service name as a second argument:
 +
-[source, code]
+[source, xml]
 ----
 Tomcat 6\bin>tcat6 start MyServiceName
 ----
@@ -75,13 +78,13 @@ From the Tcat console, the server should be available. Inspect it. Try a Tcat Se
 
 Also, from this point onwards, make any environment variable changes only from the Tcat Server console or the Windows system properties control. Environment variable changes you make in the console get saved into your `tcat-env.conf` file, and are used during Tcat Server restarts.
 
-= Add Tcat agent.war to the Tomcat Installation Directory
+== Add Tcat agent.war to the Tomcat Installation Directory
 
 Follow these instructions if you are activating the Tcat agent in an installation of Tomcat that is *not* installed as a Windows service. This includes all operating systems.
 
 Copy the agent.war file from the TcatServer6/webapps directory of the Tcat Server installation into the webapps directory in your Apache Tomcat installation, for example on Windows:
 
-[source, code]
+[source, xml]
 ----
 C:\Program Files\apache-tomcat-6.0.26\webapps.
 ----
@@ -125,7 +128,5 @@ If so, consult this section of the link:/tcat-server/v/7.1.0/installing-multiple
 
 == See Also
 
-* link:https://www.mulesoft.com/tcat/download[Tcat Download]
-* link:http://forums.mulesoft.com[MuleSoft's Forums]
-* link:https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support]
-* mailto:support@mulesoft.com[Contact MuleSoft]
+* https://www.mulesoft.com/tcat/download[Tcat Download]
+* https://support.mulesoft.com[Contact MuleSoft]

@@ -1,0 +1,28 @@
+= VM Connector 1.1.0 Release Notes for Mule 4
+:keywords: mule, VM, connector, release notes
+
+*January 2018*
+
+== 1.1.0
+
+*Jan 19, 2018*
+
+=== New Features and Enhancements
+
+This release includes the following enhancements, changes, and fixes:
+
+* Added support for message correlation
+* Added hinting of available queues in Listener
+
+=== Upgrade Requirements
+
+Mule 4.1
+
+== Fixed Issues
+
+* VM Connector exports internal classes. (MULE-14444)
+
+== See Also
+
+* https://forums.mulesoft.com[MuleSoft Forum]
+* https://support.mulesoft.com[Contact MuleSoft Support]

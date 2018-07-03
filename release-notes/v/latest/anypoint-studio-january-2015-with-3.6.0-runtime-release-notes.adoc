@@ -70,7 +70,7 @@ This list covers important known issues with Anypoint Studio with the 3.6.0 Runt
 |[STUDIO-4172] |Problem with Undo
 |[STUDIO-4448] |MS Dynamics CRM
 |[STUDIO-4507] |Autocomplete: Issues inside "Message Property
-|[STUDIO-4539] |DataSense not propagated from DataMapper in http://batchinput/[batch:input] phase to datamapper inside a http://batchcommit/[batch:commit]
+|[STUDIO-4539] |DataSense not propagated from DataMapper in `batch:input` phase to datamapper inside a `batch:commit`
 |[STUDIO-4601] |When using APIkit its global exception strategy shows up in every cloud connector's global configuration combobox
 |[STUDIO-4756] |Problem with Maven settings after configuring them wrong
 |[STUDIO-4774] |DM DateTime Not supporting 2013-10-07T20:40:32.580Z
@@ -467,8 +467,3 @@ If you wish to install a previous runtime or a community runtime, follow the ins
 |[STUDIO-5917] |Library Icon Tooltip: Remove "Templates
 |===
 
-== Support Resources
-
-* Refer to MuleSoft’s http://www.mulesoft.org/documentation/display/current/Home[MuleSoft Documentation] for instructions on how to use the new features and improved functionality in Anypoint Studio with 3.6.0 Runtime.
-* Access MuleSoft’s link:http://forums.mulesoft.com[Forum] to pose questions and get help from Mule’s broad community of users.
-* To access MuleSoft’s expert support team, https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[subscribe] to Mule ESB Enterprise and log in to MuleSoft’s http://www.mulesoft.com/support-login[Customer Portal].

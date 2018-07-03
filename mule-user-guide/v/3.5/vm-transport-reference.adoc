@@ -41,7 +41,7 @@ Maven Artifact
 *Docs* - Links to the JavaDoc and SchemaDoc for the transport +
 *Inbound* - Whether the transport can receive inbound events and can be used for an inbound endpoint +
 *Outbound* - Whether the transport can produce outbound events and be used with an outbound endpoint +
-*Request* - Whether this endpoint can be queried directly with a request call (via MuleClinet or the EventContext) +
+*Request* - Whether this endpoint can be queried directly with a request call (via MuleClient or the EventContext) +
 *Transactions* - Whether transactions are supported by the transport. Transports that support transactions can be configured in either local or distributed two-phase commit (XA) transaction. +
 *Streaming* - Whether this transport can process messages that come in on an input stream. This allows for very efficient processing of large data. For more information, see Streaming. +
 *Retry* - Whether this transport supports retry policies. Note that all transports can be configured with Retry policies, but only the ones marked here are officially supported by MuleSoft +
@@ -108,7 +108,7 @@ There are no specific transformers for the VM transport.
 
 == Considerations
 
-The VM transport has often been used to implement complex integrations made up of multiple applications. Improvements in Mule 3 obviate the need for VM in many cases. You can use link:/mule-user-guide/v/3.6/flow-reference-component-reference[Flow References] to directly reference one flow from another without a transport in the middle.
+The VM transport has often been used to implement complex integrations made up of multiple applications. Improvements in Mule 3 obviate the need for VM in many cases. You can use link:/mule-user-guide/v/3.5/flow-reference-component-reference[Flow References] to directly reference one flow from another without a transport in the middle.
 
 VM is still useful in certain situations. Suppose, for instance, that most of the parts of your solution are local, but some need to be decoupled for testing, or because some need to be made remote.
 
@@ -116,7 +116,7 @@ VM is still useful in certain situations. Suppose, for instance, that most of th
 ====
 *WARNING*
 
-Each application in a Mule instance has its own, unique set of VM endpoints. Thus the VM transport can only handle communications within one same application, or between applications that share a link:/mule-user-guide/v/3.7/shared-resources[same domain].
+Each application in a Mule instance has its own, unique set of VM endpoints. Thus the VM transport can only handle communications within one same application, or between applications that share a link:/mule-user-guide/v/3.5/shared-resources[same domain].
 ====
 
 == Features
@@ -226,7 +226,7 @@ vm://<your_path_here>
 
 == Using Transactions
 
-_One-way_ VM queues can take part in distributed link:/mule-user-guide/v/3.7/xa-transactions[XA Transactions]. To make a VM endpoint transactional, use a configuration like the following:
+_One-way_ VM queues can take part in distributed link:/mule-user-guide/v/3.5/xa-transactions[XA Transactions]. To make a VM endpoint transactional, use a configuration like the following:
 
 [source, xml, linenums]
 ----
@@ -237,7 +237,7 @@ _One-way_ VM queues can take part in distributed link:/mule-user-guide/v/3.7/xa-
 </flow>
 ----
 
-Using XA requires that you add a transaction manager to your configuration. For more information, see link:/mule-user-guide/v/3.6/transaction-management[Transaction Management].
+Using XA requires that you add a transaction manager to your configuration. For more information, see link:/mule-user-guide/v/3.5/transaction-management[Transaction Management].
 
 === Transactional Inbound VM Queues
 
@@ -293,7 +293,7 @@ The second VM endpoint ❸ (outbound) uses a _one-way_ exchange pattern and 
 === Element Listing
 
 [WARNING]
-In the XSLT-generated section that follows, the reference to the Configuring Queues document refers to the Mule 3.2 http://www.mulesoft.org/documentation-3.2/display/32X/Configuring+Queues[Configuring Queues] document.
+In the XSLT-generated section that follows, the reference to the Configuring Queues document refers to the Mule 3.2 Configuring Queues document.
 
 = VM Transport
 
@@ -330,12 +330,6 @@ The endpoint on which this connector receives messages from the transport.
 |path |string |no |  |The queue path, such as dispatchInQueue to create the address vm://dispatchInQueue.
 |===
 
-=== Child Elements of <inbound-endpoint...>
-
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
 
 == Outbound endpoint
 
@@ -349,12 +343,6 @@ The endpoint to which this connector sends messages.
 |path |string |no |  |The queue path, such as dispatchInQueue to create the address vm://dispatchInQueue.
 |===
 
-=== Child Elements of <outbound-endpoint...>
-
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
 
 == Endpoint
 
@@ -368,23 +356,10 @@ An endpoint "template" that can be used to construct an inbound or outbound endp
 |path |string |no |  |The queue path, such as dispatchInQueue to create the address vm://dispatchInQueue.
 |===
 
-=== Child Elements of <endpoint...>
-
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
-
 == Transaction
 
-The transaction element configures a transaction. Transactions allow a series of operations to be grouped together so that they can be rolled back if a failure occurs. For more information, see link:/mule-user-guide/v/3.6/transaction-management[Transaction Management].
+The transaction element configures a transaction. Transactions allow a series of operations to be grouped together so that they can be rolled back if a failure occurs. For more information, see link:/mule-user-guide/v/3.5/transaction-management[Transaction Management].
 
-=== Child Elements of <transaction...>
-
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
 
 == Schema
 
@@ -412,4 +387,4 @@ The In Memory Transport can be included with the following dependency:
 
 Be certain that inbound request-response endpoints are paired with outbound request-response endpoints and inbound one-way endpoints are paired with outbound one-way endpoints.
 
-Consider setting up your application following a link:/mule-management-console/v/3.6/reliability-patterns[reliability pattern].
+Consider setting up your application following a link:/mule-user-guide/v/3.5/reliability-patterns[reliability pattern].

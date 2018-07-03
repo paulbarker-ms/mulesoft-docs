@@ -1,14 +1,14 @@
 = Microsoft Dynamics CRM Connector
-:keywords: anypoint studio, esb, connector, endpoint, microsoft, erp, ax query
+:keywords: anypoint studio, connector, endpoint, microsoft, erp, ax query
 
 *Select*
 
-*Latest version: 2.8.0*
+*Latest version: 2.9.0*
 
 The Microsoft Dynamics Customer Relationship Management (CRM) connector lets you access Microsoft Dynamics CRM’s SOAP Organization Service. You can add this connector to an Anypoint Studio flow.
 
 *Release Notes*: link:/release-notes/microsoft-dynamics-crm-connector-release-notes[Microsoft Dynamics CRM Connector Release Notes] +
-*Technical Reference*: link:http://mulesoft.github.io/ms-dynamics-crm-connector/2.8.0/apidocs/dynamicscrm-apidoc.html[MS Dynamics CRM Connector Technical Reference] +
+*Technical Reference*: https://mulesoft.github.io/mule-microsoft-dynamics-crm-connector[MS Dynamics CRM Connector Technical Reference] +
 *Samples*: link:_attachments/dynamics-crm-connector-samples.zip[dynamics-crm-connector-samples.zip]
 
 == Overview
@@ -33,15 +33,19 @@ This connector supports these Microsoft Dynamics CRM versions:
 Configuring the connector requires minimal parameters except for advanced use:
 
 * Username and password for users granted access to CRM
-* Organization Service URL - usually in the format: + _https://mulesoft03.api.crm.dynamics.com/XRMServices/2011/Organization.svc_
+* Organization Service URL - usually in the format: `+https://mulesoft03.api.crm.dynamics.com/XRMServices/2011/Organization.svc+`
 
 == Installing and Configuring
 
-Install the Java Cryptography Extensions (JCE) package before installing the connector.
-Download JCE for Java 7 from link:http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html[Oracle's Java 7 JCE Download site].
-Download JCE for Java 8 from link:http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html[Oracle's Java 8 JCE Download site].
+. Install the Java Cryptography Extensions (JCE) package before installing the connector.
+. Download JCE for Java 7 from link:http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html[Oracle's Java 7 JCE Download site].
+. Download JCE for Java 8 from link:http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html[Oracle's Java 8 JCE Download site].
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
 
-Use the instructions in link:/getting-started/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange].
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
 === Configuring the Connector
 
@@ -65,7 +69,7 @@ image:CRMGlobalType.png[CRMGlobalType]
 . Specify a *Username* and *Password*.
 . Specify a *Organization Service URL* for accessing the CRM system. Click *OK*.
 +
-For example: `https://{siteUrl}/XRMServices/2011/Organization.svc`
+For example: `+https://{siteUrl}/XRMServices/2011/Organization.svc+`
 +
 . Click *Test Connection* to ensure that the connection works correctly.
 . After the connection succeeds, click *OK*.
@@ -173,7 +177,7 @@ In case the Kerberos configuration settings cannot be automatically detected, yo
 
 * *SPN*: The Service Principal Name can usually be automatically discovered from the Organization Service’s WSDL. If the SPN cannot be discovered automatically, the value has to be set in the connector’s connection configuration property SPN. The SPN usually looks like host/SERVER-NAME.MYREALM.COM.
 +
-If the Organization Service WSDL reports a User Principal Name (UPN) instead of an SPN, then the CRM service is configured to run under a domain account. In this case, you must ensure that the domain admin has created an SPN under this service account in AD for the CRM hostname. In this case, the SPN is in the form http://crm.mycompany.com – note that the SPN is typically created to match a fully qualified DNS name that is used to access the CRM service.
+If the Organization Service WSDL reports a User Principal Name (UPN) instead of an SPN, then the CRM service is configured to run under a domain account. In this case, you must ensure that the domain admin has created an SPN under this service account in AD for the CRM hostname. In this case, the SPN is in the form `+http://crm.mycompany.com+` – note that the SPN is typically created to match a fully qualified DNS name that is used to access the CRM service.
 
 * *Realm*: The Domain that the user belongs to. Note that this value is case-sensitive and must be specified exactly as defined in Active Directory.
 
@@ -260,12 +264,12 @@ Microsoft Dynamics CRM Online, with Office365, allows federated authentication t
 
 For these cases, there are optional connection configuration parameters:
 
-* Sts Metadata Url (optional): The STS's metadata exchange URL. For ADFS, this is usually link:https://mycompany-sts.com/adfs/services/trust/mex[https://mycompany-sts.com/adfs/services/trust/mex].
+* Sts Metadata Url (optional): The STS's metadata exchange URL. For ADFS, this is usually +https://mycompany-sts.com/adfs/services/trust/mex+.
 *  Sts Username Port Qname (optional): The name of port that accepts username and password credentials as described in the STS's metadata exchange URL. Specify this value as a `Qname` in the format `{namespace}/port_name`. For ADFS, this is usually:
 +
 [source, code]
 ----
-{http://schemas.microsoft.com/ws/2008/06/identity/securitytokenservice}UserNameWSTrustBinding_IWSTrust13Async}
+{+http://schemas.microsoft.com/ws/2008/06/identity/securitytokenservice+}UserNameWSTrustBinding_IWSTrust13Async}
 ----
 
 == Proxy
@@ -307,7 +311,7 @@ These system settings can be passed to the VM executing the mule app by doing:
 
 == Operations
 
-For the technical reference documentation for all connector operations, see the link:https://mulesoft.github.io/ms-dynamics-crm-connector/[Dynamics CRM APIdoc].
+For the technical reference documentation for all connector operations, see the https://mulesoft.github.io/mule-microsoft-dynamics-crm-connector[Dynamics CRM APIdoc].
 
 === Create Record
 
@@ -642,31 +646,31 @@ Each item has the following data: +
 
 == Frequently Asked Questions
 
-==== Which versions of Dynamics CRM are supported by this connector?
+=== Which versions of Dynamics CRM are supported by this connector?
 
 See xref:supportedversions[Supported versions] in the <<Overview>> section for the current list of supported CRM versions.
 
-==== What authentication schemes are supported by the connector?
+=== What authentication schemes are supported by the connector?
 
 Options for authentication against on-premises CRM instances include Kerberos, Claims Authentication (ADFS), and NTLM (via the Anypoint platform gateway for Windows). For CRM Online, the standard CRM online authentication protocol is supported.
 
-==== What parts of the CRM object model are accessible by the connector?
+=== What parts of the CRM object model are accessible by the connector?
 
 All out-of-box and custom entities are available via the connector, including primary entities and association entities.
 
-==== Are DataSense and DataWeave supported by this connector?
+=== Are DataSense and DataWeave supported by this connector?
 
 Yes, all entities and entity attributes are exposed to Studio by the connector for use with DataWeave and DataSense.
 
-==== What operations can I perform with the connector?
+=== What operations can I perform with the connector?
 
 All standard create-read-update-delete operations are supported against all CRM entities. Additionally, queries for collections of objects can be written either in native FetchXML or Mule’s DSQL query language.
 
-==== Are there any examples that show how to use the connector?
+=== Are there any examples that show how to use the connector?
 
 Yes, an example project for Anypoint Studio is available in link:_attachments/dynamics-crm-connector-samples.zip[dynamics-crm-connector-samples.zip].
 
-==== What Mule editions can I use this connector on?
+=== What Mule editions can I use this connector on?
 
 This connector is supported on any Enterprise Edition Anypoint platform running on any operating system and bit-ness, including the CloudHub integration PaaS.
 
@@ -676,7 +680,7 @@ This connector is supported on any Enterprise Edition Anypoint platform running 
 * link:/mule-user-guide/v/3.8/endpoint-configuration-reference[Configuring Endpoints]
 * link:/mule-user-guide/v/3.8/transformers[Transformers]
 * link:/mule-user-guide/v/3.8/flow-reference-component-reference[Flow Reference Component Reference]
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft's Forums]
+
+
+
+

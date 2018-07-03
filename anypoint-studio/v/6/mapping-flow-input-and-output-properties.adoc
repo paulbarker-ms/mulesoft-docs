@@ -1,4 +1,4 @@
-= Mapping Flow Input and Output Properties
+= Mapping Flow Input and Output Properties (Deprecated - DataMapper)
 :keywords: datamapper
 
 [NOTE]
@@ -18,9 +18,7 @@ For many of the input and output data types supported by Anypoint DataMapper, th
 
 To access the properties for the input or output group, in the Input or Output pane of the Mapping Editor view, click the cog to open the Properties dialog.
 
-The specific dialog depends upon the type of input or output data. This image shows the CSV format input properties.
-
-image:image2013-4-10+11%3A13%3A18.png[image2013-4-10+11%3A13%3A18]
+The specific dialog depends upon the type of input or output data.
 
 NOTE: All data types expose an input property Error Policy, that is used to specify how to handle bad input data in the mapping. For the semantics of Error Policy, see link:/anypoint-studio/v/6/datamapper-input-error-policy-for-bad-input-data[DataMapper Input Error Policy for Bad Input Data].
 
@@ -121,10 +119,3 @@ The properties available for XML input and output are described in the following
 |Encoding |Both |The character encoding for the XML data.
 |Error Policy |Input |How to handle bad input data. See link:/anypoint-studio/v/6/datamapper-input-error-policy-for-bad-input-data[DataMapper Input Error Policy for Bad Input Data] for details.
 |===
-
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

@@ -342,7 +342,7 @@ link:http://www.mulesoft.org/docs/site/current3/schemadocs/namespaces/http_www_m
 
 The Javadoc for this module can be found here:
 
-http://www.mulesoft.org/docs/site/3.8.0/apidocs/org/mule/transport/vm/package-summary.html[VM Javadoc]
+link:http://www.mulesoft.org/docs/site/3.8.0/apidocs/org/mule/transport/vm/package-summary.html[VM Javadoc]
 
 == Maven
 
@@ -350,29 +350,14 @@ The In-Memory Transport can be included with the following dependency:
 
 [source, xml, linenums]
 ----
-<vm:connector name="persistentVmConnector" queueTimeout="1000"> //<1>
-   <queue-profile maxOutstandingMessages="100" persistent="true"/>
-</vm:connector>
- 
-<flow>
-    <vm:inbound-endpoint path="in" exchange-pattern="request-response"/> //<2>
-    <component class="org.mule.ComponentClass"/>
-    <vm:outbound-endpoint exchange-pattern="one-way" path="out" connector-ref="persistentVmConnector" /> //<3>
-</flow>
+<dependency>
+   <groupId>org.mule.transports</groupId>
+   <artifactId>mule-transport-vm</artifactId>
+</dependency>
 ----
-<1> Customized connector configuration <1> with a queue profile and queueTimeout.
-<2> The first VM endpoint (inbound) uses a _request-response_ exchange pattern and the default connector configuration, thus no connector definition is needed.
-<3> The second VM endpoint (outbound) uses a _one-way_ exchange pattern with #1.
 
 == Best Practices
 
 Be certain that inbound request-response endpoints are paired with outbound request-response endpoints and inbound one-way endpoints are paired with outbound one-way endpoints.
 
-Consider setting up your application following a link:/mule-management-console/v/3.8/reliability-patterns[reliability pattern].
-
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft's Forums]
+Consider setting up your application following a link:/mule-user-guide/v/3.8/reliability-patterns[reliability pattern].

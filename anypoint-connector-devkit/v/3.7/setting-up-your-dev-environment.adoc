@@ -1,11 +1,7 @@
 = Setting Up Your Development Environment
 :keywords: devkit, setup, studio, maven, devkit plugin, plugin
 
-This document explains how to prepare a development environment that includes all the components required to develop Anypoint Connectors.
-
-*Setup Video*: link:https://player.vimeo.com/video/141422017[(browser window sized)]
-
-video::141422017[vimeo, height="300", width="70%"]
+This topic explains how to prepare a development environment that includes all the components required to develop Anypoint Connectors.
 
 == Prerequisites
 
@@ -75,8 +71,7 @@ image:InstallNewSoftware.png[InstallNewSoftware]
 . In the Install menu's *Work with* drop-down menu, click the down arrow and click *Anypoint DevKit Update Site*. Click the checkbox for Anypoint DevKit Plugin, and click *Next*.
 +
 [NOTE]
-If the Anypoint DevKit Update Site is not available in the dropdown list, click *Add* and copy this URL to the repository +
-*Location*: `http://studio.mulesoft.org/r4/devkit`
+If the Anypoint DevKit Update Site is not available in the dropdown list, click *Add* and copy this URL to the repository.
 +
 image:devkit-update-site.png[devkit-update-site]
 +

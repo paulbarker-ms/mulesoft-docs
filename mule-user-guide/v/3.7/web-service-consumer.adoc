@@ -1,5 +1,5 @@
 = Web Service Consumer
-:keywords: anypoint studio, studio, mule esb, connector, endpoint, web service, soap, wsdl
+:keywords: anypoint studio, studio, connector, endpoint, web service, soap, wsdl
 
 When developing applications with Mule, users often need to be able to consume a SOAP Web service to acquire data from an external source. In the best case scenario, you can use an existing *Anypoint Connector* in your Mule application to connect to a specific service provider, such as Zuora or Avalara. However, where no service-specific connector exists to facilitate the connection, the quickest, easiest way to consume a Web service from within a Mule application is to use the *Web Service Consumer*.
 
@@ -22,11 +22,16 @@ The component formerly known as the *SOAP Connector* is now known as the *link:/
 
 == Prerequisites
 
-This document assumes that you are familiar with Anypoint Studio; review the chapter on link:/anypoint-studio/v/5/index[Anypoint Studio Essentials] to learn more about developing with Mule ESB's graphical user interface. This document also assumes you are familiar with link:/mule-user-guide/v/3.7/dataweave[DataWeave], link:/mule-user-guide/v/3.7/global-elements[Global Elements], and link:/anypoint-studio/v/5/datasense[DataSense].
+This document assumes that you are familiar with Anypoint Studio; review the chapter on link:/anypoint-studio/v/5/index[Anypoint Studio Essentials] to learn more about developing with Mule's graphical user interface. This document also assumes you are familiar with link:/mule-user-guide/v/3.7/dataweave[DataWeave], link:/mule-user-guide/v/3.7/global-elements[Global Elements], and link:/anypoint-studio/v/5/datasense[DataSense].
 
-== Installation
+== To Install this Connector
 
-You can install a connector in Anypoint Studio using the instructions in link:/getting-started/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange].
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
+
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
 == Limitations
 
@@ -58,10 +63,7 @@ To prepare an application to use a Web Service as in one of the examples above, 
 
 image:wsc_workflow2.png[Flow chart on when to use WS consumer with DataWeave]
 
-[tabs]
-------
-[tab,title="Studio Visual Editor"]
-....
+=== Studio Visual Editor
 
 . Begin by acquiring the *WSDL file* for the SOAP Web service you intend to consume, or identifying the *URL of the WSDL*.
 . If you are using a WSDL file, copy the file into the `src/main/resources` folder of your Studio project. (You can drag and drop the file to copy it to the folder.) If using a URL, there is no need to copy anything to your Studio project.
@@ -86,9 +88,7 @@ image:wsc_global.png[Studio Global Element screen with sample info]
 
 image:wsc_local.png[wsc_local]
 
-....
-[tab,title="XML Editor"]
-....
+=== XML Editor
 
 . Begin by acquiring the *WSDL file* for the SOAP Web service you intend to consume, or identifying the *URL of the WSDL*.
 . If you are using a WSDL file, copy the file into the `src/main/resources` folder of your Studio project. (You can drag and drop the file to copy it to the folder.) If using a URL, there is no need to copy anything to your Studio project.
@@ -105,9 +105,6 @@ image:wsc_local.png[wsc_local]
 ----
 <ws:consumer doc:name="Web Service Consumer" config-ref="Web_Service_Consumer1" operation="GetLastTradePrice"/>
 ----
-
-....
-------
 
 == Web Service Consumer and DataWeave
 
@@ -144,18 +141,14 @@ To take advantage of the Web Service Consumer-DataSense-DataWeave magic, be sure
 
 SOAP headers should be created as outbound properties. You can do that through the *Property* transformer
 
-[WARNING]
-Outbound properties that begin with a `soap.` prefix are treated as SOAP headers and ignored by the transport. All properties that aren't named with a `soap.` prefix are treated as transport headers (by default, the WSC uses the HTTP transport).
-
+Important: Outbound properties that begin with a `soap.` prefix are treated as SOAP headers and ignored by the transport. All properties that aren't named with a `soap.` prefix are treated as transport headers (by default, the WSC uses the HTTP transport).
 
 image:properties_soap.jpg[properties_soap]
-
 
 [source, xml]
 ----
 <set-property propertyName="soap.myProperty" value="#[payload]" doc:name="Property"/>
 ----
-
 
 [WARNING]
 ====
@@ -192,6 +185,21 @@ With DataWeave, you can use multiple inputs in a single transform, so you can ta
 
 To produce multiple outputs, you must create separate transforms, but these can be hosted in a single DataWeave transformer on your flow. So in a single DataWeave transformer you could host a transform that populates the SOAP body and another that populates a SOAP header.
 ====
+
+== To Use HTTP Requester to Obtain a WSDL
+
+You can use the useConnectorToRetrieveWsdl system property to use the 
+HTTP Requester provided by the Connector Configuration to obtain a WSDL. The WSDL Location 
+must be at an HTTP or HTTPS URL location. 
+
+*Note:* Using this feature applies the change to every application within the environment involved.
+
+Use this command to start Mule and enable this feature:
+
+[source,xml]
+----
+./mule -M-Dmule.ws.useConnectorToRetrieveWsdl=true
+----
 
 == Web Service Consumer and DataSense Explorer
 

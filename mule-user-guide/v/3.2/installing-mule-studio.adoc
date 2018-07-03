@@ -51,7 +51,7 @@ If you do have a legacy version of Studio installed on your host machine, use th
 . Click *Help* > *Install New Software* on the Mule menu bar.
 . After the *Install* window opens, click *Add*, which is located to the right of the *Work with* field.
 . Enter `Studio Updates` in the *Name* field.
-. In the *Location* field, enter `http://studio.mulesoft.org/updater`, which points to the Studio Updates site.
+. In the *Location* field, enter `+http://studio.mulesoft.org/updater+`, which points to the Studio Updates site.
 . Click *OK*.
 . A table will appear displaying the available version, the newest version, and the application name (Mule Studio).
 . Click the available version, then click *Next*, and finally click *Finish*. Mule Studio now updates to the latest version.
@@ -76,7 +76,7 @@ You can double-click the file in the graphic environment or enter the file name 
 
 image:Studio+Path+with+Windows.png[Studio+Path+with+Windows]
 
-Proceed to MULE3STUDIO:Completing Studio Launch.
+Proceed to Completing Studio Launch.
 
 === Mac OS X
 
@@ -86,7 +86,7 @@ Double-click the `muleStudio.app` file, located in the following path:
 
 image:Studio+Path.png[Studio+Path]
 
-Proceed to MULE3STUDIO:Completing Studio Launch.
+Proceed to Completing Studio Launch.
 
 === Linux
 
@@ -129,7 +129,7 @@ Alternatively, double click the `muleStudio` file in the Linux graphic interface
 
 image:Studio+Path+-+Linux.png[Studio+Path+-+Linux]
 
-Proceed to MULE3STUDIO:Completing Studio Launch.
+Proceed to Completing Studio Launch.
 
 === Completing Studio Launch
 
@@ -152,4 +152,4 @@ Click the fifth option, "Go to Mule Studio", to display the Studio application w
 
 image:UnusedMule.png[UnusedMule]
 
-Now that Mule Studio is up and kicking, take a quick tour of Mule Studio by returning to the link:/mule-user-guide/v/3.2/mule-studio-tutorials[Getting Started with Mule Studio] page.
+Now that Mule Studio is up and kicking, take a quick tour of Mule Studio by returning to the link:/mule-user-guide/v/3.2/mule-studio[Getting Started with Mule Studio] page.

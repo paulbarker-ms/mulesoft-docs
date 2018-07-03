@@ -1,3 +1,4 @@
+= Runtime Manager Agent API
 :keywords: agent, mule, esb, servers, monitor, notifications, external systems, third party, get status, metrics
 
 image:logo-cloud-disabled.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
@@ -5,9 +6,7 @@ image:logo-hybrid-active.png[link="/runtime-manager/deployment-strategies", titl
 image:logo-server-active.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
-= Runtime Manager Agent API
-
-For the vast majority of use cases, all you'll need to do with the Runtime Manager Agent is install it and configure it according to what you can read in link:/runtime-manager/installing-and-configuring-mule-agent[Installing and Configuring the Runtime Manager Agent]
+For the vast majority of use cases, all you'll need to do with the Runtime Manager Agent is install it and configure it according to what you can read in link:/runtime-manager/installing-and-configuring-runtime-manager-agent[Installing and Configuring the Runtime Manager Agent]
 
 The Runtime Manager Agent exposes an API, that you can leverage to both retrieve information and configure settings.
 

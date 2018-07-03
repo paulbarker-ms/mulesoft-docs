@@ -16,7 +16,7 @@ In code examples in this guide, `spring-beans-current.xsd` is a placeholder. To 
 [%header%autowidth.spread]
 |===
 |Transport |Doc |Inbound |Outbound |Request |Transaction |Streaming |Retries |MEP's |Default MEP |Maven Artifact
-|JDBC |[JavaDoc] |image:/docs/s/en_GB/3391/c989735defd8798a9d5e69c058c254be2e5a762b.76/_/images/icons/emoticons/check.png[check] |image:/docs/s/en_GB/3391/c989735defd8798a9d5e69c058c254be2e5a762b.76/_/images/icons/emoticons/check.png[check] |image:/docs/s/en_GB/3391/c989735defd8798a9d5e69c058c254be2e5a762b.76/_/images/icons/emoticons/check.png[check] |image:/docs/s/en_GB/3391/c989735defd8798a9d5e69c058c254be2e5a762b.76/_/images/icons/emoticons/check.png[check] (local XM) |image:error-1.png[error-1] |image:/docs/s/en_GB/3391/c989735defd8798a9d5e69c058c254be2e5a762b.76/_/images/icons/emoticons/check.png[check] |one-way request response |one-way |`org.mule.transport:mule-transport-jdbc`
+|JDBC |[JavaDoc] |check |check |check |check (local XM) |image:error-1.png[error-1] |check |one-way request response |one-way |`org.mule.transport:mule-transport-jdbc`
 |===
 
 == Namespace and Syntax
@@ -853,11 +853,11 @@ The inbound endpoint for JDBC transport uses polling to look for new data. The d
 
 === Features Supported by this Module
 
-Most standard transport features are supported for the jdbc transport: transactions, retry, expressions, etc. Streaming is not supported for the JDBC transport.
+Most standard transport features are supported for the JDBC transport: transactions, retry, expressions, etc. Streaming is not supported for the JDBC transport.
 
 == Example Configurations
 
-The following example demonstrates how you would write rows in a database to thier own files.
+The following example demonstrates how you would write rows in a database to their own files.
 
 [%header%autowidth.spread]
 |===
@@ -1146,7 +1146,7 @@ Transforms a `java.sql.ResultSet` to a `List` of `Map` objects just like the def
 
 == Javadoc API Reference
 
-[Javadoc for JDBC Transport]
+link:http://www.mulesoft.org/docs/site/3.6.0/apidocs/org/mule/transport/jdbc/package-summary.html[Javadoc for JDBC Transport]
 
 Refer to the EE distribution for the Enterprise version of the JDBC transport javadocs.
 
@@ -1305,3 +1305,4 @@ The following attirbutes are available on the `mysql-data-source` element:
 |*port* |Database port to connect to. This attribute cannot be used together the with `url` attribute.
 |*url* |JDBC URL to use when conenction to the database. This attribute cannot be used together with the `database`, `host`, or `port` attribute.
 |*user* |User for connecting to the database. This attribute is required.
+|===

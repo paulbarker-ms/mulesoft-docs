@@ -3,24 +3,128 @@
 
 In addition to these release notes, see the complete link:/runtime-manager/cloudhub[CloudHub] documentation.
 
+== 1.66.0 - March 22, 2018
+
+This release includes the following changes and improvements:
+
+* Additional shared load balancers across APAC regions. See link://docs.mulesoft.com/runtime-manager/cloudhub-architecture#global-worker-clouds[Global Worker Clouds] for information on available regions. This change is effective March 26, 2018.
+* Security patches and bug fixes.
+
+== 1.65.0 - March 8, 2018
+
+This release enables users to:
+
+* Associate VPCs with second-level business groups.
+* Add additional firewall rules per VPC.
+
+In addition, this release also includes the following changes and improvements:
+
+* Additional shared load balancers across regions. link://docs.mulesoft.com/runtime-manager/cloudhub-architecture#global-worker-clouds[View changes in domains] used for new applications.
+* Infrastructure improvements powering mule applications.
+* A series of resiliency improvements and bug fixes.
+
+== 1.64.0 - January 13, 2018
+
+This release enables users to:
+
+* Search for and deploy applications from Exchange.
+
+In addition, this release also includes the following changes and improvements:
+
+* The default deployment region for new accounts has been updated to Ohio (US-East-2).
+* The default worker size for new applications via UI has been updated to 0.1 vCore.
+* A series of reliability and scalability enhancements.
+
+
+== 1.62.0 - November 4, 2017
+
+This release enables users to:
+
+* Increase the number of instances for a Dedicated Load Balancer from 2 to 8 instances.
+
+In addition, this release also includes the following improvements:
+
+* Dedicated Load Balancers can now support larger payload sizes up to 200MB.
+* Full support for Mule v4.0.0.
+
+
+== 1.61.0 - October 7, 2017
+
+This release enables users to:
+
+* Increase the limit of workers per application from 4 to 8 workers for customers using Fabric.
+* Deploy applications, create VPCs and create Dedicated Load Balancers in the Ohio region (US-East-2).
+
+In addition, this release also includes the following improvements:
+
+* Insights Replay data is now stored regionally local to the worker.
+* Anypoint CloudHub UI is now backed by a CDN, improving latency and resiliency.
+* Increased parallelism with CloudHub's scheduling services.
+
+In this release, the end-of-life for the CloudHub logging service is complete.
+
+
+== 1.60.0 - September 9, 2017
+
+This release enables users to:
+
+* Run applications on 16 vCore instances, allowing for even more processing power.
+* Add/edit certificates to their Dedicated Load Balancers.
+* Allocate static IPs for multi-worker applications (for supported plans).
+
+In addition, this release also includes reliability and scalability improvements, including:
+
+* Increasing availability and performance for critical CloudHub services.
+* Increasing parallelism with statistics gathering services.
+
+
+== 1.59.0 - August 12, 2017
+
+This release enables users to create and manage Dedicated Load Balancers in Anypoint UI. This release also includes backend improvements to CloudHub's permissions model.
+
+
+== 1.58.0 - July 15, 2017
+
+This release enables users to select default regions for their organizations, as well as a series of reliability and scalability enhancements.
+
+
+== 1.57.0 - June 17, 2017
+
+This release enables users to deploy applications in 3 new regions - Brazil, Canada, and UK. With these, 11 regions are supported in total: Brazil, Canada, Frankfurt, Ireland, North California, North Virginia, Oregon, Singapore, Sydney, Tokyo, and UK.
+
+This release also includes other new features, and security and reliability improvements:
+
+* Allowing CloudHub admins to select default regions in the Access Management Console.
+* Additional security monitoring through threat stack and other reliability improvements.
+
+
+== 1.56.0 - May 20, 2017
+
+This release includes a series of reliability and scalability enhancements.
+
+== 1.54.0 - March 25, 2017
+
+This release includes a series of reliability and scalability enhancements.
+
 
 == 1.53.0 - March 11, 2017
 
 This release includes:
 
-* An increased largest worker size to 8 vcores, allowing customers to handle higher transaction volume per worker
+* An increased largest worker size to 8 vCores, allowing customers to handle higher transaction volume per worker.
 
-* Internal engineering efforts to improve scalability of the platform
+* Internal engineering efforts to improve scalability of the platform.
 
 
 
 == 1.51.0 - November 19, 2016
 
-* This release introduces “runtime updates”, a new feature which helps you track the different updates made to your runtimes such as critical security patches. You will be able to control exactly when each update is applied, or if you take no action, updates will be applied automatically for you after 30 days to ensure your applications run with the latest security patches.
+* This release introduces “runtime updates”, a new feature which helps you track the different updates made to your runtimes such as critical security patches. You are able to control exactly when each update is applied, or if you take no action, updates are applied automatically for you after 30 days to ensure your applications run with the latest security patches.
 * Reliability improvements for the CloudHub scheduler
 * To unify MuleSoft’s runtime versioning policy of semantic versioning, API Gateway runtimes have been renamed from “API Gateway x.x.x” to “x.x.x-API-Gateway in CloudHub.
 
 == 1.50.0 - October 22, 2016
+
 * Shortened the connection timeout on load balancers from 60 seconds to 4
 * Updated the TLS algorithm used between the cloudhub.io load balancer and works to TLS 1.1
 
@@ -36,11 +140,11 @@ This release introduces the following features and improvements:
 
 This release introduces the following features:
 
-* When selecting a target Mule Version, CloudHub will now automatically suggest the latest runtimes, simplifying selection.
-* If a Mule version is selected that has an end-of-life date approaching, CloudHub will now warn you.
-* Cron based polls will no longer fire at the first start of an application
+* When selecting a target Mule Version, CloudHub  now automatically suggests the latest runtimes, simplifying selection.
+* If a Mule version is selected that has an end-of-life date approaching, CloudHub  now warns you.
+* Cron based polls  no longer fire at the first start of an application
 * Fixed a bug where schedules would sometimes trigger twice
-* Frequency based polls will now respect the startDelay parameter in Mule 3.8.1+ on their next restart.
+* Frequency based polls  now respect the startDelay parameter in Mule 3.8.1+ on their next restart.
 
 == July 30, 2016
 
@@ -74,7 +178,7 @@ None.
 
 === Migration Guidance
 
-From now on, to create a VPC you need to use the Anypoint Platform CLI set of commands, and then contact MuleSoft support with the link:/runtime-manager/_attachments/VPC-Gateway-Questionnaire-v8.xlsm[VPC Discovery Form] to configure the connection to your network.
+From now on, to create a VPC you need to use the Anypoint Platform CLI set of commands, and then contact MuleSoft support with the link:_attachments/vpc-gateway-questionnaire-v8.xlsm[VPC Discovery Form] to configure the connection to your network.
 
 No migration is required for VPCs that are already created.
 
@@ -440,4 +544,4 @@ Bugs fixed in this release:
 
 * Chunked HTTP messages were not being processed correctly by the CloudHub load balancer
 
-See http://blogs.mulesoft.org/role-based-access-controls-on-ion/[announcement] for more information.
+See link:https://blogs.mulesoft.com/dev/mule-dev/role-based-access-controls-on-ion/[announcement] for more information.

@@ -1,10 +1,10 @@
 = Amazon SQS Connector
-:keywords: anypoint studio, esb, connector, endpoint, amazon, sqs, simple queue service
+:keywords: anypoint studio, connector, endpoint, amazon, sqs, simple queue service
 :imagesdir: ./_images
 
 *_Select_*
 
-The Anypoint Connector for Amazon SQS provides an easy way to interface with the Amazon Simple Queue Service API, allowing Mule ESB users to manage SQS queueing services without having to deal with the API directly.
+The Anypoint Connector for Amazon SQS provides an easy way to interface with the Amazon Simple Queue Service API, allowing Mule users to manage SQS queueing services without having to deal with the API directly.
 
 *Release Notes:* link:/release-notes/amazon-sqs-connector-release-notes[Amazon SQS Connector Release Notes].
 
@@ -12,19 +12,17 @@ The Anypoint Connector for Amazon SQS provides an easy way to interface with th
 
 Amazon Simple Queue Service (Amazon SQS) offers a reliable, highly scalable hosted queue for storing messages as they travel between computers. By using Amazon SQS, developers can simply move data between distributed application components performing different tasks, without losing messages or requiring each component to be always available. Amazon SQS makes it easy to build an automated workflow, working in close conjunction with the Amazon Elastic Compute Cloud (Amazon EC2) and the other AWS infrastructure web services.
 
-The AWS SDK for Java provides a Java API for AWS infrastructure services. The Amazon SQS connector is built using the SDK for Java. For the complete list of operations supported by the connector, see link:http://mulesoft.github.io/sqs-connector/[Apidocs and Samples].
+The AWS SDK for Java provides a Java API for AWS infrastructure services. The Amazon SQS connector is built using the SDK for Java. For the complete list of operations supported by the connector, see http://mulesoft.github.io/mule-amazon-sqs-connector/[Apidocs and Samples].
 
 Although it is called a queue, Amazon SQS does not guarantee FIFO access to messages in Amazon SQS queues, mainly because of its distributed nature. If you require specific message ordering, you need to design your application to handle it.
 
 == Prerequisites
 
-This document assumes you are familiar with Mule, link:/mule-user-guide/v/3.7/anypoint-connectors[Anypoint Connectors], and link:/anypoint-studio/v/5/index[Anypoint Studio Essentials]. To increase your familiarity with Studio, consider completing one or more link:/getting-started/anypoint-connector[Anypoint Connector quickstart]. Further, this page assumes that you have a basic understanding of link:/mule-user-guide/v/3.7/elements-in-a-mule-flow[Mule flows] and link:/mule-user-guide/v/3.7/global-elements[Mule Global Elements].
-
-This document describes implementation examples within the context of Anypoint Studio, Mule ESB’s graphical user interface, and, in parallel, includes configuration details for doing the same in the XML Editor.
+This document assumes you are familiar with Amazon SQS, Mule, Anypoint Connectors, and Anypoint Studio.
 
 As the connector comes pre-bundled with Anypoint Studio, you must:
 
-* Install link:https://www.mulesoft.com/studio[Anypoint Studio].
+* Install Anypoint Studio.
 * Sign Up for Amazon Web Services. To access AWS with the connector, you need the credentials in the form of IAM.
 
 == Compatibility
@@ -39,49 +37,28 @@ Amazon SQS connector 3.0 is compatible with:
 |===
 
 
-[NOTE]
-====
-The package names of the arguments and the return types of most of the operations  have been updated in this version of the connector. Refer to the updated package names depending on how you are using the connector. For example, the Message Attributes input argument in the Send Message operation now expects a `Map<String, MessageAttributeValue>` object, which requires you to refer to the `org.mule.modules.sqs.model.MessageAttributeValue` package instead of `com.amazonaws.services.sqs.model.MessageAttributeValue`.
-====
+*Notes:*
+
+* The package names of the arguments and the return types of most of the operations  have been updated in this version of the connector. Refer to the updated package names depending on how you are using the connector. For example, the Message Attributes input argument in the Send Message operation now expects a `Map<String, MessageAttributeValue>` object, which requires you to refer to the `org.mule.modules.sqs.model.MessageAttributeValue` package instead of `com.amazonaws.services.sqs.model.MessageAttributeValue`.
+
+* For all the operations in the connector to work, you need to update the subset of the overall list of Amazon SQS actions in the current SQS Policy with the new actions to specify which AWS account has access to the actions on a queue.
++
+Ensure that `sqs:GetQueueAttributes` action is enabled for the queue under test in Amazon SQS policy as it is used by the Test Connection feature in the Global Configuration.
 
 
-[NOTE]
-====
-For all the operations in the connector to work, you need to update the subset of the overall list of Amazon SQS actions in the current SQS Policy with the new actions to specify which AWS account has access to the actions on a queue.
+== Installing
 
-Please ensure that `sqs:GetQueueAttributes` action is enabled for the queue under test in Amazon SQS policy as it is used by the Test Connection feature in the Global Configuration.
-====
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
 
-
-== Installing and Configuring
-
-The following sections describe how to install and configure the Amazon SQS connector.
-
-=== Installing
-
-You can install a connector in Anypoint Studio using the instructions in link:/getting-started/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange].
-
-=== Updating from an Older Version
-
-When a new version of a connector is released, Anypoint studio displays a popup in the bottom right corner of you screen with the following message: *Updates Available*.
-To upgrade to the newer version of the Amazon SQS connector:
-
-. Click the popup and check for the available updates.
-. Select the *Amazon SQS connector 3.0* check-box and click *Next*.
-. Follow the instructions provided by the user interface.
-. Restart Studio when prompted.
-. After restarting, if you have several versions of the connector installed, Mule asks you for the version of the connector you like to use.
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
 === Creating a New Project
 
 . In Studio, click *File* > *New* > *Mule Project*.
-+
-image:filenew.png[filenew] +
-
 . Enter a name for your new project and leave the remaining options with their default values.
-+
-image:NewProject.jpg[NewProject] +
-
 . If you plan to use Git, select *Create a .gitignore file* for the project with default ignores for Studio Projects, and then click *Next*.
 . Click *Finish* to create the project.
 
@@ -154,7 +131,6 @@ The Amazon SQS connector is an operation-based connector, which means that when 
 +
 image:demo_receivemessages.jpg[demo_receivemessages]
 +
-
 [%header,cols="30a,70a"]
 |===
 |Field |Value
@@ -164,8 +140,7 @@ image:demo_receivemessages.jpg[demo_receivemessages]
 |Queue URL |Select a parameter for the operation.
 |===
 +
-
-. Click the blank space on the canvas to save your connector configurations.
+. Save your connector configuration.
 
 == Example Use Case
 
@@ -174,9 +149,8 @@ Send a message along with meta data to an Amazon SQS queue and then receive it f
 . Send message along with metadata, and then get the count of the messages in the queue to validate that the message has been sent.
 . Receive the message, log the message body, and delete the message from the queue.
 
----
-===== Studio Visual Editor
----
+=== Using Studio Visual Editor
+
 image:sqs_send_message_operation_demo_flow.png[Send Message Operation Flow]
 image:sqs_receive_delete_message_operations_demo_flow.png[Receive and Delete Message Operation Flow]
 
@@ -343,13 +317,11 @@ image:demo_deletemessage.jpg[demo_deletemessage]
 . Add a *Logger* to print the status in the mule console after the message is deleted.
 
 
-===== Anypoint Studio
+=== XML
 
 
-[WARNING]
-====
 For this code to work in Anypoint Studio, you must provide Amazon Web Services credentials. You can either replace the variables with their values in the code, or you can provide the values for each variable in the `src/main/app/mule-app.properties file`.
-====
+
 
 [source, xml, linenums]
 ----
@@ -358,7 +330,7 @@ For this code to work in Anypoint Studio, you must provide Amazon Web Services c
 <mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:http="http://www.mulesoft.org/schema/mule/http"
 	xmlns:sqs="http://www.mulesoft.org/schema/mule/sqs" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking"
 	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.7.1"
+	xmlns:spring="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
@@ -423,11 +395,8 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 
 ----
 
-=== Demo
-
-You can download a full working example from http://mulesoft.github.io/sqs-connector/[here]
-
 == See Also
 
+* You can download a full working example from http://mulesoft.github.io/mule-amazon-sqs-connector/[Demo]
 * Learn more about working with link:/mule-user-guide/v/3.7/anypoint-connectors[Anypoint Connectors].
 * Learn how to use link:/mule-user-guide/v/3.7/mule-transformers[Mule Transformers].

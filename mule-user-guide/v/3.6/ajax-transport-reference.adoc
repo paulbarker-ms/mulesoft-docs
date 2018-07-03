@@ -11,7 +11,7 @@ The Mule AJAX connector allows Mule events to be sent and received asynchronousl
 |===
 |Transport |Doc |Inbound |Outbound |Request |Transactions |
 Streaming |Retries |MEPs |Default MEP |Maven Artifact
-|AJAX |link:http://www.mulesoft.org/docs/site/3.6.0/apidocs/org/mule/transport/ajax/package-summary.html[JavaDoc |link:http://www.mulesoft.org/docs/site/current3/schemadocs/namespaces/http_www_mulesoft_org_schema_mule_ajax/namespace-overview.html[SchemaDoc] |image:check.png[check] |image:check.png[check] |image:error.png[error] |image:error.png[error] |image:check.png[check] |image:error.png[error] |one-way |one-way |org.mule.http://transportmule-transport-ajax/[transport:mule-transport-ajax]
+|AJAX |link:http://www.mulesoft.org/docs/site/3.6.0/apidocs/org/mule/transport/ajax/package-summary.html[JavaDoc |link:http://www.mulesoft.org/docs/site/current3/schemadocs/namespaces/http_www_mulesoft_org_schema_mule_ajax/namespace-overview.html[SchemaDoc] |image:check.png[check] |image:check.png[check] |image:error.png[error] |image:error.png[error] |image:check.png[check] |image:error.png[error] |one-way |one-way |org.mule.transport:mule-transport-ajax
 
 |===
 
@@ -21,7 +21,7 @@ Streaming |Retries |MEPs |Default MEP |Maven Artifact
 *Docs* - Links to the JavaDoc and SchemaDoc for the transport +
 *Inbound* - Whether the transport can receive inbound events and can be used for an inbound endpoint +
 *Outbound* - Whether the transport can produce outbound events and be used with an outbound endpoint +
-*Request* - Whether this endpoint can be queried directly with a request call (via MuleClinet or the EventContext) +
+*Request* - Whether this endpoint can be queried directly with a request call (via MuleClient or the EventContext) +
 *Transactions* - Whether transactions are supported by the transport. Transports that support transactions can be configured in either local or distributed two-phase commit (XA) transaction. +
 *Streaming* - Whether this transport can process messages that come in on an input stream. This allows for very efficient processing of large data. For more information, see Streaming. +
 *Retry* - Whether this transport supports retry policies. Note that all transports can be configured with Retry policies, but only the ones marked here are officially supported by MuleSoft +
@@ -153,7 +153,7 @@ Then configure your connector and endpoints as described below.
 
 == Using the JavaScript Client
 
-Mule provides a powerful JavaScript client with full link:https://en.wikipedia.org/wiki/Ajax_(programming)[AJAX] support that can be used to interact with Mule flows directly in the browser. It also provides support for interacting directly with objects running inside the container using link:http://cometdproject.dojotoolkit.org/[Cometd], a message bus for AJAX web applications that allows multi-channel messaging between the server and client.
+Mule provides a powerful JavaScript client with full link:https://en.wikipedia.org/wiki/Ajax_(programming)[AJAX] support that can be used to interact with Mule flows directly in the browser. It also provides support for interacting directly with objects running inside the container using Cometd, a message bus for AJAX web applications that allows multi-channel messaging between the server and client.
 
 === Configuring the Server
 
@@ -298,7 +298,7 @@ Let's say you want to send a message out without getting a response. In this cas
 
 == Example Configurations
 
-Mule comes bundled with several examples that employ the Ajax Connector. We recommend you take a look at the "Notifications Example" and the "GPS Walker Example" (which is also explained in further detail in link:http://blogs.mulesoft.org/walk-this-way-building-ajax-apps-with-mule[this blog post]). In the following typical use cases we will focus on the key elements involved when using and configuring the connector.
+Mule comes bundled with several examples that employ the Ajax Connector. We recommend you take a look at the "Notifications Example" and the "GPS Walker Example" (which is also explained in further detail in link:https://blogs.mulesoft.com/dev/mule-dev/walk-this-way-building-ajax-apps-with-mule[this blog post]). In the following typical use cases we will focus on the key elements involved when using and configuring the connector.
 
 === Publish Example Server code
 
@@ -610,7 +610,7 @@ Note the following changes:
 Allows Mule to expose Mule Services over HTTP using a Jetty HTTP server and Cometd. A single Jetty server is created for each connector instance. One connector can serve many endpoints. Users should rarely need to have more than one AJAX servlet connector.
 
 .Attributes of <connector...>
-[%header%,cols="30s,70a"]
+[%header,cols="30s,70a"]
 |===
 |Name |Description
 |serverUrl
@@ -695,7 +695,7 @@ No Child Elements of <inbound-endpoint...>
 Allows a Mule service to send AJAX events over HTTP using Bayeux. JavaScript clients can register interest in these events using the Mule JavaScript client.
 
 .Attributes of <outbound-endpoint...>
-[%header%,cols="30s,70a"]
+[%header,cols="30s,70a"]
 |===
 |Name |Description
 |channel |The AJAX channel to bind the service endpoint to. This channel path is independent context path that your application is deployed to in the servlet container.

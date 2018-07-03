@@ -1,10 +1,9 @@
 = Windows Gateway Services Guide
+:keywords: anypoint studio, connector, endpoint, windows gateway
 
 *Select*
 
 *Latest version: 1.11.1*
-
-:keywords: anypoint studio, connector, endpoint, windows gateway
 
 Windows Gateway Services provides connectivity to proprietary functionality on the Windows platform, and is used by the following connectors:
 
@@ -391,9 +390,3 @@ tracerpt etwtrace.etl
 
 This command transfers useful information into the `dumpfile.xml` text file. For more information, see link:http://technet.microsoft.com/en-us/library/cc732700.aspx[Tracerpt].
 
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

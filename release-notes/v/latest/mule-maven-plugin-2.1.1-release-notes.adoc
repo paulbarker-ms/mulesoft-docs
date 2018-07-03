@@ -1,12 +1,12 @@
 = Mule Maven Plugin 2.1.1 Release Notes
 
-MuleSoft is pleased to announce the release of the Mule Maven Plugin 2.1.1. This release fixes a bug where properties where overwritten when deploying to CloudHub
+MuleSoft is pleased to announce the release of the Mule Maven Plugin 2.1.1. This release fixes a bug where properties were overwritten when deploying to CloudHub
 
 == Hardware and software requirements
 JRE 1.7.0 (Recommended JRE 1.7.0_79/80), JRE 1.8, Maven 3.x
 
 == Compatibilities
-* Core Services API 1.0
+* Access Management API 1.0
 * ARM Rest API 1.1
 * CloudHub API 1.0
 * Runtime Manager Agent API 1.0

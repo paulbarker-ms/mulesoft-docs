@@ -1,7 +1,7 @@
 = Repository API
 :keywords: tcat, repository, api
 
-The Tcat Server repository API allows you to create, update, and delete workspaces and artifacts inside the repository. It is based on the simple but powerful http://ietfreport.isoc.org/idref/draft-ietf-atompub-protocol/[Atom Publishing Protocol] standard. The AtomPub API uses Atom entries and feeds to represent workspaces, artifacts, and artifact versions. These can then be manipulated via the RESTful HTTP-based API.
+The Tcat Server repository API allows you to create, update, and delete workspaces and artifacts inside the repository. It is based on the simple but powerful Atom Publishing Protocol standard. The AtomPub API uses Atom entries and feeds to represent workspaces, artifacts, and artifact versions. These can then be manipulated via the RESTful HTTP-based API.
 
 == Repository Feed URLs
 
@@ -20,14 +20,14 @@ Tcat Server includes the following feeds, which you use with the GET, POST, and 
 
 Workspaces can contain other workspaces and artifacts. To list all items in a workspace, do a GET on its URL.
 
-==== Example Request
+=== Example Request
 
 [source, code, linenums]
 ----
 GET /console/api/registry/Applications
 ----
 
-==== Example Response
+=== Example Response
 
 [source, code, linenums]
 ----

@@ -78,7 +78,7 @@ Connector and endpoint syntax `<ftp:connector name="ftpConnector" passive="true"
 * Streaming for transferring large files
 * Support for link:/mule-user-guide/v/3.8/configuring-reconnection-strategies[reconnection strategies]
 
-Mule Enterprise includes several additional features that allow to to filter files to be processed by file age and moving and renaming files on the source FTP server after processing.
+Mule Enterprise includes several additional features that allow filtering of files to be processed by file age and moving and renaming files on the source FTP server after processing.
 
 == Usage
 
@@ -442,9 +442,3 @@ link:http://www.mulesoft.org/docs/site/3.8.0/apidocs/org/mule/transport/file/Fil
 
 Put your login credentials in a properties file, not hard-coded in the configuration. This also allows you to use different settings between development, test, and production systems.
 
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

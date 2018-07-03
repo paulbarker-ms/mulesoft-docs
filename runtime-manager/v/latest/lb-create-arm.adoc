@@ -1,13 +1,23 @@
+<<<<<<< HEAD
 = To Create a Load Balancer using Runtime Manager
 
 You can use Runtime Manager to create load balancer in your CloudHub environment.
+=======
+= To Create a Load Balancer (Runtime Manager)
+
+You can use Runtime Manager to create a dedicated load balancer in your CloudHub environment.
+>>>>>>> 3741126c631eeebabe710cdf5de8e454e94b67ec
 
 
 == Prerequisites
 
 To create a load balancer, ensure that you perform the following:
 
+<<<<<<< HEAD
 * Ensure that your profile is a a member of the adminstrator role of in the organization where you are creating the load balancer.
+=======
+* Ensure that your profile is authorized to perform this action by adding the CloudHub Network Administrator permission to the profile of the organization where you are creating the load balancer. Similarly, the adminstrator role of the same organization also provides the authorization required.
+>>>>>>> 3741126c631eeebabe710cdf5de8e454e94b67ec
 * Create a Virtual Private Cloud (VPC) in the organization where you want to create a load balancer.
 * Create at least one certificate and private key for your certificate.
 
@@ -56,4 +66,8 @@ If you add more than one URL mapping rule, order the rules in the list according
 * link:/access-management/[Access Management]
 * link:/runtime-manager/lb-cert-upload[About Uploading Certificates]
 * link:/runtime-manager/lb-whitelists[About Whitelists]
+<<<<<<< HEAD
 * link:/runtime-manager/lb-mapping-rule
+=======
+* link:/runtime-manager/lb-mapping-rules[About Mapping Rules]
+>>>>>>> 3741126c631eeebabe710cdf5de8e454e94b67ec

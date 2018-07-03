@@ -7,9 +7,7 @@ image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", ti
 image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 [NOTE]
-====
-Dashboards is a feature that is currently only available for applications deployed to CloudHub workers. Users deploying applications to local servers will need to contact their local customer representative for access. See link:/runtime-manager/deployment-strategies[Deployment Strategies] and link:/runtime-manager/monitoring[Monitoring Applications] for more details.
-====
+To view dashboards, your user must have `Read Application` or `Read Servers` permission for the desired resources.
 
 The Dashboard gives you in-depth visibility into usage metrics about both your deployed applications and the systems they're deployed to.
 
@@ -164,7 +162,7 @@ Set up link:/runtime-manager/alerts-on-runtime-manager#conditions-on-mule-server
 The graphs in this dashboard cover different metrics related to memory and CPU usage. You can see these two at a high level on the *Overview* tab, or you can dig into the *Breakdown* to see a detailed series of metrics that tracks each part of the memory separately.
 
 
-At a high level, memory can be thought of as divided into what’s in the JVM heap and what’s outisde of it.
+At a high level, memory can be thought of as divided into what’s in the JVM heap and what’s outside of it.
 
 The “heap” is the area where all Java objects reside. The heap is created when the JVM is started up, it can be scaled up or down in size without interrupting the applications in it. When the heap becomes full, garbage is collected. During the garbage collection, objects that are no longer used are cleared, thus making space for new objects.
 

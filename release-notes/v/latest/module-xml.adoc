@@ -1,0 +1,27 @@
+= XML Module Release Notes for Mule 4
+:keywords: mule, XML, mmodule, release notes
+
+*July 2018*
+
+== 1.1.1
+
+*July 2, 2018*
+
+=== Fixed Issues
+
+* Reset underlying controller of XSLTTransformer after each transformation. (MULE-15259)
+
+*March 2018*
+
+== 1.1.0
+
+*March 1, 2018*
+
+=== Fixed Issues
+
+* Cannot set media type in XSLT transformer. (MULE-14651)
+
+== See Also
+
+* https://forums.mulesoft.com[MuleSoft Forum]
+* https://support.mulesoft.com[Contact MuleSoft Support]

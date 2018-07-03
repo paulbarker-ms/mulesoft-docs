@@ -135,7 +135,7 @@ The corresponding Mule configuration used in this example is as follows:
 </flow>
 ----
 
-Notice that in this configuration, we did not use the "<http://testcomponent/[test:component]>" element, since we need `FunctionalTestComponent` to be singleton for the callback to work properly.
+Notice that in this configuration, we did not use the `est:component` element, since we need `FunctionalTestComponent` to be singleton for the callback to work properly.
 
 For an example of an event callback on a Spring component, see the <<Additional Example: Event Callback With a Spring Component>> below.
 
@@ -301,9 +301,3 @@ Following is detailed information about the test components provided in the test
 xslt: Read http://www.mulesoft.org/xslt/mule/schemadoc/2.0/individual-transport-or-module-wiki.xsl error because of: java.io.IOException: Server returned HTTP response code: 401 for URL:http://svn.codehaus.org/mule/branches/mule-2.0.x/tools/schemadocs/src/main/resources/xslt//individual-transport-or-module-wiki.xsl
 ----
 
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft's Forums]

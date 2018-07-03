@@ -4,10 +4,6 @@
 
 _Select_
 
-*Release Notes:* link:/release-notes/successfactors-connector-release-notes[SuccessFactors Connector Release Notes]
-
-== Introduction
-
 Anypoint Connector for SuccessFactors provides full support to query, create, update and delete entities using the **SFAPI** API exposed by SuccessFactors. For more information about the product, visit link:https://help.sap.com/cloud4hr[SuccessFactors HCM Suite site].
 
 === Prerequisites
@@ -27,13 +23,14 @@ SuccessFactors Connector is compatible with:
 |===
 
 
-== Installing and Configuring
+== To Install this Connector
 
-The following sections describe how to install and configure the SuccessFactors Connector.
+. In Anypoint Studio, click the Exchange icon in the Studio taskbar.
+. Click Login in Anypoint Exchange.
+. Search for the connector and click Install.
+. Follow the prompts to install the connector.
 
-=== Installing
-
-You can install a connector in Anypoint Studio using the instructions in link:/getting-started/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange].
+When Studio has an update, a message displays in the lower right corner, which you can click to install the update.
 
 === Creating a New Project
 
@@ -57,10 +54,8 @@ image:successfactors_new_project.png[successfactors_new_project]
 
 To use the SuccessFactors Connector in your Mule application, you must configure a global configuration element that can be used by all SuccessFactors Connectors in the application (read more about link:/mule-user-guide/v/3.7/global-elements[global elements]).
 
-[tabs]
-------
-[tab,title="Studio Visual Editor"]
-....
+=== Studio Visual Editor
+
 Follow these steps to create a SuccessFactors global element:
 
 . Click the *Global Elements* tab at the base of the canvas.
@@ -138,8 +133,6 @@ Follow these steps to configure a SuccessFactors Connector in your application:
 |*Entity List* |Required if the *Fetch all entities* parameter is false. Enter a list of names of all the entities you wish to work with.
 |===
 
-....
-------
 
 == Use Cases and Demos
 
@@ -155,9 +148,6 @@ This section of the manual provides a brief description of simple use case scena
 * link:#insert-use-case[Insert Use Case]
 * link:#delete-use-case[Delete Use Case]
 * link:#flow-xml-for-use-cases[Flow XML for Use Cases]
-////
-More working sample applications for each use case can be found in the link:https://github.com/mulesoft/success-factors-connector/[demo projects].
-////
 
 === List Entities Use Case
 
@@ -463,5 +453,6 @@ inboundProperties."http.query.params".'query']]></dw:set-payload>
 
 === See Also
 
-* For more information on Mule platform and how to build Mule apps, please visit the link:https://docs.mulesoft.com/[MuleSoft Documentation] site.
-* Learn more about working with link:/mule-user-guide/v/3.7/anypoint-connectors[Anypoint Connectors].
+* link:/release-notes/successfactors-connector-release-notes[SuccessFactors Connector Release Notes]
+* link:https://docs.mulesoft.com/[MuleSoft Documentation]
+* link:/mule-user-guide/v/3.7/anypoint-connectors[Anypoint Connectors]

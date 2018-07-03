@@ -43,7 +43,7 @@ Default MEP
  a|
 Maven Artifact
 
-|VM |http://www.mulesoft.org/docs/site/3.6.0/apidocs/org/mule/transport/vm/package-summary.html[JavaDoc] http://www.mulesoft.org/docs/site/current3/schemadocs/namespaces/http_www_mulesoft_org_schema_mule_vm/namespace-overview.html[SchemaDoc] |image:check.png[check] |image:check.png[check] |image:check.png[check] |XA |image:check.png[check] |  |one-way, request-response |one-way |org.mule.transports:mule-transport-vm
+|VM |link:http://www.mulesoft.org/docs/site/3.6.0/apidocs/org/mule/transport/vm/package-summary.html[JavaDoc] link:http://www.mulesoft.org/docs/site/current3/schemadocs/namespaces/http_www_mulesoft_org_schema_mule_vm/namespace-overview.html[SchemaDoc] |image:check.png[check] |image:check.png[check] |image:check.png[check] |XA |image:check.png[check] |  |one-way, request-response |one-way |org.mule.transports:mule-transport-vm
 
 |===
 
@@ -53,7 +53,7 @@ Maven Artifact
 *Docs* - Links to the JavaDoc and SchemaDoc for the transport +
 *Inbound* - Whether the transport can receive inbound events and can be used for an inbound endpoint +
 *Outbound* - Whether the transport can produce outbound events and be used with an outbound endpoint +
-*Request* - Whether this endpoint can be queried directly with a request call (via MuleClinet or the EventContext) +
+*Request* - Whether this endpoint can be queried directly with a request call (via MuleClient or the EventContext) +
 *Transactions* - Whether transactions are supported by the transport. Transports that support transactions can be configured in either local or distributed two-phase commit (XA) transaction. +
 *Streaming* - Whether this transport can process messages that come in on an input stream. This allows for very efficient processing of large data. For more information, see Streaming. +
 *Retry* - Whether this transport supports retry policies. Note that all transports can be configured with Retry policies, but only the ones marked here are officially supported by MuleSoft +
@@ -311,9 +311,9 @@ The second VM endpoint ❸ (outbound) uses a _one-way_ exchange pattern and 
 === Element Listing
 
 [WARNING]
-In the XSLT-generated section that follows, the reference to the Configuring Queues document refers to the Mule 3.2 http://www.mulesoft.org/documentation-3.2/display/32X/Configuring+Queues[Configuring Queues] document.
+In the XSLT-generated section that follows, the reference to the Configuring Queues document refers to the Mule 3.2 Configuring Queues document.
 
-= VM Transport
+== VM Transport
 
 The VM transport is used for intra-VM communication between components managed by Mule. The transport provides options for configuring VM transient or persistent queues.
 
@@ -348,12 +348,6 @@ The endpoint on which this connector receives messages from the transport.
 |path |string |no |  |The queue path, such as dispatchInQueue to create the address vm://dispatchInQueue.
 |===
 
-=== Child Elements of <inbound-endpoint...>
-
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
 
 == Outbound endpoint
 
@@ -367,12 +361,6 @@ The endpoint to which this connector sends messages.
 |path |string |no |  |The queue path, such as dispatchInQueue to create the address vm://dispatchInQueue.
 |===
 
-=== Child Elements of <outbound-endpoint...>
-
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
 
 == Endpoint
 
@@ -386,12 +374,6 @@ An endpoint "template" that can be used to construct an inbound or outbound endp
 |path |string |no |  |The queue path, such as dispatchInQueue to create the address vm://dispatchInQueue.
 |===
 
-=== Child Elements of <endpoint...>
-
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
 
 == Transaction
 
@@ -412,7 +394,7 @@ http://www.mulesoft.org/docs/site/current3/schemadocs/namespaces/http_www_muleso
 
 The Javadoc for this module can be found here:
 
-http://www.mulesoft.org/docs/site/3.6.0/apidocs/org/mule/transport/vm/package-summary.html[VM]
+link:http://www.mulesoft.org/docs/site/3.6.0/apidocs/org/mule/transport/vm/package-summary.html[VM]
 
 == Maven
 
@@ -420,19 +402,14 @@ The In Memory Transport can be included with the following dependency:
 
 [source, xml, linenums]
 ----
-<vm:connector name="persistentVmConnector" queueTimeout="1000"> ❶
-   <queue-profile maxOutstandingMessages="100" persistent="true"/>
-</vm:connector>
- 
-<flow>
-    <vm:inbound-endpoint path="in" exchange-pattern="request-response"/> ❷
-    <component class="org.mule.ComponentClass"/>
-    <vm:outbound-endpoint exchange-pattern="one-way" path="out" connector-ref="persistentVmConnector" /> ❸
-</flow>
+<dependency>
+   <groupId>org.mule.transports</groupId>
+   <artifactId>mule-transport-vm</artifactId>
+</dependency>
 ----
 
 == Best Practices
 
 Be certain that inbound request-response endpoints are paired with outbound request-response endpoints and inbound one-way endpoints are paired with outbound one-way endpoints.
 
-Consider setting up your application following a link:/mule-management-console/v/3.6/reliability-patterns[reliability pattern].
+Consider setting up your application following a link:/mule-user-guide/v/3.6/reliability-patterns[reliability pattern].

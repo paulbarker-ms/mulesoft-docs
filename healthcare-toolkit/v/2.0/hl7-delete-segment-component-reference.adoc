@@ -21,6 +21,8 @@ This component is part of the link:/healthcare-toolkit/v/2.0[Mule Healthcare Too
 hl7:delete-segment
 ----
 
+// the following tabs make no sense. kris 7/2/2017
+
 == Sample Complete XML
 
 [tabs]
@@ -51,8 +53,6 @@ hl7:delete-segment
 ------
 [tab,title="Studio Visual Editor"]
 ....
-
-image:hl7-delete-seg.png[hl7-delete-seg]
 
 The following tables list and describe configurable parameters for this building block. In this table, *Name* refers to the parameter name as it appears in the *Pattern Properties* window. The *XML* column lists the corresponding XML attribute.
 
@@ -169,9 +169,3 @@ http://www.mulesoft.org/schema/mule/hl7/mule-hl7.xsd
 [NOTE]
 If the HL7 message that you wish to modify is not a HAPI object, transform it to a HAPI object with the link:/healthcare-toolkit/v/2.0/hl7-encoding-transformer[HL7 Encoding Transformer], which you can place immediately before the Delete Segment component.
 
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

@@ -1,5 +1,5 @@
 = Configuring Maven to Work with Mule
-:keywords: anypoint, studio, esb, maven
+:keywords: anypoint, studio, maven
 
 When working with Maven and Mule outside of Anypoint Studio, you need to configure your Maven installation to work successfully with Mule. This page covers how to maintain your POM file to add or adjust dependencies and point to the correct MuleSoft repositories, and how to modify your Maven `settings.xml` file to include credentials and profiles for the Enterprise repository.
 
@@ -7,9 +7,12 @@ Once you have modified your Maven installation, you can install Mule plugins and
 
 Developing in Maven is greatly simplified by the link:/mule-user-guide/v/3.7/maven-tools-for-mule-esb[Maven Tools for Mule] plugin, which provides Maven archetypes for building Mule applications.
 
-== Assumptions
+*Note:* https://www.anypoint.mulesoft.com/exchange/?type=connector[Anypoint Exchange] provides Maven dependency information.
+Click a connector asset and click Dependency Snippets to list the Maven pom.xml file dependency.
 
-This document assumes that you are working with Maven outside of Anypoint Studio, and thus will be using archetypes to build Mule applications. See link:/mule-user-guide/v/3.7/using-maven-with-mule[Using Maven with Mule] for an overview of using Maven to manage your Mule projects. This document also assumes you have link:https://maven.apache.org/download.cgi[Apache Maven installed].
+== Prerequisites
+
+This document assumes that you are working with Maven outside of Anypoint Studio, and thus will be using archetypes to build Mule applications. See link:/mule-user-guide/v/3.7/using-maven-with-mule[Using Maven with Mule] for an overview of using Maven to manage your Mule projects. This document also assumes you have https://maven.apache.org/download.cgi[Apache Maven installed].
 
 [NOTE]
 ====
@@ -25,24 +28,6 @@ Before you can start using Maven to create new Mule projects from the command li
 . Create or maintain your already-created `pom.xml` files for your applications to include references to the MuleSoft open-source repositories and any connectors, modules, or other extensions that you need to include in each application.
 
 . _Enterprise users only:_ Modify the `settings.xml` file to point to the Enterprise Customer repository and provide your credentials.
-
-== Checking Your Maven Installation
-
-By default, your local Maven installation stores configuration files in the directory `$HOME/.m2` ( `~/.m2` on Unix and Mac; `C:\Documents and Settings\<user>\.m2` on Windows). Keep in mind that in Linux or Mac `.m2` is a hidden folder.
-
-If you are building your project outside Studio, you need to manually add some required JARs which cannot be accessed publicly through Maven. In Mule Enterprise Edition, the command line tool `populate_m2_repo`, which is available in your `$MULE_HOME/bin` directory, can fetch all the associated files. Note: Avoid duplicating jars in your project which causes classloading errors.
-
-. Navigate to `%MULE_HOME%\bin`  directory (Windows), `$MULE_HOME/bin`  folder (Linux/Unix).
-
-. Execute one of the following commands:
-
-* `./populate_m2_repo <my-test-m2-repository>` (Linux/Unix)
-
-* `populate_m2_repo.cmd <my-test-m2-repository>` (Windows)
-
-(Note that `my-m2-test-repository` must not already exist in the current directory.)
-
-Note that you may encounter errors if your `MULE_HOME` is set to a path containing spaces. It is recommended that you select a `MULE_HOME` location that does not contain spaces.
 
 == Configuring Your Maven Installation for Mule
 
@@ -114,7 +99,7 @@ For example, if you were adding the dependency for the Salesforce connector:
 <dependencies>
 ----
 
-Not sure what the dependency details are for a connector that you need? Refer to the connector-specific Maven instructions on the link:http://www.mulesoft.org/documentation/www.mulesoft.org/connectors[connectors site].
+Not sure what the dependency details are for a connector that you need? Refer to the connector-specific Maven instructions on the link:http://www.mulesoft.org/connectors[connectors site].
 
 === Referencing MuleSoft's Enterprise Repositories
 

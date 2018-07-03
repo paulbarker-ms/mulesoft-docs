@@ -69,7 +69,7 @@ Script components facilitate Software as a Service (SaaS) integration by providi
 |image:ruby-component-24x16.png[ruby-component-24x16]
 |Ruby
 |Allows integration of a custom script backed by the Ruby script engine.
-|https://developer.mulesoft.com/docs/display/33X/Ruby+Component+Reference[Ruby Component Reference]
+|link:/mule-user-guide/v/3.3/ruby-component-reference[Ruby Component Reference]
 
 |image:Component-24x16.png[Component-24x16] |Script |Makes a script written in Groovy, JavaScript, Python, or Ruby available to the application flow. |link:/mule-user-guide/v/3.3/script-component-reference[Script Component Reference]
 |===
@@ -84,3 +84,4 @@ Web Service components provide the developer with the framework to reference cla
 |image:Rest-24x16.png[Rest-24x16] |REST |Makes a REST web service available to the application flow via Jersey. |link:/mule-user-guide/v/3.3/rest-component-reference[REST Component Reference]
 
 |image:Soap-24x16.png[Soap-24x16] |SOAP |Makes a web service available to the application flow via CXF. |link:/mule-user-guide/v/3.3/soap-component-reference[SOAP Component Reference]
+|===

@@ -1,4 +1,4 @@
-= Defining a Data Mapping Flow with Input and Output Metadata
+= Defining a Data Mapping Flow with Input and Output Metadata (Deprecated - DataMapper)
 :keywords: datamapper
 
 
@@ -50,8 +50,6 @@ Otherwise, you must choose a data source for your mapping. You can simply take t
 image:source2.png[source2]
 
 The output target can be similarly configured, both through the available options in the drop down menu or by typing in an expression. You can map the data to any existing or non existing property, variable, or child element of the payload by using an expression in such a way.
-
-image:datamapper+output.jpeg[datamapper+output]
 
 The available input and output types include:
 
@@ -460,8 +458,3 @@ You can also:
 * Set additional properties that affect the handling of input and output, as described in link:/anypoint-studio/v/6/mapping-flow-input-and-output-properties[Mapping Flow Input and Output Properties]
 
 * Revise your metadata definitions, if necessary, as described in link:/anypoint-studio/v/6/updating-metadata-in-an-existing-mapping[Updating Metadata in an Existing Mapping].
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

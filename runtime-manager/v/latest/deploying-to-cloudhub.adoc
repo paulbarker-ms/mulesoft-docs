@@ -11,23 +11,11 @@ You can deploy a Mule application to CloudHub via:
 * *Anypoint Studio* - Right-click your project and click *Deploy to Anypoint Platform* -> *Cloud*.
 * *Runtime Manager* - in the cloud-based version of the link:https://anypoint.mulesoft.com[Anypoint Platform]. Go to the *Runtime Manager* section, and then from the *Applications* tab, click the *Deploy application* button.
 
-This page describes the options on the *Deploy Application* panel that is identical in both cases.
+This page describes the options on the *Deploy Application* panel that is identical in both cases. Additionally, you can also deploy to CloudHub through:
 
-[TIP]
-====
-Additionally, you can also deploy to CloudHub through:
-
-* The *link:/runtime-manager/cloudhub-api[CloudHub API]*
-* The *link:/runtime-manager/anypoint-platform-cli[CloudHub Command Line Interface]*
-* Using the *link:/mule-user-guide/v/3.8/mule-maven-plugin[Mule-Maven Plugin]*
-====
-
-[NOTE]
-====
-Deploying to CloudHub is not possible via the Anypoint Platform Private Cloud Edition.
-
-If you’re still interested in requesting the Anypoint Platform Private Cloud Edition, please contact your sales representative.
-====
+* The CloudHub API
+* CloudHub CLI
+* Mule-Maven Plugin
 
 == Deploying an Application
 
@@ -104,17 +92,6 @@ image:DeployAppFirstScreen.png[DeployAppFirstScreen] 
 [TIP]
 For an example of deploying to CloudHub directly from Anypoint Studio, see link:/getting-started/deploy-to-cloudhub[Deploy to CloudHub].
 
-
-////
-=== From the Design Center
-
-link to Mozart
-
-
-////
-
-
-
 == Creating an Application Name
 
 Every application requires a unique application domain name. The application domain identifies your application in the Runtime Manager and also provides you with a public URL, `+http://myapplicationdomain.cloudhub.io+`, for accessing the application if it exposes any inbound endpoints.
@@ -167,7 +144,7 @@ image:deploying-to-cloudhub-update.png[]
 
 === Worker Sizing
 
-After you deploy your application, you can allocate an amount and a size for the *Worker size* of your application. On each application, workers are responsible for executing your application logic. 
+After deploying your application, you can allocate the amount and size of the worker associated with your application. On each application, workers are responsible for executing your application logic. 
 
 [TIP]
 --
@@ -175,22 +152,29 @@ Only running applications count for workers usage. +
 `Stopped` applications do not consume vCore availability.
 --
 
-There are 5 different worker sizes to choose from, with the compute and memory capacities described in the following table:
+There are worker sizes with different compute and memory capacities:
 
-[%autowidth.spread]
+[%header,cols="2*a"]
 |===
-|*Worker Sizes* |0.1 vCores +
- 500 MB Mem |0.2 vCores +
- 1 GB Mem |1 vCores +
- 1.5 GB Mem |2 vCores +
- 3.5 GB Mem |4 vCores +
- 7.5 GB Mem
+|Worker Size |Heap Memory
+|0.1 vCores |500 MB
+|0.2 vCores |1 GB
+|1 vCores |1.5 GB
+|2 vCores |3.5 GB
+|4 vCores |7.5 GB
+|8 vCores |15 GB
+|16 vCores |32 GB
 |===
 
-Workers that have less than 1 vCore capacity (0.1 vCores and 0.2 vCores)  offer limited CPU and IO for smaller work loads. Each worker has 8 GB of storage, which is used for both system and application storage. Applications with greater storage needs (verbose logging etc.) should use one of the larger worker sizes - 2 vCores or 4 vCores, which have additional storage as follows:
+Workers that have less than 1 vCore capacity (0.1 vCores and 0.2 vCores)  offer limited CPU and IO for smaller work loads. Each worker has 8 GB of storage, which is used for both system and application storage. 
 
+Applications with greater storage needs (verbose logging etc.) should use one of the larger worker sizes - 2 vCores or 4 vCores, which have additional storage as follows:
+
+* 1 vCores workers have an additional 4 GB of SSD storage mounted on /tmp
 * 2 vCores workers have an additional 32 GB of SSD storage mounted on /tmp
 * 4 vCores workers have an additional 80 GB of storage, mounted as two volumes on /tmp (40 GB), and /opt/storage (40 GB)
+* 8 vCores workers have an additional 160 GB of storage, mounted as two volumes on /tmp (80 GB), and /opt/storage (80 GB)
+* 16 vCores workers have an additional 320 GB of storage, mounted as two volumes on /tmp (160 GB), and /opt/storage (160 GB)
 
 [IMPORTANT]
 The workers with additional storage as listed above are only available for Mule runtimes 3.6.2 or later, or API Gateway 2.0.2 or later.
@@ -225,8 +209,11 @@ Read more about link:/runtime-manager/worker-monitoring[Worker Monitoring].
 Check this box to enable persistent queues on your application. Persistent queues protect against message loss and allow you to distribute workloads across a set of workers. Before you can take advantage of persistent queueing, your application needs to be set up to use queues. See link:/runtime-manager/cloudhub-fabric[CloudHub Fabric] for more information.
 
 [IMPORTANT]
-If your mule application is using link:/mule-user-guide/v/3.8/batch-processing[Batch] component and persistent queues, then you might see batch record being processed multiple times. All batch records are stored in Amazon SQS and by default the visibility of the message is set to 70 seconds. If your batch process takes longer than 70 seconds, then batch process might see the same message again and process it multiple times.  To avoid this issue please set 'persistent.queue.min.timeout' system parameter to a reasonable value, for example if your batch process takes 30 minutes to complete then set value to 'persistent.queue.min.timeout=2700000' milliseconds ( 45 Minutes). Maximum value of 43000000 milliseconds (12 hours) is supported. See screen shot below for setting the value in cloudhub
+====
+If your mule application is using Batch component and persistent queues, then you might see batch record being processed multiple times. All batch records are stored in Amazon SQS and by default the visibility of the message is set to 70 seconds. If your batch process takes longer than 70 seconds, then batch process might see the same message again and process it multiple times.  To avoid this issue please set 'persistent.queue.min.timeout' system parameter to a reasonable value, for example if your batch process takes 30 minutes to complete then set value to 'persistent.queue.min.timeout=2700000' milliseconds ( 45 Minutes). Maximum value of 43000000 milliseconds (12 hours) is supported. See screen shot below for setting the value in cloudhub
+
 image:MuleBatchWithPersistentQueueDuplicationSolution.png[MuleBatchWithPersistentQueues]
+====
 
 == Properties Tab
 
@@ -273,7 +260,7 @@ The second approach is much easier to translate to CloudHub: the Properties tab 
 If you also have any property names set in a mule-app.properties file inside your application or in bundled property placeholder files, then when your application is deployed, any entries in the CloudHub Properties tab with the same name will override the matching value bundled with the application.
 
 [Note]
-It is possible to change the behavior of the application to not allow CloudHub properties to override properties bundled with the deployable archive. You do this by changing options in the Property Placeholder element in the Mule application. See link:http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information on non-default property placeholder options.
+It is possible to change the behavior of the application to not allow CloudHub properties to override properties bundled with the deployable archive. You do this by changing the options in the Property Placeholder element in the Mule application to prefer property placeholder files over JVM system environment variables. See link:http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/config/PropertyPlaceholderConfigurer.html[Spring documentation on Property Placeholder options] for more information on non-default property placeholder options.
 
 ==== Overriding Secure Properties
 
@@ -305,8 +292,6 @@ image:static-ip-tab.png[Static IP tab]
 To pre-allocate static IPs for your application, select a region from the *Region* dropdown menu, then click *Allocate Static IP* to allocate a static IP for the chosen region. The static IP address is allocated when the application is deployed to that region. If the application is already running, applying the static IP change  triggers a restart of the application with the newly-applied static IP.
 
 image:static-ip-regions.png[Static IPs by region]
-
-Applications with static IPs can only have one instance.
 
 By default, the number of static IPs allocated to your organization is equal to twice the number of Production vCores in your subscription. This number is displayed under the *Use Static IP* checkbox. If you need to increase this quota, you can contact link:https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support].
 
@@ -354,12 +339,12 @@ If an error occurs and the application cannot be deployed, the application statu
 
 == See Also
 
-* See a tutorial about deploying to CloudHub directly from Anypoint Studio link:/getting-started/deploy-to-cloudhub[Deploy to CloudHub]
-* Read more about what link:/runtime-manager/cloudhub[CloudHub] is and what features it has
-* link:/runtime-manager/managing-deployed-applications[Managing Deployed Applications] contains general information about hoy to manage your application once deployed
-* link:/runtime-manager/managing-applications-on-cloudhub[Managing Applications on CloudHub] contains more information on how to manage your applications with setting that are specific to CloudHub
-* link:/runtime-manager/monitoring[Monitoring Applications] shows you how you can set up email alerts for whenever certain events occur with your application or workers
+* link:/getting-started/deploy-to-cloudhub[Deploy to CloudHub]
+* link:/runtime-manager/cloudhub[CloudHub]
+* link:/runtime-manager/managing-deployed-applications[Managing Deployed Applications]
+* link:/runtime-manager/managing-applications-on-cloudhub[Managing Applications on CloudHub]
+* link:/runtime-manager/monitoring[Monitoring Applications]
 * link:/runtime-manager/developing-applications-for-cloudhub[Developing Applications for CloudHub]
-* Deploy using the link:/runtime-manager/anypoint-platform-cli[CloudHub Command Line Interface].
-* A link:/runtime-manager/cloudhub-api[REST API] is also available for automating deployments to CloudHub.
-* For information on deploying to servers, server groups and clusters, see link:/runtime-manager/deploying-to-your-own-servers[Deploying to Your Own Servers].
+* link:/runtime-manager/anypoint-platform-cli[CloudHub Command Line Interface]
+* link:/runtime-manager/cloudhub-api[REST API]
+* link:/runtime-manager/deploying-to-your-own-servers[Deploying to Your Own Servers]

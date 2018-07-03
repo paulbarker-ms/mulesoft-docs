@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 = To Create a Load Balancer using the CLI
 
 You can create an external load balancer using the Anypoint Platform CLI.
+=======
+= To Create a Load Balancer (Anypoint Platform CLI)
+
+You can create a dedicated load balancer using the Anypoint Platform CLI.
+>>>>>>> 3741126c631eeebabe710cdf5de8e454e94b67ec
 
 == Prerequisites
 
@@ -19,4 +25,8 @@ To create a load balancer from the CLI, use the `cloudhub load-balancer create`.
 * link:/runtime-manager/anypoint-platform-cli#cloudhub-load-balancer-create[cloudhub load-balancer create]
 * link:/runtime-manager/lb-cert-upload[About Uploading Certificates]
 * link:/access-management[Access Management]
+<<<<<<< HEAD
 * link:/runtime-manaager[To Create a Load Balancer using Runtime Manager]
+=======
+* link:/runtime-manager[To Create a Load Balancer using Runtime Manager]
+>>>>>>> 3741126c631eeebabe710cdf5de8e454e94b67ec

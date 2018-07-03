@@ -1,19 +1,13 @@
 = Box Connector
 :keywords: box,box-connector,storage
 :imagesdir: ./_images
-:toc: macro
-:toclevels: 2
-
-image:user-manual-3a3f0.png[box icon]
-
-toc::[]
-
 
 == Introduction
 
 The *Anypoint Connector for Box* is a *closed-source, SDK-based* connector that provides synchronization of data and automation of processes between Box and third party CRM, CMS, mobile and social applications.
 
-*Release Notes:* link:/release-notes/box-connector-release-notes[Box Connector Release Notes]
+*Release Notes:* link:/release-notes/box-connector-release-notes[Box Connector Release Notes] +
+*Technical Reference:* http://mulesoft.github.io/mule-box-connector[Mule Box Connector]
 
 
 == Prerequisites
@@ -41,7 +35,7 @@ See the link:/release-notes/box-connector-release-notes[Box connector release no
 To install the Box connector in Anypoint Studio, follow the steps below:
 
 . Open Anypoint Studio and go to *Help* > *Install New Software*
-. Select *Anypoint Connectors Update Site - \http://repository.mulesoft.org/connectors/releases/3.5.0*
+* Select `Anypoint Connectors Update Site` or `http://repository.mulesoft.org/connectors/releases/3.5.0`.
 . Locate the *Box* connector.
 . Click *Next* and accept the license agreement.
 . Restart Studio when prompted.
@@ -198,8 +192,8 @@ a|* Users
 
 When designing your application in Studio, the act of dragging the connector from the palette onto the Anypoint Studio canvas should automatically populate the XML code with the connector *namespace* and *schema location*.
 
-* *Namespace:* `http://www.mulesoft.org/schema/mule/box`
-* *Schema Location:* `http://www.mulesoft.org/schema/mule/box/current/mule-box.xsd`
+* *Namespace:* `+http://www.mulesoft.org/schema/mule/box+`
+* *Schema Location:* `+http://www.mulesoft.org/schema/mule/box/current/mule-box.xsd+`
 
 [TIP]
 If you are manually coding the Mule application in Studio's XML editor or other text editor, define the namespace and schema location in the header of your *Configuration XML*, inside the `<mule>` tag.
@@ -347,7 +341,7 @@ Currently, *version 3.0.0* of the Box connector does *NOT* support the following
 
 == Demo Mule Applications Using Connector
 
-You can download fully functional demo applications using the Box connector from http://mulesoft.github.io/box-connector/[this link].
+You can download fully functional demo applications using the Box connector from http://mulesoft.github.io/mule-box-connector/[this link].
 
 
 === Example Use Case
@@ -392,7 +386,7 @@ box.developerToken=<DEVELOPER_TOKEN>
 . Click **Test Connection** to confirm that Mule can connect with the Box instance. If the connection is successful, click **OK** to save the configuration. Otherwise, review or correct any invalid parameters and test again.
 . Back in the *Properties editor*, configure the remaining parameters:
 +
-[%header%autowidth]
+[%header%autowidth.spread]
 |===
 |Parameter|Value
 |*Display Name* m|Create Folder (or any other name you prefer).
@@ -511,5 +505,5 @@ http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/
 
 * Learn more about working with link:/mule-user-guide/v/3.8/anypoint-connectors[Anypoint Connectors].
 * Access the link:/release-notes/box-connector-release-notes[Box Connector Release Notes].
-* For additional technical information on the Box Connector, visit our link:http://mulesoft.github.io/box-connector[technical reference documentation].
+* For additional technical information on the Box Connector, visit our link:http://mulesoft.github.io/mule-box-connector[technical reference documentation].
 * To know more about the Box API, go to the link:https://docs.box.com/reference/[Box API documentation page].

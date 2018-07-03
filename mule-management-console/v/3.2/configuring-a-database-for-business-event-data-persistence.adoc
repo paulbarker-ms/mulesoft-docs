@@ -33,7 +33,7 @@ On Windows systems, you can also stop and start the listener from the Oracle Con
 
 == Step 4: Create a Database User
 
-Open the Database Home Page login window at http://127.0.0.1:8080/apex/. Login as follows:
+Open the Database Home Page login window at +http://127.0.0.1:8080/apex/+. Login as follows:
 
 * Username: system
 * Password: Enter the password that was specified when Oracle XE was installed.
@@ -180,8 +180,4 @@ link:/mule-management-console/v/3.2/working-with-alerts[Next: *Working With Aler
 
 == See Also
 
-* link:https://www.mulesoft.com/dl/mmc[MMC Download]
-* link:https://www.mulesoft.com/tcat/download[Tcat Download]
-* link:http://forums.mulesoft.com[MuleSoft's Forums]
-* link:https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support]
-* mailto:support@mulesoft.com[Contact MuleSoft]
+* https://support.mulesoft.com[Contact MuleSoft Support]

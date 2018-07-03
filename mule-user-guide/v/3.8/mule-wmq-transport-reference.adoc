@@ -1,7 +1,7 @@
 = Mule WMQ Transport Reference 
 :keywords: anypoint studio, connector, endpoint, wmq, transport
 
-*_Enterprise_*
+_Enterprise_
 
 The Mule Enterprise transport for IBM® WebSphere® MQ (Mule WMQ transport) provides the following functionality:
 
@@ -15,24 +15,26 @@ The Mule Enterprise transport for IBM® WebSphere® MQ (Mule WMQ transport) prov
 * Support for IBM-specific headers
 * JNDI destination support including JNDI connections
 * Per endpoint control over target clients (native or JMS compliant)
-* Works with WMQ 7.0, 7.1, and 7.5
 
-This page describes how to configure and use this transport and its connector. It assumes that you already understand how to configure and use WebSphere MQ. For complete information on WebSphere MQ, refer to the link:http://www-01.ibm.com/software/integration/wmq/library/[WebSphere MQ Information Center].
+This page describes how to configure and use this transport and its connector. It assumes that you already understand how to configure and use WebSphere MQ. For complete information on WebSphere MQ, refer to the http://www-01.ibm.com/software/integration/wmq/library/[WebSphere MQ Information Center].
 
-The Mule WMQ transport is available only with Mule Enterprise Edition version 1.6 or later and, as of 2.2, contains many critical performance and reliability improvements as well as native support for WebSphere MQ-specific features.
+The Mule WMQ transport is available with Mule Enterprise Edition and contains native support for WebSphere MQ-specific features.
 
 *Note*: The community JMS transport does not provide full support for WebSphere MQ and is not recommended for use with production WebSphere MQ installations.
+
+== Supported Versions
+
+* WMQ Transport supports the IBM MQ 8.0, 9.0 client drivers, which can be used to connect to WMQ Server versions 8.0, and 9.0. 
+* WMQ 7.x is in end of life at IBM. While the connector should be backwards compatible with this version, it is not supported neither by IBM nor by MuleSoft
+* This transport is compatible with Mule 3.8 and later with IBM MQ 8 and 9. This transport was not tested on Mule 3.7 using IBM MQ 8 or 9. This configuration may work, but is not supported. 
 
 == Setting Up the Mule WMQ Transport
 
 Before you can use the Mule WMQ transport, you must copy the following JARs from the `java/lib` directory under your WebSphere MQ home directory into the `lib/user` directory under your Mule home directory:
 
-* `com.ibm.mq.jar`
+* `com.ibm.mq.allclient.jar`
 * `com.ibm.mqetclient.jar` (if using <<Transactions>>)
-* `com.ibm.mq.jmqi.jar` 
-* `com.ibm.mqjms.jar`
-* `dhbcore.jar`
-* `com.ibm.mq.headers.jar`
+* `jms.jar`
 
 Additionally, if you are using local bindings (`transportType="BINDINGS_MQ"`), you must set the following environment variable:
 
@@ -64,8 +66,8 @@ http://www.mulesoft.org/schema/mule/ee/wmq/current/mule-wmq-ee.xsd
 
 Before you run an app using the transport, ensure that your system meets the following conditions:
 
-* Mule Enterprise is installed
-* WebSphere MQ 6 or 7 is installed
+* Mule Enterprise is installed.
+* A supported version of WebSphere MQ is installed (see list above).
 * the WebSphere MQ client library JARs listed above are added to the project build path.
 
 By default, messages sent from Mule to WebSphere MQ are sent in native format, and JMS (RFH2) headers are suppressed. This configuration is applied transparently to the configuration below by the connector appending a parameter to the WebSphere MQ destination URI (`?targetClient=1`). To force JMS behavior on the receiving WebSphere MQ (that is, to use non-native format), use the following attribute setting in the WMQ connector declaration:
@@ -79,7 +81,11 @@ By default, messages sent from Mule to WebSphere MQ are sent in native format, a
 />
 ----
 
-*Note:* The `targetClient` attribute must be set to `JMS_COMPLIANT` when the message payload is an object.
+*Notes:
+
+* Bitronix and JMS do not honor the caching connection factory and TCP connections are recreated regardless of how this
+factory is set.
+* In `targetClient` attribute must be set to `JMS_COMPLIANT` when the message payload is an object.
 
 The following configuration example configures a flow named `test` that performs request-reply processing. It picks up messages from the native WebSphere MQ endpoint (`wmq://REQUEST.QUEUE`) and forwards them to another native WebSphere MQ endpoint, ` wmq://RESPONSE.QUEUE`. The `Responder` flow waits while Mule processes the messages asynchronously and appends the string RESPONSE OK when it receives messages on the response queue. All JMS semantics apply, and settings such as replyTo and QoS properties are read from the message properties, or defaults are used (according to the JMS specification).
 
@@ -547,9 +553,3 @@ Also supported:
 * Object To Message Transformer converts an object back into a `com.ibm.jms.JMSMessage`.
 * Transactions allow a series of operations to be grouped together so that they can be rolled back if a failure occurs. Set the action (such as ALWAYS_BEGIN or JOIN_IF_POSSIBLE) and the timeout setting for the transaction.
 
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

@@ -43,7 +43,7 @@ For example:
        http://www.mulesoft.org/schema/mule/servlet
        http://www.mulesoft.org/schema/mule/servlet/3.3/mule-servlet.xsd">
  
-    <servlet:connector name="servletConnector" servletUrl="+http://localhost:8888+" />
+    <servlet:connector name="servletConnector" servletUrl="http://localhost:8888" />
 ...
 ----
 
@@ -53,10 +53,10 @@ You can also specify the servlet URL as part of the endpoint:
 
 [source, xml, linenums]
 ----
-<servlet:inbound-endpoint path="+http://localhost:8888+" />
+<servlet:inbound-endpoint path="http://localhost:8888" />
 ----
 
-Servlet endpoints accept the same attributes and child elements as HTTP endpoints. For more information, see link:/mule-user-guide/v/3.7/http-transport-reference[HTTP Transport Reference].
+Servlet endpoints accept the same attributes and child elements as HTTP endpoints. For more information, see link:/mule-user-guide/v/3.3/http-transport-reference[HTTP Transport Reference].
 
 == Endpoint
 
@@ -68,14 +68,8 @@ Servlet endpoints accept the same attributes and child elements as HTTP endpoint
 |path |string |yes |  |the servlett path to bind the service to.
 |===
 
-=== Child Elements of <endpoint...>
 
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
-
-= Servlet Transport
+== Servlet Transport
 
 The Servlet transport allows Mule components to listen for events received via a servlet request.
 
@@ -92,14 +86,8 @@ Servlet connector is a channel adapter between Mule and a servlet engine. It all
 |useCachedHttpServletRequest |boolean |no |false |Whether to use a cached http servlet request
 |===
 
-=== Child Elements of <connector...>
 
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
-
-== Inbound endpoint
+== Inbound Endpoint
 
 === Attributes of <inbound-endpoint...>
 
@@ -109,12 +97,6 @@ Servlet connector is a channel adapter between Mule and a servlet engine. It all
 |path |string |yes |  |the servlett path to bind the service to.
 |===
 
-=== Child Elements of <inbound-endpoint...>
-
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
 
 == Endpoint
 
@@ -126,14 +108,9 @@ Servlet connector is a channel adapter between Mule and a servlet engine. It all
 |path |string |yes |  |the servlett path to bind the service to.
 |===
 
-=== Child Elements of <endpoint...>
 
-[%header,cols="34,33,33"]
-|===
-|Name |Cardinality |Description
-|===
 
-=== Transformers
+== Transformers
 
 These are transformers specific to this transport. Note that these are added automatically to the Mule registry at start up. When doing automatic transformations these will be included when searching for the correct transformers.
 

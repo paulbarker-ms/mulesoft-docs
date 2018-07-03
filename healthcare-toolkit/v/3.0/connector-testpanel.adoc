@@ -1,7 +1,7 @@
 = Connector Testing with TestPanel
 :keywords: hl7, testpanel
 
-link:http://hl7api.sourceforge.net/hapi-testpanel/[TestPanel] is an HL7 receiver, transmitter, and message editor. TestPanel is free software distributed under the link:http://hl7api.sourceforge.net/license.html[MPL/GPL] licenses, and runs on Mac OSX, Linux, and Windows. Check the link:http://hl7api.sourceforge.net/hapi-testpanel/install.html[instructions for installing with WebStart], or the link:http://sourceforge.net/projects/hl7api/files/hapi-testpanel/[download page] for the latest application bundles.
+TestPanel is an HL7 receiver, transmitter, and message editor. TestPanel is free software distributed under the link:http://hl7api.sourceforge.net/license.html[MPL/GPL] licenses, and runs on Mac OSX, Linux, and Windows. 
 
 Because the TestPanel can transmit HL7 messages to a listening application through MLLP or HTTP, you can use it to test your Mule flows that handle HL7. The following section provides an example of a simple flow tested with the TestPanel.
 
@@ -60,7 +60,7 @@ image:testpanel-obj-builder.png[testpanel-obj-builder]
 
 In the *Send a HL7 ACK* scope, HL7 MLLP sends the ACK message to the originating application.
 
-====  TestPanel Configuration
+=== TestPanel Configuration
 
 This section explains how to set up TestPanel to work with this example.
 
@@ -91,9 +91,3 @@ image:messages.png[messages]
 image:incoming-ack.png[incoming-ack]
 
 
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

@@ -124,7 +124,7 @@ Which Mule modules do you want to include in this project?
 
 ----
 
-*Note*: OGNL is deprecated in Mule 3.6 and will be removed in Mule 4.0.
+*Note*: OGNL and Sxc were deprecated in Mule 3.6 and will be removed in Mule 4.0.
 
 == The Questions Explained
 
@@ -173,9 +173,3 @@ The following options can be passed in:
 |version |-Dversion=2.2-SNAPSHOT |<muleVersion>
 |===
 
-== See Also
-
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft Forums]

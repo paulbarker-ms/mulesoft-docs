@@ -5,7 +5,9 @@ _Select_
 
 The Anypoint Connector for Workday is a closed source Enterprise connector which provides a connection between Workday and third party software. It interfaces with the Human Capital Management, Financial Management, Student, and System web services.
 
-*Release Notes*: link:/release-notes/workday-connector-release-notes#version-5-0-july-1-2015[Workday Connector Release Notes].
+*Release Notes*: link:/release-notes/workday-connector-release-notes#version-5-0-july-1-2015[Workday Connector Release Notes]
+
+*Reference:* link:http://mulesoft.github.io/workday-connector[Workday Connector]
 
 == Prerequisites
 
@@ -14,7 +16,7 @@ This document assumes that you are familiar with Workday API. To use the this co
 * A Workday instance with requisite permission
 * A set of valid credentials, including the required Workday endpoints, pointing to your Workday instance.
 
-This document also assumes that you are familiar with Mule, link:/mule-user-guide/v/3.6/anypoint-connectors[Anypoint Connectors], and the link:/anypoint-studio/v/6/index[Anypoint Studio interface]. To increase your familiarity with Studio, consider completing one or more Anypoint Studio Tutorials. Further, this page assumes that you have a basic understanding of link:/mule-user-guide/v/3.6/elements-in-a-mule-flow[Mule flows] and link:/mule-user-guide/v/3.6/global-elements[Mule Global Elements]. This document describes implementation examples within the context of Anypoint Studio, Mule ESB’s graphical user interface, and, in parallel, includes configuration details for doing the same in the XML Editor.
+This document also assumes that you are familiar with Mule, link:/mule-user-guide/v/3.6/anypoint-connectors[Anypoint Connectors], and the link:/anypoint-studio/v/6/index[Anypoint Studio interface]. To increase your familiarity with Studio, consider completing one or more Anypoint Studio Tutorials. Further, this page assumes that you have a basic understanding of link:/mule-user-guide/v/3.6/elements-in-a-mule-flow[Mule flows] and link:/mule-user-guide/v/3.6/global-elements[Mule Global Elements]. This document describes implementation examples within the context of the Anypoint Studio Visual Editor and includes configuration details for doing the same in the XML Editor.
 
 == Compatibility
 
@@ -32,12 +34,14 @@ The Workday connector 5.0 is compatible with:
 
 === Installing
 
-You can install a connector in Anypoint Studio using the instructions in link:/getting-started/anypoint-exchange#installing-a-connector-from-anypoint-exchange[Installing a Connector from Anypoint Exchange]. However, to use the Workday Connector in a production environment, you must have either:
+You can install a connector in Anypoint Studio using the instructions in link:/mule-user-guide/v/3.6/installing-connectors[To Install a Connector from Anypoint Exchange]. However, to use the Workday Connector in a production environment, you must have either:
 
 * An *Enterprise license* to use Mule
 * A *CloudHub* Starter, Professional, or Enterprise account
 
-Contact the link:/mule-user-guide/v/3.6/siebel-connector[MuleSoft Sales Team] to obtain either of these. (Read more about link:/mule-user-guide/v/3.6/installing-an-enterprise-license[Installing an Enterprise License].) Click *Restart Now* to complete the installation. After you install the connector and restart Studio, you can see several new message processors available in the palette, all under the Connectors category.
+Contact the MuleSoft Sales Team to obtain either of these. 
+
+Click *Restart Now* to complete the installation. After you install the connector and restart Studio, you can see several new message processors available in the palette, all under the Connectors category.
 
 image:wd_palette.png[wd_palette]
 
@@ -62,10 +66,7 @@ After restarting, if you have several versions of the connector installed, Mule 
 
 === Creating a New Project
 
-. In Studio, click *File* > *New* > *Mule Project*.
-+
-image:filenew.png[filenew]
-+
+. In Studio, click File > New > Mule Project.
 . Enter a name for your new project and leave the remaining options with their default values.
 . If you plan to use Git, select *Create a .gitignore file* for the project with default ignores for Studio Projects, and then click *Next*.
 . Click *Finish* to create the project.
@@ -88,8 +89,8 @@ image:global_elements_1.jpg[global_elements_1]
 userID@tenantID |user1@acme_pt1
 |*Password* |Password for connecting to Workday |`********`
 |*Endpoint* |URL where data server is hosted. It should follow this structure:
- `https://{your Workday domain}/ccx/service/{your tenant name}/{desired Workday Service}/{desired Workday Service Version}` |
-https://services1.workday.com/ccx/service/acme_pt1/Human_Resources/v24.0
+ `+https://{workday_doman}/ccx/service/{tenent_name}/{workday_service}/{workday_service_version}+` |
++https://services1.workday.com/ccx/service/acme_pt1/Human_Resources/v24.0+
 |*wsdl* |Enter the *WSDL Location* property. This defaults to the WSDL found on the Workday Community website. |
 |===
 +
@@ -138,14 +139,9 @@ image:cash_management.png[cash_management]
 +
 . Click blank space on the canvas to save your Workday connector configurations.
 
-=== Example Use Case
+== Use Case - Studio Visual Editor
 
-*Note*: Get the first 100 workers in your company and create a CSV file for them. As a recruiter, I want to get a partial list of employees in my company and export the list to a file.
-
-[tabs]
-------
-[tab,title="Studio Visual Editor"]
-....
+Get the first 100 workers in your company and create a CSV file for them. As a recruiter, I want to get a partial list of employees in my company and export the list to a file.
 
 . Drag an HTTP connector into a new flow, and configure it with the following parameters:
 +
@@ -203,7 +199,7 @@ image:global_elements_1.jpg[global_elements_1]
 |*Name* |A unique name for this global element to be referenced by connectors
 |*user* |User for connecting to Workday, formatted as <user>@<Tenant ID>
 |*password* |Workday password
-|*endpoint* |URL of your Workday server, in the form https://<Workday domain>/ccx/service/<your tenant name</<desired Workday Service>/<desired Workday Service Version> (for example, `https://services1.workday.com/ccx/service/acme/Human_Resources/v1`).
+|*endpoint* |URL of your Workday server, in the form https://<workday_domain>/ccx/service/<tenent_name>/<workday_service>/<workday_service_version>+ (for example, `+https://services1.workday.com/ccx/service/acme/Human_Resources/v1+`).
 |===
 +
 . Back in the properties editor of the Workday Human Resource connector in your application, configure the remaining parameters according to the table below.
@@ -266,10 +262,10 @@ Configure the File Endpoint:
 . Run the project as a Mule application.
 . From a browser, navigate to `http://localhost:8081/getWorker`.
 . Mule performs the query, produces a CSV file with a list of contacts matching the query criteria, and inserts the file in the output folder you specified.
-+
-....
-[tab,title="XML Editor"]
-....
+
+== Use Case - XML Editor
+
+Get the first 100 workers in your company and create a CSV file for them. As a recruiter, I want to get a partial list of employees in my company and export the list to a file.
 
 . Add a *`wd-hr:config` global element* to your project, then configure its attributes and child elements according to the table below (see code below for a complete sample).
 +
@@ -324,7 +320,7 @@ Child Element
 |*doc:name* |`HTTP`
 |===
 +
-The new flow is now reachable through the path `http://localhost:8081/getWorker`. As the exchange pattern is set to one-way, no response message is returned to the requester.
+The new flow is now reachable through the path `+http://localhost:8081/getWorker+`. As the exchange pattern is set to one-way, no response message is returned to the requester.
 +
 . After the HTTP connector, add Groovy transformer:
 +
@@ -455,13 +451,10 @@ File
 . From a browser, navigate to `http://localhost:8081/getWorker`.
 . Mule conducts the query, produces a CSV file with a list workers, and inserts the file in the output folder you specified.
 
-....
-------
+
 
 == Example Code
 
-[NOTE]
-====
 For this example to work, you must manually configure the following values of the global Workday HR connector (`wd-hr:config` element):
 
 * hrUser
@@ -469,12 +462,12 @@ For this example to work, you must manually configure the following values of th
 * hrEndpoint
 
 Moreover, adjust the filepath configuration to match a valid path on your local system and note that the DataMapper component must be configured manually using Studio's Visual Editor.
-====
+
 
 [source, xml, linenums]
 ----
 <mule xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:wd-hr="http://www.mulesoft.org/schema/mule/wd-hr" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-    xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.0"
+    xmlns:spring="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
@@ -520,10 +513,6 @@ return getWorkersType;
 
 == See Also
 
-* Learn about the link:/mule-user-guide/v/3.6/datamapper-concepts[DataMapper transformer].
-*  Read advanced information about the link:http://mulesoft.github.io/workday-connector/mule/modules.html[Workday Connector], including schema, attributes and security details.
+* Learn about the link:/anypoint-studio/v/5/datamapper-concepts[DataMapper transformer].
+* Read advanced information about the link:http://mulesoft.github.io/workday-connector[Workday Connector], including schema, attributes and security details.
 * Read more about link:/mule-user-guide/v/3.6/anypoint-connectors[Anypoint Connectors].
-* link:http://training.mulesoft.com[MuleSoft Training]
-* link:https://www.mulesoft.com/webinars[MuleSoft Webinars]
-* link:http://blogs.mulesoft.com[MuleSoft Blogs]
-* link:http://forums.mulesoft.com[MuleSoft's Forums]

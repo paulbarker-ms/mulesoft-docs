@@ -28,7 +28,7 @@ Build Number: 201407140931
 
 Our new version of Anypoint Studio (formerly known as Mule Studio) functions as a single download and includes the 3.5.1 runtime with an Enterprise trial license. It includes the following new features:
 
-* *Anypoint Templates*: Browse the library on link:https://www.mulesoft.com/exchange#!/[Anypoint Exchange] or within Anypoint Studio to find templates that help you rapidly integrate systems.
+* *Anypoint Templates*: Browse the library on https://www.anypoint.mulesoft.com/exchange/?type=template[Anypoint Exchange] or within Anypoint Studio to find templates that help you rapidly integrate systems.
 * *Streamlined package explorer and no more mflow files*: We’ve simplified how you access your Mule flows and improved Studio’s ability to work with source control systems. Mflow files are no longer needed, and all Mule configuration files can be accessed through `src/main/app`.
 * *What’s New & Migration Wizard*: When updating Studio or downloading the new version, a What's New dialog presents key migration information. In addition, a migration wizard helps you update your existing projects to reflect the adjustments to the project file structure.
 * *Connector Driver configuration*: You can now easily configure JDBC or SAP drivers from the global connector configuration window and receive project errors when drivers are configured incorrectly.
@@ -71,7 +71,7 @@ Note that only those tickets labeled with MULE apply to both the Enterprise and 
 
 [%autowidth.spread]
 |===
-|n/a | http://www.mulesoft.org/documentation/display/current/Mule+Management+Console[Mule Management Console (MMC)] does not support visibility into batch processing.
+|n/a | Mule Management Console (MMC) does not support visibility into batch processing.
 |MMC-1756 |Inconsistencies when disbanding a cluster when one of the nodes is down.
 |MMC-1754 |Global Permissions - Error 500 message when Creating a new Alert Notification with only Manage Alert Notification permission.
 |MMC-1738 |Dashboard -> Cluster Application status: When a cluster is disbanded, the portlet ‘Cluster application status’ continuously throws an exception into the logs.
@@ -157,7 +157,7 @@ Note that only those tickets labeled with MULE apply to both the Enterprise and 
 |https://www.mulesoft.org/jira/browse/MULE-7594[MULE-7594] |Scatter-gather throws exception when using a one-way outbound endpoint.
 |https://www.mulesoft.org/jira/browse/MULE-7597[MULE-7597] |scatter gather should require at least two routes
 |https://www.mulesoft.org/jira/browse/MULE-7612[MULE-7612] |Database row handler should use column aliases instead of column names
-|https://www.mulesoft.org/jira/browse/MULE-7623[MULE-7623] |Change oracle config port type to "http://mulesubstitutableInt[mule:substitutableInt]" in xsd
+|https://www.mulesoft.org/jira/browse/MULE-7623[MULE-7623] |Change oracle config port type to `mule:substitutableInt` in xsd
 |https://www.mulesoft.org/jira/browse/MULE-7626[MULE-7626] |NewDatabaseMuleArtifactTestCase fails (test problem)
 |https://www.mulesoft.org/jira/browse/MULE-7627[MULE-7627] |CloserService generates debug log message without checking logger state
 |https://www.mulesoft.org/jira/browse/MULE-7629[MULE-7629] |Provide a way to preserve the original directory when using moveToDirectory
@@ -420,7 +420,7 @@ To migrate from a previous version of Studio, use *Help > Check for Updates.*
 
 If you update Studio from the May 2014 version to the July 2014 version and don't update the APIKit component, you may encounter errors when running an application. Make sure you also update the APIkit extension via the update site.
 
-If you update Studio from the May 2014 version to the July 2014 version  and want to use the latest ESB Runtime 3.5.1, you need to install it manually, since the Studio update doesn't also update to the 3.5.1 runtime. Once you update Studio, go to *Help > Install New Software* and install the 3.5.1 runtime from the Anypoint Studio Update Site (link:http://studio.mulesoft.org/r3/updates[updates]).
+If you update Studio from the May 2014 version to the July 2014 version  and want to use the latest ESB Runtime 3.5.1, you need to install it manually, since the Studio update doesn't also update to the 3.5.1 runtime. Once you update Studio, go to *Help > Install New Software* and install the 3.5.1 runtime from the Anypoint Studio Update Site.
 
 To migrate from older versions than the May 2014 release of Anypoint Studio, please download and install the current version from link:http://www.mulesoft.com/platform/soa/mule-esb-open-source-esb[ESB Solutions] or the link:http://www.mulesoft.com/support-login[Customer Portal].
 
@@ -444,8 +444,3 @@ The current version of MMC requires migration steps that vary according to the v
 
 MMC can now be deployed in two different "flavors", both as a `.war` file or as a `.ear` file. The `.ear` file is necessary for Weblogic servers, which don't support MMC as a `.war`; the `.war` file is recommended for all servers that support it.
 
-== See Also
-
-* link:http://forums.mulesoft.com[MuleSoft's Forums]
-* link:https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[MuleSoft Support]
-* mailto:support@mulesoft.com[Contact MuleSoft]

@@ -1,5 +1,6 @@
 = MuleSoft Product Documentation
 
+<<<<<<< HEAD
 Welcome to docs.mulesoft.com. This website provides technical documentation for all of Mulesoft's products. *_docs.mulesoft.com_* is primarily organized by product component. The specific product component you use depends on the tasks you want to perform.
 
 === First Steps
@@ -20,6 +21,10 @@ The following resources help you get started using Anypoint Platform:
 * https://training.mulesoft.com/[Training and Certification]: Access role-based training materials and courses to become an Anypoint Platform expert.
 * https://blogs.mulesoft.com[Blogs]:  Read blogs and articles written by MuleSoft experts.
 
+=======
+MuleSoft provides the Anypoint Platform to help your organization create integrations and APIs, simplifying the task of connecting multiple data sources.
+
+>>>>>>> 3741126c631eeebabe710cdf5de8e454e94b67ec
 
 === Designing an API
 
@@ -33,6 +38,7 @@ For information on desiging an API using Anypoint Platform, see the following:
 
 === Sharing APIs and Other Assets
 
+<<<<<<< HEAD
 For information on collaborating on an API definition and sharing your APIs, see the following:
 
 * link:/anypoint-about/api-lifecycle[About the API Life Cycle]
@@ -45,18 +51,79 @@ For information on collaborating on an API definition and sharing your APIs, see
 * TBD
 
 === Creating a Mule Application
+=======
+== Set up Anypoint Platform
+
+Follow these steps to get an Anypoint Platform account and set up your workstation.
+
+* link:https://anypoint.mulesoft.com/login/#/signup?apintent=exchange[Create an Anypoint Platform account].
+* Consider the link:/mule-user-guide/v/3.8/hardware-and-software-requirements[MuleSoft hardware and software requirements]
+* For development of Mule apps or API design, set up your workstation according to the link:#getting-started-dev[Developer Toolkit].
+* To manage and deploy Mule apps, see the link:#getting-started-deploy[Deployment Toolkit].
+* To set up platform permissions or monitor deployed assets see the link:#getting-started-manage[Administrator Toolkit].
+
+>>>>>>> 3741126c631eeebabe710cdf5de8e454e94b67ec
 
 * link:/design-center/v/1.0/about-designing-a-mule-application[About Designing a Mule App (Design Center)]
 * link:/anypoint-studio/v/6/basic-studio-tutorial[Basic Studio Tutorial]
 * link:/design-center/v/1.0/flow-design-basic-tasks[Flow Design Basics (Design Center)]
 
+<<<<<<< HEAD
 === Deploying and Managing Mule Applications
+=======
+[[getting-started-dev]]
+== Developer Toolkit
+
+After obtaining access to the Anypoint Platform, you are a few steps away from developing integrations with Mule.
+
+. link:/anypoint-studio/v/6/download-and-launch-anypoint-studio[Download and Install Anypoint Studio]. Studio comes with a test Mule server.
+. If you are an API developer, ensure you read up on link:/api-manager/[API Manager], accessible from Anypoint Platform, to design, publish and manage APIs.
+. Check out templates, connectors and more from Anypoint Exchange, where you can find and publish developer resources. You can use Exchange to publish private repositories too.
+
+[NOTE]
+If you're working with Mule outside Studio or you have an enterprise license, see how to link:/mule-user-guide/v/3.8/configuring-maven-to-work-with-mule-esb[Configure Maven] to properly manage the dependencies used by your Mule apps.
+
+[[getting-started-deploy]]
+== Deployment Toolkit
+
+For *API deployment*, see link:/api-manager[API Manager], accessible from Anypoint Platform.
+
+For *Mule application deployment*, see link:/runtime-manager/deployment-strategies[deployment strategies]. This document explains the standard app-to-runtime deployment workflows and tools.
+
+
+See instructions on how to deploy applications to link:/getting-started/deploy-to-cloudhub[CloudHub] or to link:/getting-started/deploy-to-server[local Mule runtime instances] via the Anypoint Platform.
+
+
+[[getting-started-manage]]
+== Administrator Toolkit
+
+If you are an administrator, provision access to your organization's Anypoint Platform instance through the link:/access-management[Access Management console].
+
+link:/access-management/external-identity[Set up external identities] to manage users and clients using your organization's external federated identity system.
+
+To manage Mule apps and servers, use link:/runtime-manager/[Runtime Manager], the same platform tool used to deploy apps to Mule anywhere.
+
+For APIs, see link:/api-manager[API Manager] and link:/api-manager/[Anypoint Analytics].
+
+
+== Contribute to the Documentation
+
+MuleSoft welcomes contributions to our documentation from the community. To make a contribution:
+>>>>>>> 3741126c631eeebabe710cdf5de8e454e94b67ec
 
 * TBD
 
 === Additional Resources
 
+<<<<<<< HEAD
 These MuleSoft resources provide additional information about Anypoint Platform.
+=======
+== Archived Documentation
+
+Documentation for product versions that are no longer supported or have reached their end of life is available at https://docs.archive.mulesoft.com/.
+
+== See Also
+>>>>>>> 3741126c631eeebabe710cdf5de8e454e94b67ec
 
 * https://support.mulesoft.com/s/[MuleSoft Support]: View the main support site to file a support case.
 * https://www.mulesoft.com/resources_list/whitepapers[Whitepapers]: Read technical whitepapers about different areas of Anypoint Platform.

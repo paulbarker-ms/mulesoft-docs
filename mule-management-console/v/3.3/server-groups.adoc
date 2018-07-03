@@ -2,7 +2,7 @@
 
 == About This Document
 
-This document, as well as the rest of the documents that make up the link:/mule-management-console/v/3.4/rest-api-reference[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases, or scenarios. To understand this document, you should be familiar with link:/documentation/display/MULE3USER/Home[MULE ESB], Server Groups, and the link:/mule-management-console/v/3.4/using-the-management-console-api[REST API]
+This document, as well as the rest of the documents that make up the link:/mule-management-console/v/3.4/rest-api-reference[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases, or scenarios. To understand this document, you should be familiar with Mule Runtime, Server Groups, and the link:/mule-management-console/v/3.4/using-the-management-console-api[REST API]
 
 
 [%autowidth.spread]
@@ -153,7 +153,7 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups
 ....
 [%autowidth.spread]
 |===
-*200* |The operation was successful
+|*200* |The operation was successful
 |===
 ....
 [tab,title="MMC version"]

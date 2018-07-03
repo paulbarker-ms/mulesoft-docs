@@ -1,12 +1,6 @@
 = Starting and Stopping Mule
 :keywords: mule, esb, deploy, launch, run, terminate
-:toc: macro
-:toclevels: 3
-:toc-title: Contents
 
-toc::[]
-
-[NOTE]
 This document deals with deploying to standalone instances of the Mule runtime. To take full advantage of managing and monitoring features, you can deploy to the same Mule runtime via the link:/runtime-manager[Runtime Manager]. See link:/runtime-manager/deployment-strategies[Deployment Strategies] for a deeper look at the different deployment alternatives offered by the platform.
 
 Mule uses the link:http://wrapper.tanukisoftware.org/[Java Service Wrapper] to control the Java Virtual Machine (JVM) from your native OS. The wrapper provides many options and features, including the ability to run Mule as a Unix daemon or install or remove Mule as a Windows Service. The wrapper can handle system signals and start parameters, and overall provides much better interaction between the JVM and the underlying OS.
@@ -22,6 +16,9 @@ The wrapper is called by a script in `$MULE_HOME/bin`.
 
 *Windows*: `$MULE_HOME\bin\mule.bat`
 
+*Note:* When windows restarts, the Mule service stops the same way as using the `mule stop` command. 
+The only situation that this could be different is if Windows kills the process due to a timeout.
+
 The table below lists all the parameters that the script accepts.
 
 [%header,cols="30a,70a"]
@@ -30,7 +27,7 @@ The table below lists all the parameters that the script accepts.
 | `start` |Starts the Mule server in the terminal background.
 | `stop` |Stops the Mule server. The stopping process stops inbound endpoints to process in-flight messages. However due to a timeout duration not all messages are ensured to be processed before final shutdown occurs.
 | `restart` |Restarts the Mule server.
-| `status` |Displays the status of the Mule server (`running` or `not running`) and the process PID if running.
+| `status` | *(Unix only.)* Displays the status of the Mule server (`running` or `not running`) and the process PID if running.
 | `dump` | *(Unix only.)* Dumps the Mule wrapper's core to `$MULE_HOME/log/mule_ee.log`.
 | `console` |Start Mule in the terminal foreground (console mode). Same as running `mule` with no parameters.
 | `install` | *(Windows only.)* Install Mule as a Windows service.
@@ -149,6 +146,7 @@ To control the behavior of the Wrapper from the command line use the -W switch w
 
 For example, to set the logfile that the Wrapper's uses, you could add `wrapper.logfile=/my/log/file.log` to the Wrapper configuration file, or you could add `-Wwrapper.logfile=/my/log/file.log` to the Mule script at the command line.
 
+[[unix_daemon]]
 == Running Mule As a Unix Daemon
 
 To run Mule as a Unix daemon, you need to write a simple wrapper script for the Mule startup script. Place your wrapper script in your system's appropriate directory (such as `/etc/init.d`) and use your system's init script architecture tools to ensure that your wrapper script is invoked in the runlevels you wish.
@@ -226,6 +224,27 @@ $MULE_HOME/bin/mule $1 -config <path to mule-conf.xml>
 ----
 
 On some systems, you can set up startup scripts for use with the `service` utility (System V). Consult your operating system's documentation for details.
+
+=== For CentOS 7 and RHEL 7
+
+After the steps described in <<unix_daemon, Running Mule As a Unix Daemon>>, you might realize that every time you execute `service mule start`, a new process replaces the one that was currently running. To avoid that behavior, you can follow these instructions:
+
+* Create the file `/etc/systemd/system/<name of the wrapper script>.service` with the content:
+
+[source, code, linenums]
+----
+[Service]
+Type=forking
+ExecStart=/etc/init.d/<name of the wrapper script> start
+User=mule
+----
+
+* Run the command to reload the service configuration:
+
+[source, code]
+----
+systemctl daemon-reload
+----
 
 == Running Mule As a Windows Service
 

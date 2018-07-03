@@ -1,10 +1,5 @@
-= CloudHub Architecture
+= About CloudHub Architecture
 :keywords:cloudhub, cloud, manage, mmc, api, worker, runtime manager, arm
-
-image:logo-cloud-active.png[link="/runtime-manager/deployment-strategies", title="CloudHub"]
-image:logo-hybrid-disabled.png[link="/runtime-manager/deployment-strategies", title="Hybrid Deployment"]
-image:logo-server-disabled.png[link="/runtime-manager/deployment-strategies", title="Anypoint Platform Private Cloud Edition"]
-image:logo-pcf-disabled.png[link="/runtime-manager/deployment-strategies", title="Pivotal Cloud Foundry"]
 
 link:/runtime-manager/cloudhub[CloudHub] has been built from the ground up to provide enterprises with a multi-tenant, secure, elastic, and highly available integration platform as a service (iPaaS). This document describes how the underlying mechanisms of the CloudHub platform work to achieve these goals. 
 
@@ -46,7 +41,7 @@ For more about creating and deploying integration applications, see link:/runtim
 
 The Runtime Manager console is integrated into the link:https://anypoint.mulesoft.com[Anypoint Platform]. Sign in with your Anypoint Platform credentials to upload and manage your integration applications at runtime. The console surfaces useful monitoring information from the platform services and also works as a comprehensive dashboard for both application-level and account-level management. 
 
-Through this same console you can link:/runtime-manager/deploying-to-cloudhub[deploy to CloudHub] as well as to link:/runtime-manager/deploying-to-your-own-servers[other registered servers]. You can also link:link:/runtime-manager/managing-deployed-applications[manage deployed applications].
+Through this same console you can link:/runtime-manager/deploying-to-cloudhub[deploy to CloudHub] as well as to link:/runtime-manager/deploying-to-your-own-servers[other registered servers]. You can also link:/runtime-manager/managing-deployed-applications[manage deployed applications].
 
 Administrator account holders can use the Anypoint Platform to link:/access-management/managing-permissions[add and manage other users in the organization, define user roles], and create and manage sandbox environments. 
 
@@ -69,11 +64,14 @@ Each worker is a dedicated instance of Mule that runs your integration applicati
 
 *Worker Sizes:*
 
-* 0.1 vCores + 500 MB Memory
-* 0.2 vCores + 1 GB Memory
-* 1 vCores + 1.5 GB Memory
-* 2 vCores + 3.5 GB Memory
-* 4 vCores + 7.5 GB Memory
+* 0.1 vCores + 500 MB Heap Memory
+* 0.2 vCores + 1 GB Heap Memory
+* 1 vCores + 1.5 GB Heap Memory
+* 2 vCores + 3.5 GB Heap Memory
+* 4 vCores + 7.5 GB Heap Memory
+* 8 vCores + 15 GB Heap Memory
+* 16 vCores + 32 GB Heap Memory
+
 
 [NOTE]
 Along with less available memory, workers that use a link:https://aws.amazon.com/ec2/instance-types/#burst[fraction of a vCore] have more limited CPU and IO, which are usually only appropriate for smaller workloads.
@@ -85,9 +83,28 @@ You can link:/runtime-manager/worker-monitoring[monitor your workers] and verify
 
 === Global Worker Clouds
 
-CloudHub offers different worker clouds in different regions of the world: the United States, the European Union, and Asia-Pacific. This global distribution allows you to host your integration in a location that is closest to your services, thus reducing latency. It may also allow you to adhere with local laws, such as the EU Data Protection Directive. The management console and platform services are hosted in the United States.
+CloudHub offers worker clouds in 12 different regions of the world: North America, South America, the European Union, and Asia-Pacific. This global distribution allows you to host your integration in a location that is closest to your services, thus reducing latency. It may also allow you to adhere with local laws, such as the EU Data Protection Directive. The management console and platform services are hosted in the United States.
 
-When your application is running in the EU, all HTTP services are also available over the eu.cloudhub.io domain. For example, if you create the application "myapp", then its domain is "myapp.eu.cloudhub.io." This load balancer is hosted in the EU, ensuring that your data is never transferred outside the EU when invoking HTTP services.
+The complete list of supported regions is:
+
+[%header]
+|===
+|Region|Sub-Domain
+|US East (North Virginia)|cloudhub.io
+|US East (Ohio)|cloudhub.io
+|US West (Oregon)|us-w2.cloudhub.io
+|US West (North California)|us-w1.cloudhub.io
+|Canada (Central)|ca-c1.cloudhub.io
+|Brazil (Sao Paulo)|br-s1.cloudhub.io
+|Europe (Ireland)|eu.cloudhub.io
+|Europe (Frankfurt)|eu.cloudhub.io
+|UK (London)|uk-e1.cloudhub.io
+|Asia Pacific (Tokyo)|jp-e1.cloudhub.io
+|Asia Pacific (Sydney)|au-s1.cloudhub.io
+|Asia Pacific (Singapore)|sg-s1.cloudhub.io
+|===
+
+The domain provided for your application is based on the region your application is deployed to. For example, if you deploy an application named "myapp" to Canada (Central), the domain used to access the application will be "myapp.ca-c1.cloudhub.io". The load balancer used to route requests reside in the same region as your application.
 
 For more information about deploying applications to different regions, refer to link:/runtime-manager/deploying-to-cloudhub[Deploying to CloudHub]. For more information about CloudHub's security and compliance, download the link:https://www.mulesoft.com/lp/whitepaper/saas/cloud-security[Anypoint Cloud Security & Compliance whitepaper].
 
@@ -96,7 +113,7 @@ For more information about deploying applications to different regions, refer to
 Because different levels of security and isolation are needed depending on the service, the platform provides two different levels of multitenancy.
 
 * First, the worker cloud is a multitenant cloud of virtual machines. These VMs provide the security and isolation needed for your integrations to run custom code without affecting others. 
-* Second, the management console and the platform services have a "shared everything" architecture – all tenants share the same web UI, monitoring services, load balancers, etc. These services do no not process or transmit your data.
+* Second, the management console and the platform services have a "shared everything" architecture – all tenants share the same web UI, monitoring services, load balancers, etc. These services do not process or transmit your data.
 
 == CloudHub Availability and Scalability
 
@@ -149,9 +166,9 @@ For more information about MuleSoft’s approach to security, please see the lin
 
 == See Also
 
-* Read the link:/runtime-manager/cloudhub-networking-guide[CloudHub Networking Guide].
-* Having a technical issue? Check out the link:/runtime-manager/cloudhub-faq[CloudHub FAQ].
-* Find out more differences between link:/runtime-manager/deployment-strategies[Deployment Strategies].
-* Refer to our link:/runtime-manager/maintenance-and-upgrade-policy[Maintenance and Upgrade Policy].
-* Learn how to access link:http://forums.mulesoft.com[forums] resources.
-* You can view the live status and detailed service history for the Runtime Manager console, platform services, and the CloudHub worker cloud on link:http://status.mulesoft.com/[status.mulesoft.com].
+* link:/runtime-manager/cloudhub-networking-guide[CloudHub Networking Guide].
+* link:/runtime-manager/cloudhub-faq[CloudHub FAQ].
+* link:/runtime-manager/deployment-strategies[Deployment Strategies].
+* link:/runtime-manager/maintenance-and-upgrade-policy[Maintenance and Upgrade Policy].
+* link:http://forums.mulesoft.com[forums] resources.
+* link:http://status.mulesoft.com/[status.mulesoft.com].
